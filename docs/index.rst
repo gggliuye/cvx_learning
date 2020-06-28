@@ -10,7 +10,7 @@ Welcome to Cvx-Learning's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-   ProximalAlgorithms/Introduction
+   ProximalAlgorithms/Index
 
 Indices and tables
 ==================

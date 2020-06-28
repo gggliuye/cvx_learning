@@ -1,8 +1,8 @@
 Properties
---------------------------
+==============================
 
 Separable sum
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 If f is seperable across two variables, so :math:`f(x,y) = \phi(x) + \psi(y)`, then:
 

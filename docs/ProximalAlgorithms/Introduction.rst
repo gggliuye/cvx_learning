@@ -1,15 +1,6 @@
 Proximal Algorithms
 ==============================
 
-`Link of the Site <https://moonlight-cvx-learning.readthedocs-hosted.com/en/latest>`_
-
-This pages are my notes when learning Proxima Algorithms from the materials online, mainly from stanford engineer pages :
- `EE364b <https://web.stanford.edu/class/ee364b/lectures.html>`_ , `Proximal Algorithms <http://stanford.edu/~boyd/papers/prox_algs.html>`_,
- and `Math301 <https://statweb.stanford.edu/~candes/teaching/math301/>`_.
-
-These pages will include the important definitions, some of my interpretations, and more derivatives and proofs than the original handouts.
-These pages are corresponding with the paper `Proximal Algorithms Foundations and Trends in Optimization 2014 <http://stanford.edu/~boyd/papers/pdf/prox_algs.pdf>`_
-
 Definitions
 --------------------
 
@@ -21,7 +12,7 @@ The proximal operator :math:`\mathbf{prox}_{\lambda f} : \mathbf{R}^{n} \to \mat
 
 
 Generalized projections
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 When f is the indicator function:
 
@@ -45,7 +36,7 @@ where :math:`\mathbf{C}` is a closed nonempty convex set. The proximal operator 
 Proximal operators thus can be viewed as generalized projections.
 
 Gradient step
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 The proximal operator of f is an optimal point, so It satisfies the optimal condition:
 
@@ -61,7 +52,7 @@ The proximal operator of f is an optimal point, so It satisfies the optimal cond
 We will see more later.
 
 Fixed point
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 The following equation holds, if and only if :math:`x^{*}` minimizes f.
 
@@ -69,16 +60,9 @@ The following equation holds, if and only if :math:`x^{*}` minimizes f.
   \mathbf{prox}_{\lambda f}(x^{*}) = x^{*}
 
 Advantages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 * Work under extremely general conditions.
 * Can be fast.
 * Amenanle to distributed optimization.
 * Oftern conceptually and mathematically simple.
-
-
-.. toctree::
-   :maxdepth: 3
-   :caption: Contents:
-
-   Properties
