@@ -77,9 +77,6 @@ Advantages
 * Oftern conceptually and mathematically simple.
 
 
-Contents
-=========================
-
 .. toctree::
    :maxdepth: 3
    :caption: Contents:
