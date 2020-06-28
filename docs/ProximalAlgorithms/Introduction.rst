@@ -26,23 +26,23 @@ Generalized projections
 When f is the indicator function:
 
 .. math::
-  \mathbf{I}_{\mathsrc{C}}(x) =
+  \mathbf{I}_{\mathbf{C}}(x) =
   \begin{cases}
-  0  x \in \mathsrc{C}\\
-  + \inf x \not\in \mathsrc{C}
+  0  \quad x \in \mathbf{C}\\
+  + \infty \quad x \not\in \mathbf{C}
   \end{cases}
 
 where :math:`\mathsrc{C}` is a closed nonempty convex set. The proximal operator of f reduces to Euclidean projection onto :math:`\mathsrc{C}` :
 
 .. math::
-  \mathbf{prox}_{\lambda \mathbf{I}_{\mathsrc{C}}}(v) =
-  \mathop{\arg\min}_{x} (\mathbf{I}_{\mathsrc{C}}(x) + \frac{1}{2 \lambda}\| x - v \|_{2}^{2})
+  \mathbf{prox}_{\lambda \mathbf{I}_{\mathbf{C}}}(v) =
+  \mathop{\arg\min}_{x} (\mathbf{I}_{\mathbf{C}}(x) + \frac{1}{2 \lambda}\| x - v \|_{2}^{2})
 
 .. math::
-  \mathbf{prox}_{\lambda \mathbf{I}_{\mathsrc{C}}}(v) = \mathop{\arg\min}_{x \in \mathsrc{C}} (\frac{1}{2 \lambda}\| x - v \|_{2}^{2})
-   = \Pi_{\mathsrc{C}}(v)
+  \mathbf{prox}_{\lambda \mathbf{I}_{\mathbf{C}}}(v) = \mathop{\arg\min}_{x \in \mathbf{C}} (\frac{1}{2 \lambda}\| x - v \|_{2}^{2})
+   = \Pi_{\mathbf{C}}(v)
 
-Proximal operators thus can be viewed as generalized projections. 
+Proximal operators thus can be viewed as generalized projections.
 
 
 Contents
