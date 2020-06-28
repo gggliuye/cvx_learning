@@ -11,7 +11,7 @@ These pages will include the important definitions, some of my interpretations, 
 These pages are corresponding with the paper `Proximal Algorithms Foundations and Trends in Optimization 2014 <http://stanford.edu/~boyd/papers/pdf/prox_algs.pdf>`_
 
 Definitions
-=========================
+--------------------
 
 Proximal algorithms can be viewed as tool for non-smooth, constrained, large-sacle, or distributed problems.
 The proximal operator :math:`\mathbf{prox}_{\lambda f} : \mathbf{R}^{n} \to \mathbf{R}^{n}` of f is defined by (where :math:`\lambda > 0`):
@@ -21,7 +21,7 @@ The proximal operator :math:`\mathbf{prox}_{\lambda f} : \mathbf{R}^{n} \to \mat
 
 
 Generalized projections
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When f is the indicator function:
 
@@ -45,7 +45,7 @@ where :math:`\mathbf{C}` is a closed nonempty convex set. The proximal operator 
 Proximal operators thus can be viewed as generalized projections.
 
 Gradient step
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The proximal operator of f is an optimal point, so It satisfies the optimal condition:
 
@@ -56,23 +56,26 @@ The proximal operator of f is an optimal point, so It satisfies the optimal cond
   0 = \Delta f(x^{*}) + \frac{1}{\lambda} (x^{*}-v)
 
 .. math::
-  \mathbf{I}_{\mathbf{C}}(x) = x^{*} = v - \lambda \Delta f(x^{*}) \approx v - \lambda \Delta f(x)
+  \mathbf{prox}_{\lambda f}(v) = x^{*} = v - \lambda \Delta f(x^{*}) \approx v - \lambda \Delta f(x)
 
 We will see more later.
 
 Fixed point
--------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following equation holds, if and only if :math:`x^{*}` minimizes f.
 
 .. math::
-  \mathbf{I}_{\mathbf{C}}(x) = x^{*}
+  \mathbf{prox}_{\lambda f}(x^{*}) = x^{*}
 
+Advantages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+* Work under extremely general conditions.
+* Can be fast.
+* Amenanle to distributed optimization.
+* Oftern conceptually and mathematically simple.
 
-
-Contents
-======================
 
 .. toctree::
    :maxdepth: 3
