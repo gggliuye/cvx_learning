@@ -19,3 +19,9 @@ Proof:
   &= \mathop{\arg\min}_{x, y} (\phi(x) + \psi(y) + \frac{1}{2 \lambda}\| x - v\|_{2}^{2} + \frac{1}{2 \lambda}\| y - w \|_{2}^{2}) \\
   &= (\mathbf{prox}_{\lambda \phi}(v), \mathbf{prox}_{\lambda \psi}(w))
   \end{align*}
+
+
+Basic operations
+------------------------
+
+**Post-Composition**: if :math:`f(x) = \alpha \phi(x) + b`

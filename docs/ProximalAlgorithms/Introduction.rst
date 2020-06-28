@@ -51,6 +51,7 @@ The proximal operator of f is an optimal point, so It satisfies the optimal cond
 
 We will see more later.
 
+
 Fixed point
 --------------------
 

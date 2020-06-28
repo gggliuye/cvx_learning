@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = u'Cvx-Learning'
-copyright = u'2019, LIUYE'
+copyright = u'2020, LIUYE'
 author = u'LIUYE'
 
 # The short X.Y version
