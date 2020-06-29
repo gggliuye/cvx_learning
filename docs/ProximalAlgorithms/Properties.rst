@@ -10,7 +10,7 @@ If f is seperable across two variables, so :math:`f(x,y) = \phi(x) + \psi(y)`, t
   \mathbf{prox}_{\lambda f}(v, w) = (\mathbf{prox}_{\lambda \phi}(v), \mathbf{prox}_{\lambda \psi}(w))
 
 
-***Proof:***
+**Proof:**
 
 .. math::
   \begin{align*}
@@ -32,7 +32,7 @@ If :math:`f(x) = \alpha \phi(x) + b`, with :math:`\alpha > 0`, then:
 .. math::
     \mathbf{prox}_{\lambda f}(v) = \mathbf{prox}_{\alpha \lambda \phi}(v)
 
-***Proof:***
+**Proof:**
 
 .. math::
   \begin{align*}
@@ -49,7 +49,7 @@ If :math:`f(x) = \phi(\alpha x + b)`, with :math:`\alpha \ne 0`, then:
 .. math::
     \mathbf{prox}_{\lambda f}(v) = \frac{1}{\alpha}(\mathbf{prox}_{\alpha^{2} \lambda \phi}(\alpha v +b) - b)
 
-***Proof:***
+**Proof:**
 
 .. math::
   \begin{align*}
@@ -72,7 +72,7 @@ If :math:`f(x) = \phi(x) + a^{T}x + b`, then :
 .. math::
     \mathbf{prox}_{\lambda f}(v) = \mathbf{prox}_{\lambda \phi}(v - \lambda a)
 
-***Proof:***
+**Proof:**
 
 .. math::
   \begin{align*}
@@ -102,7 +102,7 @@ The point :math:`x^{*}` minimizes f if and only if:
 .. math::
   x^{*} = \mathbf{prox}_{\lambda f}(x^{*})
 
-***Proof:*** Can be found in the paper chapter 2.
+**Proof:** Can be found in the paper chapter 2.
 
 Lipschitz continuous
 ~~~~~~~~~~~~~~~~~~~~~
@@ -145,7 +145,7 @@ Let :math:`f_{1}, ..., f_{m}` be closed proper convex functions, Then we have th
 .. math::
   \frac{1}{m} \sum_{i=1}^{m} \mathbf{prox}_{f_{i}} = \mathbf{prox}_{g}
 
-Where g could be called the ***proximal average*** of  :math:`f_{1}, ..., f_{m}`.
+Where g could be called the **proximal average** of  :math:`f_{1}, ..., f_{m}`.
 
 Moreau decomposition
 -----------------------------------
@@ -230,9 +230,7 @@ Using the optimal condition, we have:
 
 Where :math:`\partial f` is the subgradient set of f. So we have :math:`v - x \in \partial f(x)`, then :math:`y \in \partial f(x)`.
 
-3. To prove :math:`y = \mathbf{prox}_{f^{*}}(v)`
-
-As :math:`y in \partial f(x)`, it is equivalent to :math:`0 \in y - \partial f(x)`, so :math:`0 \in \partial_{x} (y^{T}x - f(x))`,
+3. To prove :math:`y = \mathbf{prox}_{f^{*}}(v)`. As :math:`y \in \partial f(x)`, it is equivalent to :math:`0 \in y - \partial f(x)`, so :math:`0 \in \partial_{x} (y^{T}x - f(x))`,
 it means, there exists some affine minorat of f with slope y which is exact at x.
 
 .. math::
@@ -252,3 +250,16 @@ it means, there exists some affine minorat of f with slope y which is exact at x
 
 Proof 2. Moreau decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Note : :math:`\min_{y}(f(y) + \frac{1}\frac{2 \mu} \| x- y \|^{2})` = \bar f_{\mu}(x)
+
+Fistly:
+
+.. math::
+  \begin{align*}
+  & \quad \frac{1}{2}\|x\|^{2} - (f + \frac{1}{2} \| \cdot \|^{2} )^{*}(x)  \\
+  &= \frac{1}{2}\|x\|^{2} - \sup_{v}(x^{T}v - f(v) - \frac{1}{2} \| v \|^{2} )  \\
+  &= \frac{1}{2}\|x\|^{2} + \min_{v}(- x^{T}v + f(v) + \frac{1}{2} \| v \|^{2} )  \\
+  &= \min_{v}(\frac{1}{2} ( \|x\|^{2} - 2x^{T}v \| v \|^{2}) + f(v) )  \\
+  &= \bar f_{1}(x)
+  \end{align*}
