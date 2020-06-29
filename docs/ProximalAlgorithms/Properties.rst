@@ -251,11 +251,11 @@ it means, there exists some affine minorat of f with slope y which is exact at x
 Proof 2. Moreau decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note :
+Note
 .. math::
   \min_{y}(f(y) + \frac{1}\frac{2 \mu} \| x- y \|^{2}) = \bar f_{\mu}(x)
 
-Firstly:
+Firstly,
 
 .. math::
   \begin{align*}
@@ -266,7 +266,7 @@ Firstly:
   &= \bar f_{1}(x)
   \end{align*}
 
-Secondly:
+Secondly,
 
 .. math::
   \begin{align*}
@@ -279,7 +279,7 @@ Secondly:
   &= \bar f_{1}(x)
   \end{align*}
 
-Finally:
+Finally,
 
 .. math::
   \frac{1}{2}\|x\|^{2} - (f + \frac{1}{2} \| \cdot \|^{2} )^{*}(x) = (f^{*} + \frac{1}{2} \| \cdot \|^{2} )^{*}(x)
@@ -287,7 +287,7 @@ Finally:
 .. math::
   \frac{1}{2}\|x\|^{2} = (f + \frac{1}{2} \| \cdot \|^{2} )^{*}(x) + (f^{*} + \frac{1}{2} \| \cdot \|^{2} )^{*}(x)
 
-Take the gradient of both sides:
+Take the gradient of both sides,
 
 .. math:
   x = \mathbf{prox}_{f}(x) + \mathbf{prox}_{f^{*}}(x)
