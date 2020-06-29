@@ -160,14 +160,35 @@ Projection mapping
 This part from `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_.
 Define the projection mapping of a hilbert space.
 
-Let :math:`(\mathbb{H}, <\dot, \dot>)` be a Hilbert space and :math:`\mathbf{C}` a closed convex set in :math:`\mathbb{H}`,
+Let :math:`\mathbb{H},\langle\cdot,\cdot\rangle` be a Hilbert space and :math:`\mathbf{C}` a closed convex set in :math:`\mathbb{H}`,
 tge projection mapping :math:`P_{\mathbb{C}}` onto :math:`\mathbb{C}` is the mapping :math:`P_{\mathbb{C}} : \mathbb{H} \to \mathbb{H}`,
 defined by  :math:`P_{\mathbb{C}} \in \mathbf{C}` and :
 
 .. math::
   \| x - P_{\mathbf{c}}(x) \| = \min (\| x - y \|; y \in \mathbf{C})
 
+Characterization
+~~~~~~~~~~~~~~~~~~~~~~~~
+Let :math:`\mathbb{H},\langle\cdot,\cdot\rangle` be a Hilbert space, :math:`\mathcal{C}` a closed convex set in :math:'\mathbb{H},\,u\in\mathbb{H}`
+ and :math:`v\in\mathcal{C}`. Then :math:`v=P_{\mathcal{C}}(u)` if and only if :math:`\langle u-v,w-v\rangle\leq0` for all :math:`w\in\mathcal{C}`.
 
+ Proof
+ Suppose that LaTeX: v=P_{\mathcal{C}}u. Let LaTeX: w\in\mathcal{C} and LaTeX: t\in (0,1) be arbitrary. By using the convexity of LaTeX: \mathcal{C}, it follows that LaTeX: (1-t)v+tw\in\mathcal{C}. Then, by using the definition of the projection, we have
+
+ LaTeX:
+ \parallel u-v\parallel^2\leq\parallel u-((1-t)v+tw)\parallel^2=\parallel u-v-t(w-v)\parallel^2=\parallel u-v\parallel^2-2t\langle u-v,w-v\rangle+t^2\parallel w-v\parallel^2,
+
+ Hence,
+
+ LaTeX: \langle u-v,w-v\rangle\leq\frac t2\parallel w-v\parallel^2.
+
+ By tending with LaTeX: t\, to LaTeX: 0,\, we get LaTeX: \langle u-v,w-v\rangle\leq0.
+
+ Conversely, suppose that LaTeX: \langle u-v,w-v\rangle\leq0, for all LaTeX: w\in\mathcal C. Then
+
+ LaTeX: \parallel u-w\parallel^2=\parallel u-v-(w-v)\parallel^2=\parallel u-v\parallel^2-2\langle u-v,w-v\rangle+\parallel w-v\parallel^2\geq \parallel u-v\parallel^2,
+
+ for all LaTeX: w\in\mathcal C. Hence, by using the definition of the projection, we get LaTeX: v=P_{\mathcal C}u.
 
 .. image:: images/moreau_decomp.PNG
     :align: center
