@@ -36,14 +36,18 @@ This article uses :
 * Fractinal Programming to reform these problems
 * Using Convex Envelope of these Fractinal problems as a lower bound for Banch and Bound
 * Use three type of nosie models :
-** Ordinary Gaussian noise model :
+
+**Ordinary Gaussian noise model**
+
 .. math::
   p(x|x') =  \frac{1}{2 \pi \sigma^{2}} \exp( - \frac{ \| x - x' \|^{2}_{2}}{2\sigma^{2}})
 
-** A special case for Laplace nosie
+**A special case for Laplace nosie**
+
 .. math::
   p(x|x') =  \frac{1}{2 \pi \sigma} \exp( - \frac{ \| x - x' \|_{2}}{\sigma})
 
-** Bivariate Laplace distribution
+**Bivariate Laplace distribution**
+
 .. math::
   p(x|x') =  \frac{1}{4 \sigma} \exp( - \frac{ \| x - x' \|_{1}}{\sigma})
