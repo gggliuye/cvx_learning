@@ -157,10 +157,9 @@ and `Math 301 <https://statweb.stanford.edu/~candes/teaching/math301/Lectures/Mo
 Projection mapping
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This part from `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_.
 Define the projection mapping of a hilbert space.
 
-Let :math:`\mathbb{H},\langle\cdot,\cdot\rangle` be a Hilbert space and :math:`\mathbf{C}` a closed convex set in :math:`\mathbb{H}`,
+Let :math:`(\mathbb{H},\langle\cdot,\cdot\rangle)` be a Hilbert space and :math:`\mathbf{C}` a closed convex set in :math:`\mathbb{H}`,
 tge projection mapping :math:`P_{\mathbb{C}}` onto :math:`\mathbb{C}` is the mapping :math:`P_{\mathbb{C}} : \mathbb{H} \to \mathbb{H}`,
 defined by  :math:`P_{\mathbb{C}} \in \mathbf{C}` and :
 
@@ -169,26 +168,35 @@ defined by  :math:`P_{\mathbb{C}} \in \mathbf{C}` and :
 
 Characterization
 ~~~~~~~~~~~~~~~~~~~~~~~~
-Let :math:`\mathbb{H},\langle\cdot,\cdot\rangle` be a Hilbert space, :math:`\mathcal{C}` a closed convex set in :math:'\mathbb{H},\,u\in\mathbb{H}`
+Let :math:`(\mathbb{H},\langle\cdot,\cdot\rangle)` be a Hilbert space, :math:`\mathcal{C}` a closed convex set in :math:`\mathbb{H},\,u\in\mathbb{H}`
  and :math:`v\in\mathcal{C}`. Then :math:`v=P_{\mathcal{C}}(u)` if and only if :math:`\langle u-v,w-v\rangle\leq0` for all :math:`w\in\mathcal{C}`.
 
- Proof
- Suppose that LaTeX: v=P_{\mathcal{C}}u. Let LaTeX: w\in\mathcal{C} and LaTeX: t\in (0,1) be arbitrary. By using the convexity of LaTeX: \mathcal{C}, it follows that LaTeX: (1-t)v+tw\in\mathcal{C}. Then, by using the definition of the projection, we have
+***Proof***: can be seen `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_.
 
- LaTeX:
- \parallel u-v\parallel^2\leq\parallel u-((1-t)v+tw)\parallel^2=\parallel u-v-t(w-v)\parallel^2=\parallel u-v\parallel^2-2t\langle u-v,w-v\rangle+t^2\parallel w-v\parallel^2,
+Moreau's theorem
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Moreau's theorem is a fundamental result characterizing projections onto closed convex cones in Hilbert spaces.
 
- Hence,
+Recall that a convex cone in a vector space is a set which is invariant under the addition of vectors and multiplication of vectors by positive scalars.
 
- LaTeX: \langle u-v,w-v\rangle\leq\frac t2\parallel w-v\parallel^2.
+***Theorem (Moreau)***: Let :math:`\mathcal{K}` be a closed convex cone in the Hilbert space :math:`(\mathbb{H},\langle\cdot,\cdot\rangle)`
+ and :math:`\mathcal{K}^\circ` its polar cone; that is, the closed convex cone defined by :math:`\mathcal{K}^\circ=\{a\in\mathbb{H}\,\mid\,\langle a,b\rangle\leq0,\,\forall b\in\mathcal{K}\}`.
 
- By tending with LaTeX: t\, to LaTeX: 0,\, we get LaTeX: \langle u-v,w-v\rangle\leq0.
+For :math:`x,y,z\in\mathbb{H}` the following statements are equivalent:
 
- Conversely, suppose that LaTeX: \langle u-v,w-v\rangle\leq0, for all LaTeX: w\in\mathcal C. Then
+1. :math:`z=x+y,\,x\in\mathcal{K},\,y\in\mathcal{K}^\circ` and :math:`\langle x,y\rangle=0`;
+2. :math:`x=P_{\mathcal{K}}z` and :math:`y=P_{\mathcal{K}^\circ}z`.
 
- LaTeX: \parallel u-w\parallel^2=\parallel u-v-(w-v)\parallel^2=\parallel u-v\parallel^2-2\langle u-v,w-v\rangle+\parallel w-v\parallel^2\geq \parallel u-v\parallel^2,
+The following image is in a Euclidean space, the Moreau's theorem can be seen as an decomposition by the projection in the two convex cone (that is dual of each other).
 
- for all LaTeX: w\in\mathcal C. Hence, by using the definition of the projection, we get LaTeX: v=P_{\mathcal C}u.
+.. image:: images/moreau_th.PNG
+    :align: center
+
+***Proof***: can be seen `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_.
+
+Moreau decomposition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 .. image:: images/moreau_decomp.PNG
     :align: center
