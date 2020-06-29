@@ -254,7 +254,7 @@ Proof 2. Moreau decomposition
 Note,
 
 .. math::
-  \min_{y}(f(y) + \frac{1}\frac{2 \mu} \| x- y \|^{2}) = \bar f_{\mu}(x)
+  \min_{y}(f(y) + \frac{1}{2 \mu} \| x- y \|^{2}) = \bar f_{\mu}(x)
 
 Firstly,
 
@@ -276,7 +276,7 @@ Secondly,
   &= \sup_{v}(x^{T}v - \sup_{u}(x^{T}u - f(u)) - \frac{1}{2} \| v \|^{2} )) \\
   &= \sup_{v}(x^{T}v + \min_{u}(-x^{T}u + f(u)) - \frac{1}{2} \| v \|^{2} ) \\
   &= \min_{u}(\sup_{v}(x^{T}v - v^{T}u - \frac{1}{2} \| v \|^{2} ) + f(u)) \\
-  &= \min_{u}(f(u) + \frac{1}\frac{2} \| x- u \|^{2}) \\
+  &= \min_{u}(f(u) + \frac{1}{2} \| x- u \|^{2}) \\
   &= \bar f_{1}(x)
   \end{align*}
 
