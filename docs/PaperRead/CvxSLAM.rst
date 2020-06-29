@@ -3,20 +3,11 @@ CVX based SLAM related algorithms
 
 It is a summary of a few point cloud matching algorithms based on convex optimzation theory.
 
-.. mermaid::
-  graph LR
-    A[SLAM problems]  --> B(2D SLAM<br>**#2.3** <br>**Loss = Difference of poses**<br>**QCQP+Lagrangian duality**)
-    A--> C(3D SLAM<br>**#2.4** <br>**Loss = Difference of poses**<br>**QCQP+Lagrangian duality**)
-    A--> D(More general<br>**#1.2**<br>**Multiview Geometry Problems**<br>**Fractional Programming+Convex Envelope**)
+.. image:: images/graph_1.PNG
+    :align: center
 
-.. mermaid::
-  graph LR
-    A[Point cloud registration]  --> B(BnB method <br>**global optimal**)
-    B-->E(#1.2<br>**QCQP+Lagrangian duality**)
-    B-->F(#1.1<br>**Fractional Programming+Convex Envelope**)
-    A--> C(Relaxation method <br>**tight empirically** <br>**For SO3 constraint of rotation**)
-    C--> D(Matrix Representation <br>**#2.1 #2.2**)
-    C--> G(Quaternion Representation <br>**#3** <br>**The only correspondence free method here**)
+.. image:: images/graph_2.PNG
+    :align: center
 
 
 1. Banch and Bound
@@ -148,12 +139,45 @@ This is the main subject here. This method is a **outlier robust, correspondence
 3.1 Related works
 --------------------------------
 
-.. mermaid::
-  graph LR
-  A[Correspondence based methods <br>**normally, feature match + robust backend**]  --> B(Registartion without outliers<br>**very sensitve to outliers**)
-  B--> C(BnB methods #1<br>**exponential time in worst cases**<br>**robust with noise**)
-  B--> D(SDP relaxation #2<br>**robust with noise**<br>**slow if large**)
-  A--> E(Robust Registration/Estimation)
-  E--> F(Consensus Maximization<br>**RANSAC**<br> **Cannot handle high outliers rate** <br>**Converge slow**)
-  E--> G(M-estimation<br> **robust cost, usually non-convex** <br>**Don't guarantee global optimality**)
-  E--> H(GNC<br> **Graduated non-convexity** <br>**Sequentially optimize a sequence of**<br>**surrogate functions**)
+**Correspondence based methods**:
+
+.. image:: images/graph_3.PNG
+    :align: center
+
+**Correspondence free methods**:
+
+.. image:: images/graph_4.PNG
+    :align: center
+
+3.2 Pipeline
+---------------------
+
+**Objective function**:
+
+.. math::
+  \min_{s >0, \mathbf{R} \in SO(3), t \in \mathbb{R}^{3}} \sum_{i = 1}^{N} \min(\frac{1}{\beta^{2}}
+  \|b_{i} - s\mathbf{R}a_{i} - t \|^{2}, \bar c ^{2})
+
+**Marginalize translation**
+
+**Marginalize Rotation**
+
+**Overall**:
+
+.. image:: https://img-blog.csdnimg.cn/20200610104622888.png
+    :align: center
+
+.. image:: https://img-blog.csdnimg.cn/20200610104642999.png
+    :align: center
+
+.. image:: https://img-blog.csdnimg.cn/20200610104708703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDQ5MjAyNA==,size_16,color_FFFFFF,t_70
+     :align: center
+
+3.3 Adaptive Voting
+---------------------
+
+* It is a generalization of Histogram voting algorithms.
+
+* Used to calculate translation and scale part of the problem.
+
+* Explain by focus on the scale part:
