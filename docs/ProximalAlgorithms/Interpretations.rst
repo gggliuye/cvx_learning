@@ -50,8 +50,6 @@ Smoothed or Regularized form of f
   &= f^{*} + g^{*}
   \end{align*}
 
-**Done**
-
 **Proof of Theorem 3.2 with duality** :
 
 First, we can reform the Moreau envelope as a equation constrained convex optimization problem:
@@ -87,8 +85,7 @@ As strong duality holds for strickly feasible convex optimization problem, we ha
   &= \sup_{\mu} (-f^{*}(\mu) - (\lambda/2)\|\mu\|^{2} + \mu^{T}x) \\
   &= (f^{*} + (\lambda/2)\|\cdot\|^{2})^{*}(x)
   \end{align*}
-  
-**Done**
+
 
 As a result of Theorem 3.2, we have :
 
