@@ -57,7 +57,7 @@ As a result, we have :
   \begin{align*}
   M_{\lambda f} = M_{\lambda f}^{**} &= (f \square (1/2\lambda)\|\cdot\|^{2}_{2})^{**} \\
   &= (f^{*} + ( (1/2\lambda)\|\cdot\|^{2}_{2})^{*})^{*} \\
-  & \quad (\|\codt\|^{2}_{2} \quad is \quad self-dual) \\
+  & \quad (\|\cdot\|^{2}_{2} \quad is \quad self-dual) \\
   &=(f^{*} +  (1/2\lambda)\|\cdot\|^{2}_{2})^{*}
   \end{align*}
 
@@ -81,14 +81,14 @@ Moreau envelope of :math:`\mid \cdot \mid` is the Huber function:
 Consider firstly the variable v:
 
 .. math::
-  \sup_{v \le 0} ( - \mid v \mid + v^{T}x) =
+  \sup_{v \ge 0} ( - \mid v \mid + v^{T}x) =
   \begin{cases}
   0  \quad x < 1\\
   + \infty \quad x >1
   \end{cases}
 
 .. math::
-  \sup_{v \se 0} ( - \mid v \mid + v^{T}x) =
+  \sup_{v \le 0} ( - \mid v \mid + v^{T}x) =
   \begin{cases}
   0  \quad x > -1\\
   + \infty \quad x < -1
@@ -108,10 +108,44 @@ And:
 .. math::
   M_{L1} =\sup_x(-\frac{1}{2}(x-y)^{2} - k(x) + (1/2)y^{2})
 
-* If :math:`\mid y \mid \se 1`, take :math:`x=y`, :math:`\mid x \mid \se 1`, :math:`k(x) = 0`,
+* If :math:`\mid y \mid \le 1`, take :math:`x=y`, :math:`\mid x \mid \le 1`, :math:`k(x) = 0`,
 We will have :math:`M_{L1} = \frac{1}{2}y^{2}`.
 
-* If :math:`\mid y \mid \le 1`, :math:`\mid x \mid \le 1`, :math:`k(x) = \infty`, we should also take
-:math:`\mid x \mid \se 1`, as a result :math:`\mid x \mid = 1`. We will have :math:`M_{L1} = \mid y \mid - \frac{1}{2}`
+* If :math:`\mid y \mid \ge 1`, :math:`\mid x \mid \ge 1`, :math:`k(x) = \infty`, we should also take
+:math:`\mid x \mid \le 1`, as a result :math:`\mid x \mid = 1`. We will have :math:`M_{L1} = \mid y \mid - \frac{1}{2}`
 
 We end up with **Huber function**.
+
+
+Gardient of Moreau envelope
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Consider the definition of Proximal operator, we have :
+
+.. math::
+  M_{\lambda f}(x) = f(\mathbf{prox}_{\lambda f}(x)) + \frac{1}{2\lambda}\| x - \mathbf{prox}_{\lambda f}(x)\|^{2}_{2}
+
+To find the gradient of Moreau envelope, we reform the expression first:
+
+.. math::
+  \begin{align*}
+  M_{\lambda f}(x) &= \inf_{y}(f(y) + (1/2\lambda)\|y-x\|^{2}_{2})  \\
+  &=\inf_{y}(f(y) + (1/2\lambda)(\|x\|^{2} + \|y\|^{2} - 2x^{T}y))  \\
+  &= (1/2\lambda)\|x\|^{2} + (1/\lambda) \inf_{y}(\lambda f(y) - x^{T}y + (1/2)\|y\|^{2})  \\
+  &= (1/2\lambda)\|x\|^{2} - (1/\lambda) \sup_{y}(-\lambda f(y) + x^{T}y - (1/2)\|y\|^{2})  \\
+  &= (1/2\lambda)\|x\|^{2} - (1/\lambda) (\lambda f + (1/2)\|\cdot\|^{2})^{*}(x)
+  \end{align*}
+
+Then take the gradient of both sides, we will have :
+
+.. math::
+  \begin{align*}
+  \Delta M_{\lambda f}(x) &= x/\lambda - (1/\lambda)\arg\max_{y}(x^{T}y - \lambda f(y) - (1/2)\|y\|^{2}) \\
+  & \quad (as x_{best} \in \partial f^{*}(y) \quad from \quad Properties \quad page) \\
+  &= (1/\lambda)(x- \mathbf{prox}_{\lambda f}(x))
+  \end{align*}
+
+.. math::
+  \mathbf{prox}_{\lambda f}(x) = x- \lambda \Delta M_{\lambda f}(x)
+
+The proximal operator is a gradient updat step of a smoothed version of f.
