@@ -290,7 +290,7 @@ Finally,
 
 Take the gradient of both sides,
 
-.. math:
+.. math::
   x = \mathbf{prox}_{f}(x) + \mathbf{prox}_{f^{*}}(x)
 
 
