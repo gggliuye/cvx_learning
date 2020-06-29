@@ -171,7 +171,7 @@ Characterization
 Let :math:`(\mathbb{H},\langle\cdot,\cdot\rangle)` be a Hilbert space, :math:`\mathcal{C}` a closed convex set in :math:`\mathbb{H},\,u\in\mathbb{H}`
  and :math:`v\in\mathcal{C}`. Then :math:`v=P_{\mathcal{C}}(u)` if and only if :math:`\langle u-v,w-v\rangle\leq0` for all :math:`w\in\mathcal{C}`.
 
-***Proof***: can be seen `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_.
+**Proof**: can be seen `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_.
 
 Moreau's theorem
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -179,7 +179,7 @@ Moreau's theorem is a fundamental result characterizing projections onto closed 
 
 Recall that a convex cone in a vector space is a set which is invariant under the addition of vectors and multiplication of vectors by positive scalars.
 
-***Theorem (Moreau)***: Let :math:`\mathcal{K}` be a closed convex cone in the Hilbert space :math:`(\mathbb{H},\langle\cdot,\cdot\rangle)`
+**Theorem (Moreau)**: Let :math:`\mathcal{K}` be a closed convex cone in the Hilbert space :math:`(\mathbb{H},\langle\cdot,\cdot\rangle)`
  and :math:`\mathcal{K}^\circ` its polar cone; that is, the closed convex cone defined by :math:`\mathcal{K}^\circ=\{a\in\mathbb{H}\,\mid\,\langle a,b\rangle\leq0,\,\forall b\in\mathcal{K}\}`.
 
 For :math:`x,y,z\in\mathbb{H}` the following statements are equivalent:
@@ -192,11 +192,63 @@ The following image is in a Euclidean space, the Moreau's theorem can be seen as
 .. image:: images/moreau_th.PNG
     :align: center
 
-***Proof***: can be seen `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_.
+**Proof**: can be seen `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_.
 
 Moreau decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+The following relation always holds :
+
+.. math:
+  v = \mathbf{prox}_{f}(v) + \mathbf{prox}_{f^{*}}(v)
+
+where :
+
+.. math::
+  f^{*}(y) = \sup_{x} (y^{T}x - f(x))
+
+is the convex conjugate of f.
 
 .. image:: images/moreau_decomp.PNG
     :align: center
+
+
+Proof 1. Moreau decomposition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Re-note :math:`x=\mathbf{prox}_{f}(v)`, and :math:`y = v - x`. So it remains to prove :math:`y=\mathbf{prox}_{f^{*}}(v)`
+
+2. From the difinition:
+
+.. math::
+  x = \mathbf{prox}_{f}(v) = \mathop{\arg\min}_{x} (f(x) + \frac{1}{2}\| x - v \|_{2}^{2})
+
+Using the optimal condition, we have:
+
+.. math::
+  0 \in \partial(f(x) + \frac{1}{2}\| x - v \|_{2}^{2}) =  \partial f(x) + (x-v)
+
+Where :math:`\partial f` is the subgradient set of f. So we have :math:`v - x \in \partial f(x)`, then :math:`y \in \partial f(x)`.
+
+3. To prove :math:`y = \mathbf{prox}_{f^{*}}(v)`
+
+As :math:`y in \partial f(x)`, it is equivalent to :math:`0 \in y - \partial f(x)`, so :math:`0 \in \partial_{x} (y^{T}x - f(x))`,
+it means, there exists some affine minorat of f with slope y which is exact at x.
+
+.. math::
+  f^{*}(y) = y^{T}x - f(x)
+
+.. math::
+  f^{*}(y) = y^{T}x - f^{**}(x)
+
+.. math::
+  f^{**}(x) = y^{T}x - f^{*}(y)
+
+.. math::
+  0 \in \partial_{y}f^{**}(x)
+
+.. math::
+  x \in \partial f^{*}(y)
+
+Proof 2. Moreau decomposition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
