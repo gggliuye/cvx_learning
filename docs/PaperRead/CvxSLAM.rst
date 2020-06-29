@@ -18,22 +18,6 @@ It is a summary of a few point cloud matching algorithms based on convex optimza
     C--> D(Matrix Representation <br>**#2.1 #2.2**)
     C--> G(Quaternion Representation <br>**#3** <br>**The only correspondence free method here**)
 
-Test mermaid:
-
-.. mermaid::
-
-   sequenceDiagram
-      participant Alice
-      participant Bob
-      Alice->John: Hello John, how are you?
-      loop Healthcheck
-          John->John: Fight against hypochondria
-      end
-      Note right of John: Rational thoughts <br/>prevail...
-      John-->Alice: Great!
-      John->Bob: How about you?
-      Bob-->John: Jolly good!
-
 
 1. Banch and Bound
 ==========================
@@ -67,3 +51,6 @@ This article uses :
 
 .. math::
   p(x|x') =  \frac{1}{4 \sigma} \exp( - \frac{ \| x - x' \|_{1}}{\sigma})
+
+  .. image:: https://img-blog.csdnimg.cn/20200608151450625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDQ5MjAyNA==,size_16,color_FFFFFF,t_70
+      :align: center
