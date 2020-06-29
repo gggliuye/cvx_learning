@@ -1,6 +1,8 @@
 CVX based SLAM related algorithms
 ==============================
 
+`Another source to read <https://blog.csdn.net/weixin_44492024/article/details/106619527>`_
+
 It is a summary of a few point cloud matching algorithms based on convex optimzation theory.
 
 .. image:: images/graph_1.PNG
@@ -181,3 +183,21 @@ This is the main subject here. This method is a **outlier robust, correspondence
 * Used to calculate translation and scale part of the problem.
 
 * Explain by focus on the scale part:
+
+3.4.7 Optimality Certification
+----------------------------
+
+This article also propose an algorithm to evaluate a feasible 'solution' (not necessary optimal), by offering a sub-optimality bound.
+
+3.4.8 GNC C++
+---------------------------
+
+`See here <https://blog.csdn.net/weixin_44492024/article/details/106781677>`_
+
+I was very curious about how they actually solve the SDP using C++ (as I could not find a CVX version for C++). Then I invested its reference articles and its source code.
+
+* It uses a Method called "GNC", which is a piecewise polynomial approximation to the truncated quardatic functions (developped by Blake and Zisserman 1987).
+
+* And it using the theory from the article " On the unification of line processes, outlier rejeection, and robust statistics with applications in early vision". Whose theme is that **Robust estimation and outlier rejection process are closely related, and can be converted into each other.**
+
+* In summary, it uses a iterative reweighted SVD based rotation solver.
