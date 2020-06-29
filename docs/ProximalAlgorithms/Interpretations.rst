@@ -50,8 +50,47 @@ Smoothed or Regularized form of f
   &= f^{*} + g^{*}
   \end{align*}
 
+**Done**
 
-As a result, we have :
+**Proof of Theorem 3.2 with duality** :
+
+First, we can reform the Moreau envelope as a equation constrained convex optimization problem:
+
+.. math::
+  \begin{align*}
+  M_{\lambda f}(x) &= \inf_{y}(f(y) + (1/2\lambda)\|x-y\|^{2}) \\
+  &= \inf_{y, s.t. x=y=z}(f(y) + (1/2\lambda)\|z\|^{2})
+  \end{align*}
+
+The largangian of this problem is :
+
+.. math::
+  \begin{align*}
+  \mathbb{L}(y,z,\mu) &= f(y) + (1/2\lambda)\|z\|^{2} + \mu^{T}(x-y-z) \\
+  &=(f(y)- \mu^{T}y) + ((1/2\lambda)\|z\|^{2} - \mu^{T}z) + \mu^{T}x
+  \end{align*}
+
+The dual problem is :
+
+.. math::
+  \begin{align*}
+  g(\mu) &= \inf_{y,z} \mathbb{L}(y,z,\mu) \\
+  &= - \sup_{y}(\mu^{T}y - f(y)) - (\lambda/2)\|\mu\|^{2} + \mu^{T}x \\
+  &= - f^{*}(\mu) - (\lambda/2)\|\mu\|^{2} + \mu^{T}x
+  \end{align*}
+
+As strong duality holds for strickly feasible convex optimization problem, we have the dualty gap equals zero:
+
+.. math::
+  \begin{align*}
+  M_{\lambda f}(x) &= \sup_{\mu} g(\mu)\\
+  &= \sup_{\mu} (-f^{*}(\mu) - (\lambda/2)\|\mu\|^{2} + \mu^{T}x) \\
+  &= (f^{*} + (\lambda/2)\|\cdot\|^{2})^{*}(x)
+  \end{align*}
+  
+**Done**
+
+As a result of Theorem 3.2, we have :
 
 .. math::
   \begin{align*}
@@ -63,8 +102,11 @@ As a result, we have :
 
 From the upper equation, we can interperte the Moreau envelope :math:`M_{\lambda f}` as a smooth approximation to a function
 by taking its conjugate, adding regulization. Mreau envelope obtains a smooth approximation via:
+
 1. Take the conjugate of f : :math:`f^{*}`.
+
 2. Regularize : :math:`f^{*} +  (1/2\lambda)\|\cdot\|^{2}_{2}`
+
 3. Take the conjugate again : :math:`(\cdot)^{*} = M_{\lambda f}`
 
 Moreau envelope of L1 norm
@@ -108,11 +150,9 @@ And:
 .. math::
   M_{L1} =\sup_x(-\frac{1}{2}(x-y)^{2} - k(x) + (1/2)y^{2})
 
-* If :math:`\mid y \mid \le 1`, take :math:`x=y`, :math:`\mid x \mid \le 1`, :math:`k(x) = 0`,
-We will have :math:`M_{L1} = \frac{1}{2}y^{2}`.
+* If :math:`\mid y \mid \le 1`, take :math:`x=y`, :math:`\mid x \mid \le 1`, :math:`k(x) = 0`, We will have :math:`M_{L1} = \frac{1}{2}y^{2}`.
 
-* If :math:`\mid y \mid \ge 1`, :math:`\mid x \mid \ge 1`, :math:`k(x) = \infty`, we should also take
-:math:`\mid x \mid \le 1`, as a result :math:`\mid x \mid = 1`. We will have :math:`M_{L1} = \mid y \mid - \frac{1}{2}`
+* If :math:`\mid y \mid \ge 1`, :math:`\mid x \mid \ge 1`, :math:`k(x) = \infty`, we should also take :math:`\mid x \mid \le 1`, as a result :math:`\mid x \mid = 1`. We will have :math:`M_{L1} = \mid y \mid - \frac{1}{2}`
 
 We end up with **Huber function**.
 
@@ -141,7 +181,7 @@ Then take the gradient of both sides, we will have :
 .. math::
   \begin{align*}
   \Delta M_{\lambda f}(x) &= x/\lambda - (1/\lambda)\arg\max_{y}(x^{T}y - \lambda f(y) - (1/2)\|y\|^{2}) \\
-  & \quad (as x_{best} \in \partial f^{*}(y) \quad from \quad Properties \quad page) \\
+  & (as \quad x_{best} \in \partial f^{*}(y) \quad from \quad Properties \quad page) \\
   &= (1/\lambda)(x- \mathbf{prox}_{\lambda f}(x))
   \end{align*}
 
