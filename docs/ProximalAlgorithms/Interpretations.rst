@@ -148,4 +148,4 @@ Then take the gradient of both sides, we will have :
 .. math::
   \mathbf{prox}_{\lambda f}(x) = x- \lambda \Delta M_{\lambda f}(x)
 
-The proximal operator is a gradient updat step of a smoothed version of f.
+The proximal operator is a **gradient update step** of a smoothed version of f, with step size :math:`\lambda`.
