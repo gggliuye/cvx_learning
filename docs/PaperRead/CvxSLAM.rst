@@ -144,3 +144,16 @@ This is the main subject here. This method is a **outlier robust, correspondence
 * Graph-theoretic framework to decouple scale, rotation and translation (it includes the etimation of scale)
 
 * A tight (empirically) SDP relaxation of the rotation estimation.
+
+3.1 Related works
+--------------------------------
+
+.. mermaid::
+  graph LR
+  A[Correspondence based methods <br>**normally, feature match + robust backend**]  --> B(Registartion without outliers<br>**very sensitve to outliers**)
+  B--> C(BnB methods #1<br>**exponential time in worst cases**<br>**robust with noise**)
+  B--> D(SDP relaxation #2<br>**robust with noise**<br>**slow if large**)
+  A--> E(Robust Registration/Estimation)
+  E--> F(Consensus Maximization<br>**RANSAC**<br> **Cannot handle high outliers rate** <br>**Converge slow**)
+  E--> G(M-estimation<br> **robust cost, usually non-convex** <br>**Don't guarantee global optimality**)
+  E--> H(GNC<br> **Graduated non-convexity** <br>**Sequentially optimize a sequence of**<br>**surrogate functions**)
