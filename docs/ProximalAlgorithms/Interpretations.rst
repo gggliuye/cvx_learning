@@ -98,13 +98,15 @@ As a result of Theorem 3.2, we have :
   \end{align*}
 
 From the upper equation, we can interperte the Moreau envelope :math:`M_{\lambda f}` as a smooth approximation to a function
-by taking its conjugate, adding regulization. Mreau envelope obtains a smooth approximation via:
+by taking its conjugate, adding regulization. **Mreau envelope obtains a smooth approximation via**:
 
 1. Take the conjugate of f : :math:`f^{*}`.
 
 2. Regularize : :math:`f^{*} +  (1/2\lambda)\|\cdot\|^{2}_{2}`
 
 3. Take the conjugate again : :math:`(\cdot)^{*} = M_{\lambda f}`
+
+In my point of view, this three steps is the most important part of the interpretation of Moreau envelope : a **smoothed or regularized form of f**.
 
 Moreau envelope of L1 norm
 ~~~~~~~~~~~~~~~~~~~~~~~~~
