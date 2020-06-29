@@ -69,3 +69,10 @@ This article uses :
 This is a article focus on the 3D points registration problems, which needs already matched point pairs.
 The lower bounds are obtained by Convex relaxations of :math:`\mathbf{SO}(3)`, which is the rotation part.
 It uses quaternion expression of the rotation. And apply a convex envelop over :math:`q_{i}q_{j}`.
+
+* It shows a much better result compared to linear algebra methods (DLT), and have a competable result compared to DLT + bundle adjustment.
+* It is much much more stable compared to the other methods.
+* While even though they didn't show, I think the comptation time it needs is much more than the other two methods.
+
+2. Lagrangian Duality
+================================
