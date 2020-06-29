@@ -251,7 +251,9 @@ it means, there exists some affine minorat of f with slope y which is exact at x
 Proof 2. Moreau decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note :math:`\min_{y}(f(y) + \frac{1}\frac{2 \mu} \| x- y \|^{2}) = \bar f_{\mu}(x)`
+Note :
+.. math::
+  \min_{y}(f(y) + \frac{1}\frac{2 \mu} \| x- y \|^{2}) = \bar f_{\mu}(x)
 
 Firstly:
 
