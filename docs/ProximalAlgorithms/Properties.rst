@@ -251,9 +251,9 @@ it means, there exists some affine minorat of f with slope y which is exact at x
 Proof 2. Moreau decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note : :math:`\min_{y}(f(y) + \frac{1}\frac{2 \mu} \| x- y \|^{2})` = \bar f_{\mu}(x)
+Note :math:`\min_{y}(f(y) + \frac{1}\frac{2 \mu} \| x- y \|^{2}) = \bar f_{\mu}(x)`
 
-Fistly:
+Firstly:
 
 .. math::
   \begin{align*}
@@ -263,3 +263,29 @@ Fistly:
   &= \min_{v}(\frac{1}{2} ( \|x\|^{2} - 2x^{T}v \| v \|^{2}) + f(v) )  \\
   &= \bar f_{1}(x)
   \end{align*}
+
+Secondly:
+
+.. math::
+  \begin{align*}
+  & \quad (f^{*} + \frac{1}{2} \| \cdot \|^{2} )^{*}(x)  \\
+  &= (\sup_{u}(x^{T}u - f(u)) + \frac{1}{2} \| x \|^{2} )^{*} \\
+  &= \sup_{v}[x^{T}v - \sup_{u}(x^{T}u - f(u)) - \frac{1}{2} \| v \|^{2} )] \\
+  &= \sup_{v}[x^{T}v + \min_{u}(-x^{T}u + f(u)) - \frac{1}{2} \| v \|^{2} ] \\
+  &= \min_{u}[\sup_{v}(x^{T}v - v^{T}u - \frac{1}{2} \| v \|^{2} ) + f(u)] \\
+  &= \min_{u}(f(u) + \frac{1}\frac{2} \| x- u \|^{2}) \\
+  &= \bar f_{1}(x)
+  \end{align*}
+
+Finally:
+
+.. math::
+  \frac{1}{2}\|x\|^{2} - (f + \frac{1}{2} \| \cdot \|^{2} )^{*}(x) = (f^{*} + \frac{1}{2} \| \cdot \|^{2} )^{*}(x)
+
+.. math::
+  \frac{1}{2}\|x\|^{2} = (f + \frac{1}{2} \| \cdot \|^{2} )^{*}(x) + (f^{*} + \frac{1}{2} \| \cdot \|^{2} )^{*}(x)
+
+Take the gradient of both sides:
+
+.. math:
+  x = \mathbf{prox}_{f}(x) + \mathbf{prox}_{f^{*}}(x)
