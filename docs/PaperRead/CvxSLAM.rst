@@ -13,10 +13,10 @@ It is a summary of a few point cloud matching algorithms based on convex optimza
 
 
 1. Banch and Bound
-==========================
+--------------------------------------------------
 
 1.1 Practical Global Optimization for Multiview Geometry
---------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 `Article <http://www.researchgate.net/profile/Serge_Belongie/publication/225439941_Practical_Global_Optimization_for_Multiview_Geometry/links/0fcfd5086e4e7aa60f000000>`_
 
 This article talks about using Banch and Bound algorithm for three types of Multiview Geometry problems:
@@ -55,7 +55,7 @@ This article uses :
 * And from the Table2, we can see a real **L1 norm** will conerge much faster. (It may be true that the 21 centry is the centry for L1 norm)
 
 1.2 Branch-and-Bound Methods for Euclidean Registration Problems
-------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Article <https://www.researchgate.net/publication/24213723_Branch-and-Bound_Methods_for_Euclidean_Registration_Problems?enrichId=rgreq-9861f218523209ac6405a5bec452f72f-XXX&enrichSource=Y292ZXJQYWdlOzI0MjEzNzIzO0FTOjEwNDUxNzU1OTM5MDIwOUAxNDAxOTMwMzM2MDg0&el=1_x_3&_esc=publicationCoverPdf>`_
 
@@ -68,10 +68,10 @@ It uses quaternion expression of the rotation. And apply a convex envelop over :
 * While even though they didn't show, I think the comptation time it needs is much more than the other two methods.
 
 2. Lagrangian Duality
-================================
+--------------------------------------------------
 
 2.1 Convex Global 3D Registration with Lagrangian Duality
---------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Article <https://www.researchgate.net/publication/320964493_Convex_Global_3D_Registration_with_Lagrangian_Duality>`_
 
@@ -91,14 +91,14 @@ It shows that strong duality holds in practice (no proof offered), and this meth
 
 
 2.2 Solving Quadratically Constrained Geometrical Problems using Lagrangian Duality
-----------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Article <https://www.researchgate.net/publication/224375577_Solving_Quadratically_Constrained_Geometrical_Problems_using_Lagrangian_Duality?enrichId=rgreq-3868994c4fa6a12376deac34988482d0-XXX&enrichSource=Y292ZXJQYWdlOzIyNDM3NTU3NztBUzoxMDE2OTA5OTI3NTg3ODhAMTQwMTI1NjQzMDEzMw%3D%3D&el=1_x_3&_esc=publicationCoverPdf>`_
 
 This content of this article is already contained in the upper article 1.2 and 1.1.
 
 2.3 Duality-based Verification Techniques for 2D SLAM
--------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Article <http://www.researchgate.net/publication/282687190_Duality-based_verification_techniques_for_2D_SLAM>`_
 
@@ -117,7 +117,7 @@ It reform the problem into QCQP and use SDP relaxation to find bound. And this a
 Better see the next article for more, which a more detailed version of this work.
 
 2.4 Lagrangian Duality in 3D SLAM: Verification Techniques and Optimal Solutions
----------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Article <https://www.researchgate.net/publication/308823892_Lagrangian_duality_in_3D_SLAM_Verification_techniques_and_optimal_solutions>`_
 
@@ -126,7 +126,7 @@ Mostly the same as the article before (2.3 Duality-based Verification Techniques
 The bounds are good, and these two articles are very good material for a application of relaxation of QCQPs.
 
 3. TEASER++
-==================================
+------------------------------------
 
 `Article <https://www.researchgate.net/publication/338762508_TEASER_Fast_and_Certifiable_Point_Cloud_Registration>`_
 
@@ -139,7 +139,7 @@ This is the main subject here. This method is a **outlier robust, correspondence
 * A tight (empirically) SDP relaxation of the rotation estimation.
 
 3.1 Related works
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Correspondence based methods**:
 
@@ -152,7 +152,7 @@ This is the main subject here. This method is a **outlier robust, correspondence
     :align: center
 
 3.2 Pipeline
----------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Objective function**:
 
@@ -176,7 +176,7 @@ This is the main subject here. This method is a **outlier robust, correspondence
      :align: center
 
 3.3 Adaptive Voting
----------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * It is a generalization of Histogram voting algorithms.
 
@@ -184,13 +184,13 @@ This is the main subject here. This method is a **outlier robust, correspondence
 
 * Explain by focus on the scale part:
 
-3.4.7 Optimality Certification
-----------------------------
+3.4 Optimality Certification
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This article also propose an algorithm to evaluate a feasible 'solution' (not necessary optimal), by offering a sub-optimality bound.
 
-3.4.8 GNC C++
----------------------------
+3.5 GNC C++
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `See here <https://blog.csdn.net/weixin_44492024/article/details/106781677>`_
 
