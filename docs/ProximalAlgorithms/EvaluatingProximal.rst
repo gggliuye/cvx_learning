@@ -200,6 +200,6 @@ It is a projection onto a proper cone, using the Moreau theorem, we have :
 So we have :
 
 .. math::
-  x \in \mathcal{K}, \quad v = x - \lambda, \quad \lambda \in \mathcal{K}^{*}, \lambda^{T}x = 0
+  x \in \mathcal{K}, \quad v = x - \lambda, \quad \lambda \in \mathcal{K}^{*},  \quad \lambda^{T}x = 0
 
 It also corresponding to the duality properties of proper cone.

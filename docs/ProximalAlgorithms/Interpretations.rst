@@ -23,7 +23,7 @@ The main example related is the **Moreau envelope** or **Moreau-Yosida regulariz
   M_{\lambda f}(v) =  \lambda f \square  (1/2)\| \cdot \|^{2}_{2}
 
 .. math::
-  M_{\lambda f}(v) = \inf_{x}(f(x) + (1/2lambda) \| x- v\|^{2}_{2})
+  M_{\lambda f}(v) = \inf_{x}(f(x) + (1/2\lambda) \| x- v\|^{2}_{2})
 
 Convexity
 ~~~~~~~~~~~~~~~~~~~~~~

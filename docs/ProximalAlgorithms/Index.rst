@@ -20,3 +20,4 @@ These pages are corresponding with the paper `Proximal Algorithms Foundations an
    Properties
    Interpretations
    EvaluatingProximal
+   Applications
