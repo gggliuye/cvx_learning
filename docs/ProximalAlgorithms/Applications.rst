@@ -98,7 +98,8 @@ we will have the corresponding code in matlab as ::
    q = Atb + rho*(z - u);
    x = lambda*(q - lambda*(A'*(U \ ( L \ (A*q) ))));
 
-The original codes could be found `here <http://stanford.edu/~boyd/papers/prox_algs/lasso.html>`_,
+The original codes could be found `here <http://stanford.edu/~boyd/papers/prox_algs/lasso.html>`_, or in
+`my github page <https://github.com/gggliuye/cvx_learning>`_
 The result run times are :
 
 * CVX time elapsed: 25.06 seconds.
@@ -165,3 +166,6 @@ So the final algorithms looks as follows:
   &X_{i}^{k+1} := \mathbf{prox}_{\lambda \phi_{i}}(X_{i}^{k} - \bar X^{k} + (1/N)A - U^{k}) \\
   &U^{k+1} := U^{k} + \bar X^{k+1} - (1/N)A
   \end{align*}
+
+Test
+~~~~~~~~~~~~~~~~~~~~
