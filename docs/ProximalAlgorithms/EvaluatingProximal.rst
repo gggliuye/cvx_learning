@@ -42,7 +42,7 @@ With :math:`A \in \mathbf{S}^{n}_{+}`, then :
   \mathbf{prox}_{\lambda f}(v) = \arg\min_{x} ((1/2)x^{T}Ax + b^{T}x + c + (1/2\lambda) (x^{T}x + v^{T}v - 2v^{T}x))
 
 .. math::
-  \frac{\partial}{\partial x} =  Ax + (b - (1/\lambda)v) + (1\/lambda)x = 0
+  \frac{\partial}{\partial x} =  Ax + (b - (1/\lambda)v) + (1/\lambda)x = 0
 
 .. math::
   \mathbf{prox}_{\lambda f}(v) = (I + \lambda A)^{-1}(v- \lambda b)
@@ -66,3 +66,54 @@ Same idea here as the descussion above, in most our method, we will try solve :
 
 * We can use the previous solution as a warm start.
 * We can exploit structue of Hessian(H) of f.
+
+General scalar functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Localization method**: this method, is taught in Subgradient Chapter of EE364b, as a method
+suitable for solving non-smooth problem. It is basicly iteratively reduce the candidate region
+of the solution. We can use the subgradient to find a update direction. It can be guaranteed
+to converge. In practice, this method works, however in a very slow way.
+
+**Guarded Newton method**: this method is basicly the same as localization method, except it
+requires the objective function to betwice differentiable, to use the hessian and gradient to
+find a update direction. It converges faster but more expensive for each iteration
+(a nature result as it exploit more the objective function).
+
+Polyhedra
+-----------------------
+
+Consider the problem : projection to a polyhedra:
+
+.. math::
+  \begin{align*}
+  &minimize \quad (1/2)\|x - v\|^{2}_{2} \\
+  &subject\quad to\quad Ax = b, \quad Cx \le d
+  \end{align*}
+
+Where :math:`A \in \mathbf{R}^{m \times n}`, and :math:`C \in \mathbf{R}^{p \times n}`.
+The dual problem of it is a convex quadratic problem. So it is the same as evulative the
+proximal operator of a convex quadratic function restricted to a polyhedron.
+
+
+Solution via duality
+~~~~~~~~~~~~~~~~~~~~~~
+
+It is much more efficient to solve via duality, when m and p are both much smaller than n.
+This corresponding to a case where we wanto to project a high-dimensional point onto a
+polyhedron described by just a few equalities and inequalities.
+
+.. math::
+  \mathbb{L}(x, \mu, \eta) = (1/2)(x^{T}x + v^{T}v - 2v^{T}x) + \mu^{T}(Ax-b) + \eta^{T}(Cx-d)
+
+The optimal conditions are :
+
+.. math::
+  \begin{align*}
+  \frac{\partial \mathbb{L}}{\partial x} = x - 2v + A^{T}\mu + C^{T}\eta = 0
+  \frac{\partial \mathbb{L}}{\partial \mu} = Ax - b = 0
+  \frac{\partial \mathbb{L}}{\partial \eta} = Cx - d = 0
+  \end{align*}
+
+.. math::
+  x = 2v - A^{T}\mu - C^{T}\eta
