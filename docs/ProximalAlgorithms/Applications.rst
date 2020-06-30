@@ -60,3 +60,25 @@ The problem is to decompose matrix A into a sum of components :math:`X_{i}`
   &minimize \quad \phi_{1}(X_{1}) + \gamma_{2}\phi_{2}(X_{2}) + \cdot\cdot\cdot + \gamma_{N}\phi_{N}(X_{N}) \\
   &subject\quad to\quad X_{1} + X_{2} + \cdot\cdot\cdot + X_{N} = A
   \end{align*}
+
+The function :math:`\phi(X)` can usually be seen as 'penalties', to drive :math:`X_{i}` to have our objective properties.
+
+* **Squared Frobenius norm**: :math:`\phi(X) = \|X\|_{F}^{2} = \sum_{i,j}X_{i,j}^{2}`, to encourage X to be small.
+* **Entrywise l1 norm**: :math:`\phi(X) = \|X\|_{1} = \sum_{i,j}\mid X_{i,j}\mid`, to encourage X to be sparse.
+* **Sum-column-norm**: :math:`\phi(X) = \sum_{j}\|x_{j}\|_{2}`, to encourage column sparsity. (can be interpreted as group lasso regulization)
+* **Elementwise constraints**: :math:`X_{i,j}\in C_{i,j}`, for instant, we want to fixed some entries (fixed sparse pattern).
+* **Separable convex function**: :math:`\phi(X) = \sum_{i=1}^{m}\sum_{j=1}^{n}\phi_{i,j}(X_{i,j})`. For instant, constrain the subblock of the matrix.
+* **Semidefinite cone constraint**: :math:`X \succeq 0`.
+* **Nuclear norm**: :math:`\phi(X) = \|X\|_{*}`, encourage X to be low rank.
+
+For an example, take :math:`\phi_{1}` be the Squred Frobenius norm,:math:`\phi_{2}` be the entrywise l1 norm, :math:`\phi_{3}`
+be the Nuclear norm, the problem can be reformed into:
+
+.. math::
+  minimize \quad \|A-(X_{2} + X_{3})\|_{F}^{2} + \gamma_{2}\|X_{2}\|_{1} + \gamma_{3}\|X_{3}\|_{*}
+
+So we will decompose A into a sum of a small matrix :math:`X_{1}`, a sparse matrix :math:`X_{2}`, and a low rank matrix :math:`X_{3}`.
+
+
+ADMM
+~~~~~~~~~~~~~~~~~~~~
