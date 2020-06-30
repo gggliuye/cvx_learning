@@ -100,6 +100,8 @@ Solution via duality
 ~~~~~~~~~~~~~~~~~~~~~~
 
 It is much more efficient to solve via duality, when m and p are both much smaller than n.
+m and n are much smaller means the dual variables have much smaller dimension, which is to
+say the cost to solve the dual problem is much lower.
 This corresponding to a case where we wanto to project a high-dimensional point onto a
 polyhedron described by just a few equalities and inequalities.
 
@@ -129,3 +131,65 @@ Them the dual function is the concave quadratic:
   &= - \frac{1}{2}\| \begin{bmatrix}A\\C \end{bmatrix}^{T}\begin{bmatrix} \mu \\ \eta\end{bmatrix} \|^{2}_{2}
   + (\begin{bmatrix}A\\ C \end{bmatrix} v  - \begin{bmatrix} b\\d\end{bmatrix})^{T}\begin{bmatrix}\mu \\ \eta \end{bmatrix}
   \end{align*}
+
+
+The dual problem is :
+
+.. math::
+  \begin{align*}
+  &maximize g(\mu, \eta) \\
+  &subject\quad to\quad \eta \ge 0
+  \end{align*}
+
+The solution of the primal problem is :
+
+.. math::
+  x^{*} = v - A^{T}\mu^{*} - C^{T}\eta^{*}
+
+**Gram matrix caching**, is n is large but m+p is modest. we define :
+
+.. math::
+  G = \begin{bmatrix}A\\ C \end{bmatrix} \in \mathbf{R}^{(m+p)\times n}
+
+As a result, we have :
+
+.. math::
+  g(\mu, \eta) = - \frac{1}{2}\| G^{T}\begin{bmatrix} \mu \\ \eta\end{bmatrix} \|^{2}_{2}
+  + (G v  - \begin{bmatrix} b\\d\end{bmatrix})^{T}\begin{bmatrix}\mu \\ \eta \end{bmatrix}
+
+We can parallely compute :math:`GG^{T}` :
+
+.. math::
+  GG^{T} = \sum_{i= 1}^{n} \begin{bmatrix}a_{i}\\c_{i}\end{bmatrix} \begin{bmatrix}a_{i}\\c_{i}\end{bmatrix}^{T}
+
+The computation of this part is the most expensive, as a result we can use the similar gestion
+as we deal with the Newton's step. For an example, we can limit the frequence of the update of
+:math:`GG^{T}`.
+
+Affine set
+~~~~~~~~~~~~~~~~~~~~~
+
+Halfspace
+~~~~~~~~~~~~~~~~~~~~~
+
+Box
+~~~~~~~~~~~~~~~~~~~~~
+
+Simplex
+~~~~~~~~~~~~~~~~~~~~~
+
+
+Cones
+---------------------
+
+.. math::
+  \begin{align*}
+  &minimize \quad (1/2)\|x - v\|^{2}_{2} \\
+  &subject\quad to\quad x \in \mathcal{K}
+  \end{align*}
+
+Where :math:`\mathcal{K}` is a proper cone with dual cone :math:`\mathcal{K}^{*}`.
+It is a projection onto a proper cone, using the Moreau theorem, we have :
+
+.. math::
+  v = \Pi_{\mathcal{K}}(v) + \Pi_{\mathcal{K}^{*}}(v)
