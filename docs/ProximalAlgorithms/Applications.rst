@@ -98,6 +98,7 @@ we will have the corresponding code in matlab as ::
    q = Atb + rho*(z - u);
    x = lambda*(q - lambda*(A'*(U \ ( L \ (A*q) ))));
 
+The original codes could be found `here <http://stanford.edu/~boyd/papers/prox_algs/lasso.html>`_,
 The result run times are :
 
 * CVX time elapsed: 25.06 seconds.
@@ -105,7 +106,7 @@ The result run times are :
 * Fast prox gradient time elapsed: 0.17 seconds.
 * ADMM time elapsed: 0.04 seconds.
 
-.. image: images/lasso.jpg
+.. image:: images/lasso.jpg
     :align: center
 
 Matrix decomposition
