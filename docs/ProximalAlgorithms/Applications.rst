@@ -9,7 +9,7 @@ Lasso
 Lasso is short of **Least Absoluate Shrinkage and Selection Operator**. The problem is :
 
 .. math::
-  minimize \quad (1/2)\|Ax-b\|^{2}_{2} + \yamma \|x\|_{1}
+  minimize \quad (1/2)\|Ax-b\|^{2}_{2} + \gamma \|x\|_{1}
 
 Proximal gradient method
 ~~~~~~~~~~~~~~~~~~~~~
@@ -33,8 +33,8 @@ The proximal gradient method will be :
   & = S_{\lambda^{k}\gamma}(x^{k} - \lambda^{k}A^{T}(Ax - b))
   \end{align*}
 
-The proximal gradient method is also called **ISTA**(iterative shrinkage-thresholding algorithm),
-while the accelerated version is known as **FISTA**(fast ISTA), the fast version is basicly adding a momentum.
+The proximal gradient method is also called **ISTA** (iterative shrinkage-thresholding algorithm),
+while the accelerated version is known as **FISTA** (fast ISTA), the fast version is basicly adding a momentum.
 As the proximal gradient method can be interpreted as seperately optimize f and g.
 
 * We can further accelerate the algorithm by parallex matrix-vector multiplication.
@@ -82,3 +82,27 @@ So we will decompose A into a sum of a small matrix :math:`X_{1}`, a sparse matr
 
 ADMM
 ~~~~~~~~~~~~~~~~~~~~
+
+Consider the splitting:
+
+.. math::
+  f(X) = \sum_{i = 1}^{N}\phi_{i}(X_{i}), \quad g(X)= I_{\mathcal{C}}(X)
+
+where :math:`X = (X_{1}, ..., X_{N})`, and :
+
+.. math::
+  \mathcal{C} = \left\{ (X_{1},...,X_{N}) \mid \sum_{i=1}^{N}X_{i} = A \right\}
+
+f is to evulate the objective function, and g is to project onto :math:`\mathcal{C}`: the feasible set.
+The projection is fairly simple, which is similar to a translation of centroid:
+
+.. math::
+  \Pi_{\mathcal{C}}(X) = X - \bar X + (1/N)A
+
+So the final algorithms looks as follows:
+
+.. math::
+  \begin{align*}
+  &X_{i}^{k+1} := \mathbf{prox}_{\lambda \phi_{i}}(X_{i}^{k} - \bar X^{k} + (1/N)A - U^{k}) \\
+  &U^{k+1} := U^{k} + \bar X^{k+1} - (1/N)A
+  \end{align*}
