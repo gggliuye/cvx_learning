@@ -168,16 +168,19 @@ as we deal with the Newton's step. For an example, we can limit the frequence of
 
 Affine set
 ~~~~~~~~~~~~~~~~~~~~~
+see the paper
 
 Halfspace
 ~~~~~~~~~~~~~~~~~~~~~
+see the paper
 
 Box
 ~~~~~~~~~~~~~~~~~~~~~
+see the paper
 
 Simplex
 ~~~~~~~~~~~~~~~~~~~~~
-
+see the paper
 
 Cones
 ---------------------
@@ -193,3 +196,10 @@ It is a projection onto a proper cone, using the Moreau theorem, we have :
 
 .. math::
   v = \Pi_{\mathcal{K}}(v) + \Pi_{\mathcal{K}^{*}}(v)
+
+So we have :
+
+.. math::
+  x \in \mathcal{K}, \quad v = x - \lambda, \quad \lambda \in \mathcal{K}^{*}, \lambda^{T}x = 0
+
+It also corresponding to the duality properties of proper cone.
