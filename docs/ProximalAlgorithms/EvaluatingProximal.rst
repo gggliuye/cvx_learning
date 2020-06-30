@@ -110,10 +110,22 @@ The optimal conditions are :
 
 .. math::
   \begin{align*}
-  \frac{\partial \mathbb{L}}{\partial x} = x - 2v + A^{T}\mu + C^{T}\eta = 0
-  \frac{\partial \mathbb{L}}{\partial \mu} = Ax - b = 0
-  \frac{\partial \mathbb{L}}{\partial \eta} = Cx - d = 0
+  &\frac{\partial \mathbb{L}}{\partial x} = x - v + A^{T}\mu + C^{T}\eta = 0 \\
+  &\frac{\partial \mathbb{L}}{\partial \mu} = Ax - b = 0 \\
+  &\frac{\partial \mathbb{L}}{\partial \eta} = Cx - d = 0
   \end{align*}
 
+From the first condition we have :
+
 .. math::
-  x = 2v - A^{T}\mu - C^{T}\eta
+  x = v - A^{T}\mu - C^{T}\eta
+
+Them the dual function is the concave quadratic:
+
+.. math::
+  \begin{align*}
+  g(\mu, \eta) &= - (1/2)\|v - A^{T}\mu - C^{T}\eta\|^{2}_{2} + (1/2)v^{T}v - \mu^{T}b - \eta^{T}d \\
+  &= - \frac{1}{2}\|A^{T}\mu - C^{T}\eta\|^{2}_{2} + ((Av)^{T} - b^{T})\mu + ((Cv)^{T} - d^{T})\eta \\
+  &= - \frac{1}{2}\| \begin{bmatrix}A\\C \end{bmatrix}^{T}\begin{bmatrix} \mu \\ \eta\end{bmatrix} \|^{2}_{2}
+  + (\begin{bmatrix}A\\ C \end{bmatrix} v  - \begin{bmatrix} b\\d\end{bmatrix})^{T}\begin{bmatrix}\mu \\ \eta \end{bmatrix}
+  \end{align*}
