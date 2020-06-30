@@ -50,6 +50,64 @@ f is quadratic function, we can use the tricks as before:
 * Warm start with previous gradient, if use an iterative method.
 * if n much smaller, we can precompute the Gram matrix.
 
+.. math::
+  \begin{align*}
+  &x^{k+1} := (A^{T}A + (1/\lambda))^{-1}(A^{T}b + (1/\lambda)(z^{k} - u^{k}) ) \\
+  &z^{k+1} := S_{\lambda^{k}\gamma}(x^{k+1} + u^{k})\\
+  &u^{k+1} := u^{k} + x^{k+1} - z^{k+1}
+  \end{align*}
+
+
+Test
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here we should pay attention to the update of x. With :math:`A\in \mathbb{R}^{m \times n}`, if m larger than n,
+we should use the expression upper. While in the case when m is smaller than n, we can reform the process
+to accelerate:
+
+.. math::
+  (A^{T}A + (1/\lambda))x = A^{T}b + (1/\lambda)(z^{k} - u^{k}) \triangleq q
+
+.. math::
+  A(A^{T}A + (1/\lambda))x = Aq
+
+.. math::
+  (AA^{T}A + A(1/\lambda))x = Aq
+
+.. math::
+  (AA^{T} + (1/\lambda))Ax = Aq
+
+.. math::
+  A^{T}Ax = A^{T}(AA^{T} + (1/\lambda))^{-1}Aq \triangleq p
+
+Using this in the original equation we have:
+
+.. math::
+  (A^{T}A + (1/\lambda))x = q
+
+.. math::
+  p + (1/\lambda)x = q
+
+.. math::
+  x = \lambda (q - p)
+
+we will have the corresponding code in matlab as ::
+
+   L = chol(speye(m) + lambda*(A*A'), 'lower');
+   L = sparse(L); U = sparse(L');
+   q = Atb + rho*(z - u);
+   x = lambda*(q - lambda*(A'*(U \ ( L \ (A*q) ))));
+
+The result run times are :
+
+* CVX time elapsed: 25.06 seconds.
+* Proximal gradient time elapsed: 0.35 seconds.
+* Fast prox gradient time elapsed: 0.17 seconds.
+* ADMM time elapsed: 0.04 seconds.
+
+.. image: images/lasso.jpg
+    :align: center
+
 Matrix decomposition
 ------------------------
 
