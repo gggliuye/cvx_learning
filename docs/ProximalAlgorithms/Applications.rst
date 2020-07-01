@@ -129,7 +129,7 @@ The function :math:`\phi(X)` can usually be seen as 'penalties', to drive :math:
 * **Elementwise constraints**: :math:`X_{i,j}\in C_{i,j}`, for instant, we want to fixed some entries (fixed sparse pattern).
 * **Separable convex function**: :math:`\phi(X) = \sum_{i=1}^{m}\sum_{j=1}^{n}\phi_{i,j}(X_{i,j})`. For instant, constrain the subblock of the matrix.
 * **Semidefinite cone constraint**: :math:`X \succeq 0`.
-* **Nuclear norm**: :math:`\phi(X) = \|X\|_{*}`, encourage X to be low rank.
+* **Nuclear norm**: :math:`\phi(X) = \|X\|_{*} = tr(X^{T}X)`, encourage X to be low rank.
 
 For an example, take :math:`\phi_{1}` be the Squred Frobenius norm,:math:`\phi_{2}` be the entrywise l1 norm, :math:`\phi_{3}`
 be the Nuclear norm, the problem can be reformed into:
@@ -169,3 +169,41 @@ So the final algorithms looks as follows:
 
 7.2.2 Test
 ~~~~~~~~~~~~~~~~~~~~
+
+Take the former example : :math:`\phi_{1}` be the Squred Frobenius norm,:math:`\phi_{2}` be the entrywise l1 norm, :math:`\phi_{3}`
+be the Nuclear norm. Note :math:`B=\bar X^{k} - (1/N)A + U^{k}` So our updates of X is:
+
+.. math::
+  \begin{align*}
+  &X_{1} = \mathbf{prox}_{\lambda L2}(X_{1}-B) = \frac{1}{1+\lambda}(X_{1} -B) \\
+  &X_{2} = \mathbf{prox}_{\lambda L1}(X_{2}-B) = S_{\gamma_{2} \lambda}(X_{2} -B) \\
+  &X_{3} = \mathbf{prox}_{\lambda Nuclear}(X_{3}-B) = U \mathbf{diag}(\mathbf{prox}_{\lambda f}(\sigma_{s}(X_{3}-B)))V^{T}
+  \end{align*}
+
+Corresponding codes are::
+
+  X_1 = (1/(1+lambda))*(X_1 - B);
+  X_2 = prox_l1(X_2 - B, lambda*g2);
+  X_3 = prox_matrix(X_3 - B, lambda*g3, @prox_l1);
+
+
+where prox_matrix is defined as ::
+  function [ Vout ] = prox_matrix(X, eta, prox_l1)
+    [U,S,V] = svd(X);    %  X= U*S*V'
+    Spos = prox_l1(S, eta);
+    Vout = U * Spos * V';
+  end
+
+We get the output ::
+  CVX (vs true):
+  |V| = 0.31;  |X_1| = 26.23
+  nnz(S) = 49; nnz(X_2) = 53
+  rank(L) = 4; rank(X_3) = 4
+
+  ADMM (vs true):
+  |V| = 0.31;  |X_1| = 26.18
+  nnz(S) = 49; nnz(X_2) = 52
+  rank(L) = 4; rank(X_3) = 4
+
+  ADMM vs CVX solutions (in Frobenius norm):
+  X_1: 3.59e-01; X_2: 6.15e-01; X_3: 5.30e-01

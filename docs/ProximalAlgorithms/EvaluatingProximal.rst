@@ -210,7 +210,7 @@ It also corresponding to the duality properties of proper cone.
 .. math::
   \begin{align*}
   \mathbf{prox}_{\lambda f}(v)&= v - \lambda \mathbf{prox}_{f^{*}/\lambda}(v/\lambda) \\
-  &= v - \lambda \Pi_{\matbcal{B}}(v/\lambda)
+  &= v - \lambda \Pi_{\mathcal{B}}(v/\lambda)
   \end{align*}
 
 
