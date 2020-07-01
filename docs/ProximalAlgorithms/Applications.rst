@@ -209,3 +209,8 @@ We get the output ::
 
   ADMM vs CVX solutions (in Frobenius norm):
   X_1: 3.59e-01; X_2: 6.15e-01; X_3: 5.30e-01
+
+7.3 Multi-period portfolio optimization
+----------------------------
+
+Optimize the sum of a risk-adjusted negative return f and a transaction cost g, for a period of portfolio investment.
