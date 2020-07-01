@@ -188,6 +188,7 @@ Corresponding codes are::
 
 
 where prox_matrix is defined as ::
+
   function [ Vout ] = prox_matrix(X, eta, prox_l1)
     [U,S,V] = svd(X);    %  X= U*S*V'
     Spos = prox_l1(S, eta);
@@ -195,6 +196,7 @@ where prox_matrix is defined as ::
   end
 
 We get the output ::
+
   CVX (vs true):
   |V| = 0.31;  |X_1| = 26.23
   nnz(S) = 49; nnz(X_2) = 53
