@@ -1,7 +1,7 @@
-Properties
+2. Properties
 ==============================
 
-Separable sum
+2.1 Separable sum
 --------------------------
 
 If f is seperable across two variables, so :math:`f(x,y) = \phi(x) + \psi(y)`, then:
@@ -21,10 +21,10 @@ If f is seperable across two variables, so :math:`f(x,y) = \phi(x) + \psi(y)`, t
   \end{align*}
 
 
-Basic operations
+2.2 Basic operations
 ------------------------
 
-Post-Composition
+2.2.1 Post-Composition
 ~~~~~~~~~~~~~~~~~~~~~~
 
 If :math:`f(x) = \alpha \phi(x) + b`, with :math:`\alpha > 0`, then:
@@ -41,7 +41,7 @@ If :math:`f(x) = \alpha \phi(x) + b`, with :math:`\alpha > 0`, then:
   &= \mathbf{prox}_{\alpha \lambda \phi}(v)
   \end{align*}
 
-Pre-Composition
+2.2.2 Pre-Composition
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 If :math:`f(x) = \phi(\alpha x + b)`, with :math:`\alpha \ne 0`, then:
@@ -65,7 +65,7 @@ If :math:`f(x) = \phi(Q x )`, with Q orthogonal, then:
     \mathbf{prox}_{\lambda f}(v) = Q^{T}\mathbf{prox}_{\lambda \phi}(Q v )
 
 
-Affine addition
+2.2.3 Affine addition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If :math:`f(x) = \phi(x) + a^{T}x + b`, then :
 
@@ -84,7 +84,7 @@ If :math:`f(x) = \phi(x) + a^{T}x + b`, then :
 
 In the last few equations, notices that we can add term of a and v.
 
-Regularization
+2.2.4 Regularization
 ~~~~~~~~~~~~~~~~~~~~~~
 
 If :math:`f(x)=\phi(x) + (\frac{\rho}{2} \| x- a\|^{2}_{2})`, then:
@@ -94,7 +94,7 @@ If :math:`f(x)=\phi(x) + (\frac{\rho}{2} \| x- a\|^{2}_{2})`, then:
 
 where :math:`\bar{\lambda} = \lambda /(1+\lambda \rho)`
 
-Fixed Points
+2.2.5 Fixed Points
 -----------------------------
 
 The point :math:`x^{*}` minimizes f if and only if:
@@ -104,7 +104,7 @@ The point :math:`x^{*}` minimizes f if and only if:
 
 **Proof:** Can be found in the paper chapter 2.
 
-Lipschitz continuous
+2.2.6 Lipschitz continuous
 ~~~~~~~~~~~~~~~~~~~~~
 
 (Mostly from Wikipedia) Given two metric space :math:`(X, d_{X})` and :math:`(Y, d_{Y})`, where :math:`d_{X}`
@@ -121,7 +121,7 @@ For an example, if we have :math:`f : \mathbf{R} \to \mathbf{R}`, and in a l2 sp
 
 We can easily see that, if :math:`K \le 1`, then the distance of function value space be smaller than then the distance in original space.
 
-Fixed point algorithms
+2.2.7 Fixed point algorithms
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We can use the properties above to find a converging sequence to get closer to the optimal position, which is the fixed point.
@@ -137,7 +137,7 @@ The simplest proximal method should be :
   x^{k+1} = \mathbf{prox}_{\lambda f}(x^{k})
 
 
-Proximal average
+2.3 Proximal average
 --------------------------------------
 
 Let :math:`f_{1}, ..., f_{m}` be closed proper convex functions, Then we have that :
@@ -147,14 +147,14 @@ Let :math:`f_{1}, ..., f_{m}` be closed proper convex functions, Then we have th
 
 Where g could be called the **proximal average** of  :math:`f_{1}, ..., f_{m}`.
 
-Moreau decomposition
+2.4 Moreau decomposition
 -----------------------------------
 
 This is an important property. It is closly connected to the duality, and the Moreau envelope.
 The main materials for this part from the paper, `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_
 and `Math 301 <https://statweb.stanford.edu/~candes/teaching/math301/Lectures/Moreau-Yosida.pdf>`_.
 
-Projection mapping
+2.4.1 Projection mapping
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Define the projection mapping of a hilbert space.
@@ -166,14 +166,14 @@ defined by  :math:`P_{\mathbb{C}} \in \mathbf{C}` and :
 .. math::
   \| x - P_{\mathbf{c}}(x) \| = \min (\| x - y \|; y \in \mathbf{C})
 
-Characterization
+2.4.2 Characterization
 ~~~~~~~~~~~~~~~~~~~~~~~~
 Let :math:`(\mathbb{H},\langle\cdot,\cdot\rangle)` be a Hilbert space, :math:`\mathcal{C}` a closed convex set in :math:`\mathbb{H},\,u\in\mathbb{H}`
  and :math:`v\in\mathcal{C}`. Then :math:`v=P_{\mathcal{C}}(u)` if and only if :math:`\langle u-v,w-v\rangle\leq0` for all :math:`w\in\mathcal{C}`.
 
 **Proof**: can be seen `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_.
 
-Moreau's theorem
+2.4.3 Moreau's theorem
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 Moreau's theorem is a fundamental result characterizing projections onto closed convex cones in Hilbert spaces.
 
@@ -194,7 +194,7 @@ The following image is in a Euclidean space, the Moreau's theorem can be seen as
 
 **Proof**: can be seen `Wiki for cvx <https://www.convexoptimization.com/wikimization/index.php/Moreau%27s_decomposition_theorem>`_.
 
-Moreau decomposition
+2.4.4 Moreau decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following relation always holds :
@@ -213,7 +213,7 @@ is the convex conjugate of f.
     :align: center
 
 
-Proof 1. Moreau decomposition
+2.4.5 Proof 1. Moreau decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Re-note :math:`x=\mathbf{prox}_{f}(v)`, and :math:`y = v - x`. So it remains to prove :math:`y=\mathbf{prox}_{f^{*}}(v)`
@@ -248,7 +248,7 @@ it means, there exists some affine minorat of f with slope y which is exact at x
 .. math::
   x \in \partial f^{*}(y)
 
-Proof 2. Moreau decomposition
+2.4.6 Proof 2. Moreau decomposition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Note,

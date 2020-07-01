@@ -1,4 +1,4 @@
-Evaluating Proximal Operators
+6. Evaluating Proximal Operators
 =============================
 
 To use the proximal algorithms, we need to evaluate (solve) the proximal operator at each step.
@@ -11,7 +11,7 @@ The proximal operator is a convex optimization problem.
 * Proximal operators and certain projection operators have a close connection.
 
 
-Generic methods
+6.1 Generic methods
 -------------------------
 
 .. math::
@@ -30,7 +30,7 @@ Generic methods
 We can also review the solve of SDP, we can transform SDP to a cone problem,
 and solve it with a generic interior-point method based cone solver.
 
-Quariatic problems
+6.1.1 Quariatic problems
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. math::
@@ -56,7 +56,7 @@ In summary, evaluate the proximal operator is to solve the linear equation:
 * If we use direct method (factorize), we could save the factorization for re-use.
 * If we use an iterative method, e.g. CG, we can warm start with previous solution.
 
-Smooth functions
+6.1.2 Smooth functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Same idea here as the descussion above, in most our method, we will try solve :
@@ -67,7 +67,7 @@ Same idea here as the descussion above, in most our method, we will try solve :
 * We can use the previous solution as a warm start.
 * We can exploit structue of Hessian(H) of f.
 
-General scalar functions
+6.1.3 General scalar functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Localization method**: this method, is taught in Subgradient Chapter of EE364b, as a method
@@ -80,7 +80,7 @@ requires the objective function to betwice differentiable, to use the hessian an
 find a update direction. It converges faster but more expensive for each iteration
 (a nature result as it exploit more the objective function).
 
-Polyhedra
+6.2 Polyhedra
 -----------------------
 
 Consider the problem : projection to a polyhedra:
@@ -96,7 +96,7 @@ The dual problem of it is a convex quadratic problem. So it is the same as evula
 proximal operator of a convex quadratic function restricted to a polyhedron.
 
 
-Solution via duality
+6.2.1 Solution via duality
 ~~~~~~~~~~~~~~~~~~~~~~
 
 It is much more efficient to solve via duality, when m and p are both much smaller than n.
@@ -166,23 +166,23 @@ The computation of this part is the most expensive, as a result we can use the s
 as we deal with the Newton's step. For an example, we can limit the frequence of the update of
 :math:`GG^{T}`.
 
-Affine set
+6.2.2 Affine set
 ~~~~~~~~~~~~~~~~~~~~~
 see the paper
 
-Halfspace
+6.2.3 Halfspace
 ~~~~~~~~~~~~~~~~~~~~~
 see the paper
 
-Box
+6.2.4 Box
 ~~~~~~~~~~~~~~~~~~~~~
 see the paper
 
-Simplex
+6.2.5 Simplex
 ~~~~~~~~~~~~~~~~~~~~~
 see the paper
 
-Cones
+6.3 Cones
 ---------------------
 
 .. math::
@@ -203,3 +203,27 @@ So we have :
   x \in \mathcal{K}, \quad v = x - \lambda, \quad \lambda \in \mathcal{K}^{*},  \quad \lambda^{T}x = 0
 
 It also corresponding to the duality properties of proper cone.
+
+6.5 Norms and norm balls
+--------------------------------
+
+.. math::
+  \begin{align*}
+  \mathbf{prox}_{\lambda f}(v)&= v - \lambda \mathbf{prox}_{f^{*}/\lambda}(v/\lambda) \\
+  &= v - \lambda \Pi_{\matbcal{B}}(v/\lambda)
+  \end{align*}
+
+
+6.5.1 Euclidean norm
+~~~~~~~~~~~~~~~~~~~~~
+
+.. math::
+  \mathbf{prox}_{\lambda f}(v) = (1-\lambda/\|v\|_{2})_{+}v =
+  \begin{cases} (1-\lambda/\|v\|v_{2})v \quad \|v\|_{2} \ge \lambda \\
+  0 \quad \quad \|v\|_{2} < \lambda
+  \end{cases}
+
+In :mathbb{R}: space, it is a ReLU function. In :math:`mathbb{R}^{2}`, its magnitude looks like:
+
+.. image:: images/magitude_l2_r2.png
+    :align: center

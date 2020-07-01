@@ -1,9 +1,9 @@
-Applications
+7. Applications
 ===========================
 
 
 
-Lasso
+7.1 Lasso
 -------------------
 
 Lasso is short of **Least Absoluate Shrinkage and Selection Operator**. The problem is :
@@ -11,7 +11,7 @@ Lasso is short of **Least Absoluate Shrinkage and Selection Operator**. The prob
 .. math::
   minimize \quad (1/2)\|Ax-b\|^{2}_{2} + \gamma \|x\|_{1}
 
-Proximal gradient method
+7.1.1 Proximal gradient method
 ~~~~~~~~~~~~~~~~~~~~~
 
 It carries out variable selection (by the l1 heuristic), and model fitting (by the least square).
@@ -41,7 +41,7 @@ As the proximal gradient method can be interpreted as seperately optimize f and 
 * Or even use the **Gram matrix** as mentioned in Chapter "Evaluating Proximal Operator".
 * If we want solution for multiply :math:`\gamma`, we can use the solution of the largest :math:`\gamma` as warm starting.
 
-ADMM
+7.1.2 ADMM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 f is quadratic function, we can use the tricks as before:
@@ -58,7 +58,7 @@ f is quadratic function, we can use the tricks as before:
   \end{align*}
 
 
-Test
+7.1.3 Test
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here we should pay attention to the update of x. With :math:`A\in \mathbb{R}^{m \times n}`, if m larger than n,
@@ -110,7 +110,7 @@ The result run times are :
 .. image:: images/lasso.jpg
     :align: center
 
-Matrix decomposition
+7.2 Matrix decomposition
 ------------------------
 
 The problem is to decompose matrix A into a sum of components :math:`X_{i}`
@@ -140,7 +140,7 @@ be the Nuclear norm, the problem can be reformed into:
 So we will decompose A into a sum of a small matrix :math:`X_{1}`, a sparse matrix :math:`X_{2}`, and a low rank matrix :math:`X_{3}`.
 
 
-ADMM
+7.2.1 ADMM
 ~~~~~~~~~~~~~~~~~~~~
 
 Consider the splitting:
@@ -167,5 +167,5 @@ So the final algorithms looks as follows:
   &U^{k+1} := U^{k} + \bar X^{k+1} - (1/N)A
   \end{align*}
 
-Test
+7.2.2 Test
 ~~~~~~~~~~~~~~~~~~~~

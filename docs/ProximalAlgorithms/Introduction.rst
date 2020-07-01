@@ -1,7 +1,7 @@
-Proximal Algorithms
+1. Proximal Algorithms Introduction
 ==============================
 
-Definitions
+1.1 Definitions
 --------------------
 
 Proximal algorithms can be viewed as tool for non-smooth, constrained, large-sacle, or distributed problems.
@@ -11,7 +11,7 @@ The proximal operator :math:`\mathbf{prox}_{\lambda f} : \mathbf{R}^{n} \to \mat
   \mathbf{prox}_{\lambda f}(v) = \mathop{\arg\min}_{x} (f(x) + \frac{1}{2 \lambda}\| x - v \|_{2}^{2})
 
 
-Generalized projections
+1.2 Generalized projections
 --------------------
 
 When f is the indicator function:
@@ -35,7 +35,7 @@ where :math:`\mathbf{C}` is a closed nonempty convex set. The proximal operator 
 
 Proximal operators thus can be viewed as generalized projections.
 
-Gradient step
+1.3 Gradient step
 --------------------
 
 The proximal operator of f is an optimal point, so It satisfies the optimal condition:
@@ -52,7 +52,7 @@ The proximal operator of f is an optimal point, so It satisfies the optimal cond
 We will see more later.
 
 
-Fixed point
+1.4 Fixed point
 --------------------
 
 The following equation holds, if and only if :math:`x^{*}` minimizes f.
@@ -60,7 +60,7 @@ The following equation holds, if and only if :math:`x^{*}` minimizes f.
 .. math::
   \mathbf{prox}_{\lambda f}(x^{*}) = x^{*}
 
-Advantages
+1.5 Advantages
 --------------------
 
 * Work under extremely general conditions.

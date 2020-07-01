@@ -1,8 +1,8 @@
-Interpretations
+3. Interpretations
 ==============================
 
 
-Moreau-Yosida regularization
+3.1 Moreau-Yosida regularization
 ------------------------------
 
 From the name we can know that, this interpretation is closely related to the Moreau decomposition.
@@ -25,14 +25,14 @@ The main example related is the **Moreau envelope** or **Moreau-Yosida regulariz
 .. math::
   M_{\lambda f}(v) = \inf_{x}(f(x) + (1/2\lambda) \| x- v\|^{2}_{2})
 
-Convexity
+3.1.1 Convexity
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Note :math:`L(x,y) = f(y) + \frac{1}{2*\mu} \| x- y\|^{2}_{2}`, then  is jointly convex in x and y, Then :math:`M_{\lambda f}(v) = \inf_{y}L(x,y)`
 must be convex (since its epigraph is the projection of a convex set).
 
 
-Smoothed or Regularized form of f
+3.1.2 Smoothed or Regularized form of f
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Theorem 3.2** : :math:`(f \square g)^{*} = f^{*} + g^{*}`.
@@ -108,7 +108,7 @@ by taking its conjugate, adding regulization. **Mreau envelope obtains a smooth 
 
 In my point of view, this three steps is the most important part of the interpretation of Moreau envelope : a **smoothed or regularized form of f**.
 
-Moreau envelope of L1 norm
+3.1.3 Moreau envelope of L1 norm
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Moreau envelope of :math:`\mid \cdot \mid` is the Huber function:
@@ -156,7 +156,7 @@ And:
 We end up with **Huber function**.
 
 
-Gardient of Moreau envelope
+3.1.4 Gardient of Moreau envelope
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Consider the definition of Proximal operator, we have :
