@@ -78,20 +78,20 @@ Consider the primal cone convex optimization problem:
 .. math::
   \begin{align*}
   &minimize \quad f(x) \\
-  & subject \ to \quad Ax- b \in K \ (which is \ Ax\succeq_{K}b)
+  & subject \ to \quad Ax- b \in K \ (which \ is \ Ax\succeq_{K}b)
   \end{align*}
 
 Its largangian is :
 
 .. math::
   \begin{align*}
-  \mathbb{L}(x, \lambda) &= f(x) - \lambda^{T}(Ax- b) (\quad with \quad \lambda \in K^{*}) \\
+  \mathbb{L}(x, \lambda) &= f(x) - \lambda^{T}(Ax- b) \\
   & = - ((A^{T}b)^{T}x - f(x)) + \lambda^{T}b \\
-  & = b^{T} \lambda - f^{&}(A^{T} \lambda) \\
+  & = b^{T} \lambda - f^{*}(A^{T} \lambda) \\
   & \triangleq g(\lambda)
   \end{align*}
 
-Then the dual problem is:
+With :math:`\lambda \in K^{*}`. Then the dual problem is:
 
 .. math::
   \begin{align*}
