@@ -69,3 +69,46 @@ So far we have the following interpretations for LM algorithm:
 * Trust region algorithm.
 * Proximal operator of second order approximation.
 * Asymptotionally disappearing Tikhonov regularization of quadratic functions, Iterative refinement.
+
+4.5 The augmented Largrangian method
+----------------------------------
+
+Consider the primal cone convex optimization problem:
+
+.. math::
+  \begin{align*}
+  &minimize \quad f(x) \\
+  & subject \ to \quad Ax- b \in K \ (which is \ Ax\succeq_{K}b)
+  \end{align*}
+
+Its largangian is :
+
+.. math::
+  \begin{align*}
+  \mathcal{L}(x, \lambda) &= f(x) - \lambda^{T}(Ax- b) \quad with  \ \lambda \in K^{*} \\
+  & = - ((A^{T}b)^{T}x - f(x)) + \lambda^{T}b\\
+  & = b^{T}\lambda - f^{&}(A^{T}\lambda) \\
+  & \triangleq g(\lambda)
+  \end{align*}
+
+Then the dual problem is:
+
+.. math::
+  \begin{align*}
+  &maximize \quad g(\lambda) \\
+  & subject \ to \quad \lambda \in K^{*}
+  \end{align*}
+
+* If g is differentiable we can use a gradient ascent methods.
+* If g is non-differentiable we can use the subgradient methods.
+* If g is non-differentiable we can consider **the Moreau-Yosida approximation**(as the following).
+
+.. math::
+  g_{\mu}(\lambda) \triangleq \sup_{z\in K^{*}}(g(z) - \frac{1}{2\mu}\|\lambda-z\|^{2}_{2})
+
+Be carefully that the upper is dealing with a concave function g, and we want to maximize it.
+
+We can reform it into :
+
+.. math::
+  g_{\mu}(\lambda) = \sup_{z\in K^{*}}(g(z) - \frac{1}{2\mu}\|u\|^{2}_{2}) \ s.t \ u = \lambda-z

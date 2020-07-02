@@ -67,3 +67,16 @@ The following equation holds, if and only if :math:`x^{*}` minimizes f.
 * Can be fast.
 * Amenanle to distributed optimization.
 * Oftern conceptually and mathematically simple.
+
+1.6 Review convex cones
+-------------------------
+
+* The ordering of cone (the overload of the in-equality) :
+
+.. math::
+  a \succeq_{K}b \Leftrightarrow a-b \in K
+
+* Dual cone:
+
+.. math::
+  \mathcal{K}^\cdot=\{a\in\mathbb{H}\,\mid\,\langle a,b\rangle\ge0,\,\forall b\in\mathcal{K}\}

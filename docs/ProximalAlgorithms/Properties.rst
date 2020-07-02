@@ -187,6 +187,7 @@ For :math:`x,y,z\in\mathbb{H}` the following statements are equivalent:
 1. :math:`z=x+y,\,x\in\mathcal{K},\,y\in\mathcal{K}^\circ` and :math:`\langle x,y\rangle=0`;
 2. :math:`x=P_{\mathcal{K}}z` and :math:`y=P_{\mathcal{K}^\circ}z`.
 
+Attention that  :math:`\mathcal{K}^\cdot` its dual cone is defined as :math:`\mathcal{K}^\cdot=\{a\in\mathbb{H}\,\mid\,\langle a,b\rangle\ge0,\,\forall b\in\mathcal{K}\}`.
 The following image is in a Euclidean space, the Moreau's theorem can be seen as an decomposition by the projection in the two convex cone (that is dual of each other).
 
 .. image:: images/moreau_th.PNG
