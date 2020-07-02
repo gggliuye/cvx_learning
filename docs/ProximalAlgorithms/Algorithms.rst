@@ -85,9 +85,9 @@ Its largangian is :
 
 .. math::
   \begin{align*}
-  \mathcal{L}(x, \lambda) &= f(x) - \lambda^{T}(Ax- b) \quad with  \ \lambda \in K^{*} \\
-  & = - ((A^{T}b)^{T}x - f(x)) + \lambda^{T}b\\
-  & = b^{T}\lambda - f^{&}(A^{T}\lambda) \\
+  \mathbb{L}(x, \lambda) &= f(x) - \lambda^{T}(Ax- b) (\quad with \quad \lambda \in K^{*}) \\
+  & = - ((A^{T}b)^{T}x - f(x)) + \lambda^{T}b \\
+  & = b^{T} \lambda - f^{&}(A^{T} \lambda) \\
   & \triangleq g(\lambda)
   \end{align*}
 
@@ -101,7 +101,7 @@ Then the dual problem is:
 
 * If g is differentiable we can use a gradient ascent methods.
 * If g is non-differentiable we can use the subgradient methods.
-* If g is non-differentiable we can consider **the Moreau-Yosida approximation**(as the following).
+* If g is non-differentiable we can consider **the Moreau-Yosida approximation** (as the following).
 
 .. math::
   g_{\mu}(\lambda) \triangleq \sup_{z\in K^{*}}(g(z) - \frac{1}{2\mu}\|\lambda-z\|^{2}_{2})
