@@ -21,3 +21,4 @@ These pages are corresponding with the paper `Proximal Algorithms Foundations an
    Interpretations
    EvaluatingProximal
    Applications
+   Conclusions

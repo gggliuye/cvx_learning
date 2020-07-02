@@ -286,13 +286,13 @@ Optimize the stochastic optimization, with :math:`\pi` be a probability distribu
 proper convex objective function for scenario k.
 
 .. math::
-  minimize \quad \mathcal{E}(f(x)) = \sum_{k = 1}^{K} \pi_{k}f^}{(k)}(x)
+  minimize \quad \mathcal{E}(f(x)) = \sum_{k = 1}^{K} \pi_{k}f^{(k)}(x)
 
 Reform the problem into consensus form by introducing a consensus constraint.
 
 .. math::
   \begin{align*}
-  & minimize \quad \mathcal{E}(f(x)) = \sum_{k = 1}^{K} \pi_{k}f^}{(k)}(x^{(k)}) \\
+  & minimize \quad \mathcal{E}(f(x)) = \sum_{k = 1}^{K} \pi_{k}f^{(k)}(x^{(k)}) \\
   & subject \ to \quad x^{(1)} = \cdot\cdot\cdot = x^{(K)}
   \end{align*}
 
@@ -300,4 +300,7 @@ To use ADMM method, the function f take the form of the upper objective function
 take the form of a pojection onto the feasible set, by take the average of the local solutions
 :math:`x^{(k)}`.
 
+
 Example code could be found `here <http://stanford.edu/~boyd/papers/prox_algs/control.html>`_.
+ADMM and CVX method solved in similar amount of time, while we should notice that in ADMM, the updates
+of variables could be processed in parallex.
