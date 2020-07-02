@@ -260,7 +260,9 @@ The update of each rows of z will be solving the following problem:
   \end{align*}
 
 Code could be found in `Stanford page <http://stanford.edu/~boyd/papers/prox_algs/finance.html>`_, or in
-`my github <https://github.com/gggliuye/cvx_learning>`_ .
+`my github <https://github.com/gggliuye/cvx_learning>`_ . The following image shows the time series of asset holdings.
 
-.. image::images/fin_asset_holdings.png
+.. image:: images/fin_asset_holdings.png
     :align: center
+
+In this case, ADMM method converges to the same optimal point as CVX solver, however it is much slower.
