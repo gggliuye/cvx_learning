@@ -214,3 +214,53 @@ We get the output ::
 ----------------------------
 
 Optimize the sum of a risk-adjusted negative return f and a transaction cost g, for a period of portfolio investment.
+
+.. math::
+  minimize \quad \sum_{t=1}^{T}f_{t}(x_{t}) + \sum_{t=1}^{T}g_{t}(x_{t} - x_{t-1})
+
+With the constraints that indicate any short position (x>0), and limit the sum o f liquid.
+
+.. math::
+  x_{t} \ge 0, \quad \sum_{i=1}^{N} x_{t,i} \le 1
+
+Assume that :math:`f_{t}` and :math:`g_{t}` are closed proper convex and that :math:`f_{t}` are fully separable, i.e.
+the transaction cost in any period is the sum of the transaction costs for each asset. Let :math:`X = [x_{1},...,x_{T}] \in \mathbb{R}^{n \times T}`
+donate the matrix of the portfoilo sequence.
+
+Consider the splitting:
+
+.. math::
+  f(X) = \sum_{t=1}^{T}f_{t}(x_{t}) \quad g(X) = \sum_{t=1}^{T}g_{t}(x_{t} - x_{t-1})
+
+**Where f is separable across the columns of X and g is separable across the rows of X.**
+
+Recall the update formula of ADMM :
+
+.. math::
+  \begin{align*}
+  &x^{k+1}:=\mathbf{prox}_{\lambda f}(z^{k} - u^{k}) \\
+  &z^{k+1}:=\mathbf{prox}_{\lambda g}(x^{k+1} + u^{k}) \\
+  &u^{k+1} := u^{k} + x^{k+1} - z^{k+1}
+  \end{align*}
+
+The update of each column of x will be solved using a CVX solver:
+
+.. math::
+  \begin{align*}
+  &minimize \quad f_{t}(x_{t}) + (1/2\lambda)\|x_{t} - z^(k) + u^{k}\|^{2}_{2}\\
+  & subject\ to \quad x_{t}\ge 0, \quad \sum_{i=1}^{N} x_{t,i} \le 1
+  \end{align*}
+
+The update of each rows of z will be solving the following problem:
+
+.. math::
+  \begin{align*}
+  &minimize \quad \sum_{t=1}^{N} g_{t,i}(z_{t,i}- z_{t-1,i} + (1/2\lambda)\|z_{t,i} - x^{k+1} - u^{k}\|_{2}^{2} \\
+  & subject\ to \quad z_{1} = 0
+  \end{align*}
+
+Code could be found in `Stanford page <http://stanford.edu/~boyd/papers/prox_algs/finance.html>`_, or in
+`my github <https://github.com/gggliuye/cvx_learning>`_ .
+
+.. image::images/fin_asset_holdings.png
+    :align: center
