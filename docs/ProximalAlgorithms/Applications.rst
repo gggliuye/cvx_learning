@@ -1,7 +1,19 @@
 7. Applications
 ===========================
 
+We can always use the following Matlab code to calculate the proximal operator::
 
+  function x = prox_f_cvx(v, lambda, f, A)
+  % For testing purposes.
+      [n T] = size(v);
+      cvx_begin quiet
+          variable x(n,T)
+          minimize(f(x,A) + (1/(2*lambda))*square_pos(norm(x - v,'fro')))
+          subject to
+              x <= 1;
+              x >= -1;
+      cvx_end
+  end
 
 7.1 Lasso
 -------------------
@@ -266,3 +278,26 @@ Code could be found in `Stanford page <http://stanford.edu/~boyd/papers/prox_alg
     :align: center
 
 In this case, ADMM method converges to the same optimal point as CVX solver, however it is much slower.
+
+7.4 Stochastic optimization
+-----------------------------
+
+Optimize the stochastic optimization, with :math:`\pi` be a probability distribution, and :math:`f_{(k)}` is the closed
+proper convex objective function for scenario k.
+
+.. math::
+  minimize \quad \mathcal{E}(f(x)) = \sum_{k = 1}^{K} \pi_{k}f^}{(k)}(x)
+
+Reform the problem into consensus form by introducing a consensus constraint.
+
+.. math::
+  \begin{align*}
+  & minimize \quad \mathcal{E}(f(x)) = \sum_{k = 1}^{K} \pi_{k}f^}{(k)}(x^{(k)}) \\
+  & subject \ to \quad x^{(1)} = \cdot\cdot\cdot = x^{(K)}
+  \end{align*}
+
+To use ADMM method, the function f take the form of the upper objective function, while g
+take the form of a pojection onto the feasible set, by take the average of the local solutions
+:math:`x^{(k)}`.
+
+Example code could be found `here <http://stanford.edu/~boyd/papers/prox_algs/control.html>`_.

@@ -1,7 +1,7 @@
 Proximal Algorithms
 ==============================
 
-`Link of the Site <https://moonlight-cvx-learning.readthedocs-hosted.com/en/latest>`_
+`Link of the Site <https://cvx-learning.readthedocs.io/en/latest/>`_
 
 This pages are my notes when learning Proxima Algorithms from the materials online, mainly from stanford engineer pages :
  `EE364b <https://web.stanford.edu/class/ee364b/lectures.html>`_ , `Proximal Algorithms <http://stanford.edu/~boyd/papers/prox_algs.html>`_,
