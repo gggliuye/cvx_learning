@@ -188,3 +188,80 @@ Then take the gradient of both sides, we will have :
   \mathbf{prox}_{\lambda f}(x) = x- \lambda \Delta M_{\lambda f}(x)
 
 The proximal operator is a **gradient update step** of a smoothed version of f, with step size :math:`\lambda`.
+
+3.2 Resolvent of subdifferential operator
+-----------------------------------------
+
+The subdifferential operator :math:`\partial f` is a point-to-set mapping (project to the subgradient set).
+From the optimal condition of the evaluation of proximal operator, we have :
+
+.. math::
+  0 \in \partial f(x) + (1/\lambda)(x-v)
+
+.. math::
+  v \in \lambda \partial f(x) + x = (I + \partial f)(x)
+
+.. math::
+  x \in (I + \partial f)^{-1}(v)
+
+.. math::
+  prox_{\lambda f} = (I + \partial f)^{-1}
+
+Where :math:`(I + \partial f)` is a projection operator. And its inverse :math:`(I + \partial f)^{-1}` is called
+the **resolvent of the operator** :math:`\partial f`.
+
+3.3 Modified gradient step
+---------------------------------------
+
+3.3.1 First order approximation
+~~~~~~~~~~~~~~~~~~~~
+
+Take the first order taylor expansion of function f:
+
+.. math::
+  \hat{f}^{(1)}_{v}(x) = f(v) + \Delta f(v)^{T}(x-v)
+
+Substitute into the proximal operator:
+
+.. math::
+  \mathbf{prox}_{\lambda \hat{f}^{(1)}_{v}} = \arg\min_{x} (f(v) + \Delta f(v)^{T}(x-v) + (1/2\lambda)\|x-v\|^{2}_{2})
+
+.. math::
+  \frac{\partial}{\partial x}(\cdot) = \Delta f(v) + (1/\lambda)(x-v) = 0
+
+.. math::
+  \mathbf{prox}_{\lambda \hat{f}^{(1)}_{v}} = v - \lambda \Delta f(v)
+
+It is a standard gradient update with step size :math:`\lambda`.
+
+
+3.3.2 Second order approximation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Take the seconf order taylor expansion of function f:
+
+.. math::
+  \hat{f}^{(2)}_{v}(x) = f(v) + \Delta f(v)^{T}(x-v) + \frac{1}{2}(x-v)^{T}\Delta^{2} f(v)(x-v)
+
+Substitute into the proximal operator:
+
+.. math::
+  \mathbf{prox}_{\lambda \hat{f}^{(2)}_{v}} = \arg\min_{x} (f(v) + \Delta f(v)^{T}(x-v) + \frac{1}{2}(x-v)^{T}\Delta^{2} f(v)(x-v) + (1/2\lambda)\|x-v\|^{2}_{2})
+
+.. math::
+  \frac{\partial}{\partial x}(\cdot) = \Delta f(v) + \Delta^{2} f(v)(x-v) + (1/\lambda)(x-v) = 0
+
+.. math::
+  \Delta f(v) + ( \Delta^{2} f(v) + (1/\lambda) I) (1/\lambda)(x-v) = 0
+
+.. math::
+  \mathbf{prox}_{\lambda \hat{f}^{(2)}_{v}} = v - ( \Delta^{2} f(v) + (1/\lambda) I)^{-1}\Delta f(v)
+
+It is a Tikhonovregularized Newton update, also known as a Levenberg-Marquardt up-date
+or a modified Hessian Newton update. Thus, gradient and Levenberg-Marquardt steps can be viewed as proximal operators
+of first and second-order approximations of f.
+
+3.4 Trust region problem
+-------------------------
+
+The second term of the proximal operator :math:`\|x-v\|^{2}_{2}` could be seen as a squared penalty, to
+restraint the variable in a nearby region.

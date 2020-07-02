@@ -19,6 +19,8 @@ These pages are corresponding with the paper `Proximal Algorithms Foundations an
    Introduction
    Properties
    Interpretations
+   Algorithms
+   ParallelDistributed
    EvaluatingProximal
    Applications
    Conclusions
