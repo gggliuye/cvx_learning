@@ -112,8 +112,8 @@ It is the normal Lagrangian of the following problem (which is equivalent to ori
 
 .. math::
   \begin{align*}
-  minimize \quad f(x) + (\rho/2)\|Ax-b\|_{2}^{2} \\
-  subject \ to \quad Ax = b
+  &minimize \quad f(x) + (\rho/2)\|Ax-b\|_{2}^{2} \\
+  &subject \ to \quad Ax = b
   \end{align*}
 
 The result update will be:
@@ -134,5 +134,7 @@ For this special step size we chosen, we have the following relations (start fro
   \end{align*}
 
 which is exactly the dual feasibility of the problem. which justify the choice of the step size.
+
 * The convergence of this mehtod is much better.
+
 * However in this expression, the update of x depends on all the primal variables. As a result, even if f is separable, the update of x will not be separable.

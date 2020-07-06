@@ -95,7 +95,7 @@ If :math:`f(x)=\phi(x) + (\frac{\rho}{2} \| x- a\|^{2}_{2})`, then:
 where :math:`\bar{\lambda} = \lambda /(1+\lambda \rho)`
 
 2.2.5 Fixed Points
------------------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 The point :math:`x^{*}` minimizes f if and only if:
 

@@ -223,7 +223,7 @@ It also corresponding to the duality properties of proper cone.
   0 \quad \quad \|v\|_{2} < \lambda
   \end{cases}
 
-In :mathbb{R}: space, it is a ReLU function. In :math:`mathbb{R}^{2}`, its magnitude looks like:
+In :mathbb{R}: space, it is a ReLU function. In :math:`\mathbb{R}^{2}`, its magnitude looks like:
 
 .. image:: images/magitude_l2_r2.png
     :align: center
