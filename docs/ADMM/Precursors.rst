@@ -24,7 +24,7 @@ The dual function is :
 
 .. math::
   \begin{align*}
-  g(\lamdba) &= \inf_{x} \mathcal{L}(x, \lamdba) \\
+  g(\lambda) &= \inf_{x} \mathcal{L}(x, \lambda) \\
   & = \inf_{x} (f(x)  + \lambda^{T}(Ax)) - b^{T}\lambda \\
   & = - sup_{x}((-A^{T}\lambda)^{T}x - f(x)) - b^{T}\lambda \\
   & = - f^{*}(-A^{T}\lambda) - b^{T}\lambda
@@ -38,7 +38,7 @@ The dual problem is :
 while we have :
 
 .. math::
-  x^{k+1} := \argmin_{x}\mathcal{L}(x, \lambda^{k})
+  x^{k+1} := arg\min_{x}\mathcal{L}(x, \lambda^{k})
 
 .. math::
   \begin{align*}
@@ -58,7 +58,7 @@ In summary the dual ascent update is :
 
 .. math::
   \begin{align*}
-  & x^{k+1} := \argmin_{x}\mathcal{L}(x, y^{k})\\
+  & x^{k+1} := arg\min_{x}\mathcal{L}(x, y^{k})\\
   & y^{k+1} := y^{k} + \alpha^{k}(Ax^{k+1}-b)
   \end{align*}
 
@@ -95,7 +95,7 @@ Similarly as before, the update will be :
 
 .. math::
   \begin{align*}
-  & x^{k+1}_{i} := \argmin_{x}\mathcal{L}_{i}(x_{i}, y^{k})\\
+  & x^{k+1}_{i} := arg\min_{x}\mathcal{L}_{i}(x_{i}, y^{k})\\
   & y^{k+1} := y^{k} + \alpha^{k}(Ax^{k+1}-b)
   \end{align*}
 
@@ -120,7 +120,7 @@ The result update will be:
 
 .. math::
   \begin{align*}
-  & x^{k+1} := \argmin_{x}\mathcal{L}_{\rho}(x, y^{k})\\
+  & x^{k+1} := arg\min_{x}\mathcal{L}_{\rho}(x, y^{k})\\
   & y^{k+1} := y^{k} + \rho(Ax^{k+1}-b)
   \end{align*}
 
