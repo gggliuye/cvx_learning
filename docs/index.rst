@@ -11,6 +11,7 @@ Welcome to Cvx-Learning's documentation!
    :caption: Contents:
 
    ProximalAlgorithms/Index
+   ADMM/Index
    PaperRead/Index
 
 Indices and tables
