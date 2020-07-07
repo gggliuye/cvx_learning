@@ -59,6 +59,41 @@ Using the scaled form of ADMM updates (see 7.3 sharing problems for more details
 .. math::
   \begin{align*}
   & x_{i}^{k+1} := \arg\min_{x_{i}} (l_{i}(A_{i}x_{i} - b_{i}) + (\rho/2)\|x_{i} - z^{k} + u_{i}^{k} \|_{2}^{2}) \\
-  & z^{k+1} := \arg\min_{z} (r(z) + (N\rho/2)\|\bar{x}_{k+1} - z + \bar{u}^{k} \|_{2}^{2}) \\
+  & z^{k+1} := \arg\min_{z} (r(z) + (N\rho/2)\|\bar{x}^{k+1} - z + \bar{u}^{k} \|_{2}^{2}) \\
   & u_{i}^{k+1} := u_{i}^{k} + x_{i}^{k+1} - z^{k+1}
+  \end{align*}
+
+* Lasso
+* Sparse Logistic Regression
+* Support Vector Machine
+
+8.3 Splitting across Features
+-------------------------
+
+Model fitting problems with a modest number of examples and a large number of features.
+
+* NLP(natural language processing) : pairs of adjucent words (bigrams), etc.
+* Bioinformatics: DNA mutation, etc.
+
+Partition of the parameter vector x as :math:`x = (x_{1}, ..., x_{N})`, and A as :math:`A = [A_{1},...,A_{N}]`,
+the problem will be:
+
+.. math::
+  minimize\quad l(\sum_{i=1}^{N} A_{i}x_{i} -b) + \sum_{i=1}^{N}r_{i}(x_{i})
+
+Reform into consensus problem:
+
+.. math::
+  \begin{align*}
+  & minimize \quad l(\sum_{i=1}^{N} z_{i} -b) + \sum_{i=1}^{N}r_{i}(x_{i}) \\
+  & subject\ to \quad A_{i}x_{i} - z_{i} =0,\ i=1,...,N
+  \end{align*}
+
+The corresponding scaled form of ADMM is :
+
+.. math::
+  \begin{align*}
+  & x_{i}^{k+1} := \arg\min_{x_{i}} (r_{i}(x_{i}) + (\rho/2)\|A_{i}x_{i} - z_{i}^{k} + u_{i}^{k} \|_{2}^{2}) \\
+  & z^{k+1} := \arg\min_{z} (l(\sum_{i=1}^{N}z_{i}-b) + \sum_{i=1}^{N}(\rho/2)\|A_{i}x_{i}^{k+1} - z_{i} + u_{i}^{k} \|_{2}^{2}) \\
+  & u_{i}^{k+1} := u_{i}^{k} + A_{i}x_{i}^{k+1} - z^{k+1}_{i}
   \end{align*}
