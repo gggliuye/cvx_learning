@@ -1,5 +1,7 @@
-Alternating Direction Method of Multipliers
+ADMM
 ==============================
+
+**Alternating Direction Method of Multipliers**
 
 `Link of the Site <https://cvx-learning.readthedocs.io/en/latest/>`_
 
@@ -17,3 +19,4 @@ These pages are corresponding with the paper `Distributed Optimization and Stati
 
    Introduction
    Precursors
+   DistributedModelFitting
