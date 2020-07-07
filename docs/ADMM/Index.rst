@@ -20,3 +20,4 @@ These pages are corresponding with the paper `Distributed Optimization and Stati
    Introduction
    Precursors
    DistributedModelFitting
+   Implementation
