@@ -28,6 +28,7 @@ The corresponding ADMM updates are :
   \end{align*}
 
 Where the update of x is solving a least square problem. We will solve it using factorization::
+
   [L U] = factor(A);
   q = Atb + A'*(z - u);
   x = U \ (L \ q);
@@ -40,10 +41,15 @@ exactly by considering the case :math:`\|z\|<1` and :math:`\|z\|>1`, lead to the
   z^{k+1} = \frac{\rho}{1+\rho}(Ax^{k+1}-b + u^{k}) + \frac{1}{1+\rho}S_{1+1/\rho}(Ax^{k+1}-b + u^{k})
 
 With matlab code::
+
   tmp = A*x - b + u;
   z = rho/(1 + rho)*tmp + 1/(1 + rho)*shrinkage(tmp, 1 + 1/rho);
 
 **Result**:
+
+`Code <http://stanford.edu/~boyd/papers/admm/huber/huber_fit.html>`_ and
+`Test Script <http://stanford.edu/~boyd/papers/admm/huber/huber_fit_example.html>`_ .
+
 
 .. image:: images/huber_fit.jpg
   :align: center
@@ -97,6 +103,7 @@ And the proximal oprator of the l1 norm is a shrinkage funtion. As a result, we 
 ~~~~~~~~~~~~~~~~~~~
 
 The shrinkage function is::
+
   function y = shrinkage(a, kappa)
       y = max(0, a-kappa) - max(0, -a-kappa);
   end
@@ -151,7 +158,7 @@ Subsititute into the equation :math:`x^{*} = z - A^{T}\lambda/2`, we have:
 
 .. math::
   \begin{align*}
-  &z^{k+1} = S_{1/\rho}(\hat{x}^{k} + u^{k})  \\
+  &z^{k+1} = S_{1/\rho}(\hat{x}^{k+1} + u^{k})  \\
   &u^{k+1} = u^{k} + \hat{x}^{k+1} -z^{k+1}
   \end{align*}
 
@@ -164,4 +171,80 @@ However in the test, I found this relaxation did show positive effect.
 `Test Script <http://stanford.edu/~boyd/papers/admm/basis_pursuit/basis_pursuit_example.html>`_ .
 
 .. image:: images/basis_pursuit.jpg
+  :align: center
+
+6.3 L1 Regulaized Loss
+-----------------------------
+
+Having a l1 loss term for the variable, will produce sparity in the variable pattern.
+The general problem is:
+
+.. math::
+  minimize \quad l(x) + \lambda\|x\|_{1}
+
+Transform into consensus form:
+
+.. math::
+  \begin{align*}
+  &minimize \quad l(x) + \lambda\|z\|_{1} \\
+  &subject \ to \quad x = z
+  \end{align*}
+
+The ADMM updates are :
+
+.. math::
+  \begin{align*}
+  &x^{k+1} = \arg\min_{x} (l(x) + (\rho/2)\|x-z^{k}+u^{k}\|_{2}^{2}) \\
+  &z^{k+1} = S_{\lambda/\rho}(x^{k+1} + u^{k})  \\
+  &u^{k+1} = u^{k} + \hat{x}^{k+1} -z^{k+1}
+  \end{align*}
+
+
+6.3.1 Logistic function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. math::
+  Logistic(z) = \frac{L}{1+e^{-k*z}}
+
+Consider the linear system :math:`Aw+bv=z` and :math:`x = [v,w]`
+
+.. math::
+  Logistic(x) = \frac{L}{1+e^{-Aw-bv}}
+
+.. math::
+  maximize\ Logistic(x) = minimize\ \sum_{j}[\log(1+e^{-Aw-bv})]_{j}  = minimize\ \sum_{j}\log(1+e^{c_{j}x})
+
+The x update is a unconstrainted optimization problem:
+
+.. math::
+  minimize\quad f(x) =  \sum_{j}\log(1+e^{c_{j}x}) +  (\rho/2)\|x-z^{k}+u^{k}\|_{2}^{2})
+
+Which can be solved using Netwon's method:
+
+.. math::
+  f(x_{0}+ \delta x) \approx f(x_{0}) + \Delta f(x_{0})\delta x + (1/2)\Delta^{2}f(x_{0})\delta x^{2}
+
+Where:
+
+.. math::
+  \Delta f(x) = \sum_{j} c_{j}^{T}e^{c_{j}x}\frac{1}{1+e^{c_{j}x}} + \rho(x - z^{k}+u^{k})
+
+.. math::
+  \Delta^{2}f(x) = \sum_{j} c_{j}^{T}c_{j} \frac{e^{c_{j}x}}{(1+e^{c_{j}x})^{2}} + \rho I
+
+The Newton's step will be:
+
+.. math::
+  \Delta x_{nt} = - (\Delta^{2}f(x))^{-1}\Delta f(x)
+
+We can also use LBFGs for solving it (when the amount of variables is huge)
+`Code <http://stanford.edu/~boyd/papers/admm/logreg-l1/distr_l1_logreg.html>`_
+
+6.3.4 Result
+~~~~~~~~~~~~~~~~~~~~~
+
+`Code <http://stanford.edu/~boyd/papers/admm/logreg-l1/logreg.html>`_ and
+`Test Script <http://stanford.edu/~boyd/papers/admm/logreg-l1/logreg_example.html>`_ .
+
+.. image:: images/logreg.jpg
   :align: center
