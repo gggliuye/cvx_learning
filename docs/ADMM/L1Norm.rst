@@ -47,7 +47,7 @@ And the proximal oprator of the l1 norm is a shrinkage funtion. As a result, we 
 6.1.2 Updates
 ~~~~~~~~~~~~~~~~~~~
 
-The shrinkage function is ::
+The shrinkage function is::
   function y = shrinkage(a, kappa)
       y = max(0, a-kappa) - max(0, -a-kappa);
   end
@@ -73,7 +73,7 @@ For the lagrangian:
 The gradient with respect to x is zero:
 
 .. math::
-  \frac{\partial\mathbcal{L}(x,\lambda)}{\partial x} = 2x - 2x + A^{T}\lambda = 0
+  \frac{\partial\mathcal{L}(x,\lambda)}{\partial x} = 2x - 2x + A^{T}\lambda = 0
 
 .. math::
   x^{*} = z - A^{T}\lambda/2
