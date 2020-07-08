@@ -222,20 +222,20 @@ The x update is a unconstrainted optimization problem:
 Which can be solved using Netwon's method:
 
 .. math::
-  f(x_{0}+ \delta x) \approx f(x_{0}) + \Delta f(x_{0})\delta x + (1/2)\Delta^{2}f(x_{0})\delta x^{2}
+  f(x_{0}+ \delta x) \approx f(x_{0}) + \triangledown f(x_{0})\delta x + (1/2)\triangledown^{2}f(x_{0})\delta x^{2}
 
 Where:
 
 .. math::
-  \Delta f(x) = \sum_{j} c_{j}^{T}e^{c_{j}x}\frac{1}{1+e^{c_{j}x}} + \rho(x - z^{k}+u^{k})
+  \triangledown f(x) = \sum_{j} c_{j}^{T}e^{c_{j}x}\frac{1}{1+e^{c_{j}x}} + \rho(x - z^{k}+u^{k})
 
 .. math::
-  \Delta^{2}f(x) = \sum_{j} c_{j}^{T}c_{j} \frac{e^{c_{j}x}}{(1+e^{c_{j}x})^{2}} + \rho I
+  \triangledown^{2}f(x) = \sum_{j} c_{j}^{T}c_{j} \frac{e^{c_{j}x}}{(1+e^{c_{j}x})^{2}} + \rho I
 
 The Newton's step will be:
 
 .. math::
-  \Delta x_{nt} = - (\Delta^{2}f(x))^{-1}\Delta f(x)
+  \Delta x_{nt} = - (\triangledown^{2}f(x))^{-1}\triangledown f(x)
 
 We can also use LBFGs for solving it (when the amount of variables is huge)
 `Code <http://stanford.edu/~boyd/papers/admm/logreg-l1/distr_l1_logreg.html>`_
@@ -248,3 +248,6 @@ We can also use LBFGs for solving it (when the amount of variables is huge)
 
 .. image:: images/logreg.jpg
   :align: center
+
+6.4 Lasso
+------------------------------
