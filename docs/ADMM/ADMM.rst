@@ -54,7 +54,7 @@ We can reform the problem into a much simpler form (which is mostly used in prac
   \begin{align*}
   \mathcal{L}_{\rho}(x,z,y) &=  f(x) + g(z) + y^{T}(Ax+Bz-c) + (\rho/2)\|Ax+Bz-c\|_{2}^{2}\\
   &=f(x) + g(z) + y^{T}r + (\rho/2)\|r\|_{2}^{2} \\
-  &=f(x) + g(z) + (\rho/2) (\|r\|_{2}^{2} + (1/\rho^{2})\|y\|_{2}^{2} + (2/rho)y^{T}r ) -  (1/2\rho)\|y\|_{2}^{2} \\
+  &=f(x) + g(z) + (\rho/2) (\|r\|_{2}^{2} + (1/\rho^{2})\|y\|_{2}^{2} + (2/\rho)y^{T}r ) -  (1/2\rho)\|y\|_{2}^{2} \\
   &= f(x) + g(z) +  (\rho/2) \|r + (1/\rho)y \|_{2}^{2} -  (1/2\rho)\|y\|_{2}^{2}
   \end{align*}
 
