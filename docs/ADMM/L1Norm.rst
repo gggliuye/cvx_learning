@@ -251,3 +251,17 @@ We can also use LBFGs for solving it (when the amount of variables is huge)
 
 6.4 Lasso
 ------------------------------
+
+See in **Proximal Algorithms** `pages <https://cvx-learning.readthedocs.io/en/latest/ProximalAlgorithms/Applications.html#lasso>`_ .
+
+Using LSQR we can handle huge problems.
+Or in `Code <http://stanford.edu/~boyd/papers/admm/lasso/lasso_lsqr.html>`_ and `Code using LSQR <http://stanford.edu/~boyd/papers/admm/lasso/lasso_lsqr.html>`_
+see their results `here <http://stanford.edu/~boyd/papers/admm/lasso/lasso_example.html>`_ and `here with LSQR <http://stanford.edu/~boyd/papers/admm/lasso/lasso_lsqr_example.html>`_ .
+
+**The least squares (LSQR) algorithm** is an adaptation of the conjugate gradients (CG) method for rectangular matrices.
+ Analytically, LSQR for A*x = b produces the same residuals as CG for the normal equations A'*A*x = A'*b,
+ but LSQR possesses more favorable numeric properties and is thus generally more reliable. `LSQR <https://www.mathworks.com/help/matlab/ref/lsqr.html#mw_783f22d5-a612-4382-acb8-a4635fb42b52>`_ .
+
+
+6.5 Sparse Inverse Covariance Selection
+----------------------------------
