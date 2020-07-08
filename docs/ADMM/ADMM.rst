@@ -47,7 +47,7 @@ when modest accuracy is sufficient.
 3.2 Scaled form
 --------------------
 
-We can reform the problem into a much simpler form (which is mostly used in practice), with noting :math:` r(x,z) = Ax+Bz-c` the primal residual.
+We can reform the problem into a much simpler form (which is mostly used in practice), with noting :math:`r(x,z) = Ax+Bz-c` the primal residual.
 
 
 .. math::
