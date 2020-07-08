@@ -19,5 +19,8 @@ These pages are corresponding with the paper `Distributed Optimization and Stati
 
    Introduction
    Precursors
+   ADMM
+   L1Norm
    DistributedModelFitting
    Implementation
+   NumericalExamples
