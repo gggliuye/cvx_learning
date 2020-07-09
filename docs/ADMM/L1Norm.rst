@@ -265,3 +265,106 @@ see their results `here <http://stanford.edu/~boyd/papers/admm/lasso/lasso_examp
 
 6.5 Sparse Inverse Covariance Selection
 ----------------------------------
+
+Given a dataset consisting of samples from a zero mean Gaussian distribution in :math:`\mathbf{R}^{n}` :
+
+.. math::
+  a_{i} ~ \mathbb{N}(0, \Sigma), \quad i = 1, ...,N,
+
+Consider the task of estimating the covariance matrix under the prior assumption that :math:`\Simga^{-1}` is sparse.
+Since :math:`(\Simga^{-1})_{i,j} = 0` means that the ith and jth components of the random variable are conditionally independent,
+this problem is equivalent to the **structure learning** problem of estimating the topology of the undirected graphical model
+representation of the Gaussian. It is also called the **covariance selection problem**.
+
+For an example, in SLAM problem if we want to determine the corresponding relationship of the feature observations (determine whether
+it is a match inlier or a outlier). We can apply the covariance selection problem upon the system's covariance.
+
+If S is the empirical covariance matrix :math:`(1/N)\sum_{i=1}^{N}a_{i}a_{i}^{T}`, then the estimation problem can be written as :
+
+.. math::
+  minimize \quad Tr(SX)- \log\det X + \lambda\|X\|_{1}
+
+With variable :math:`X \in S_{+}^{n}`, where :math:`\|\cdot\|_{1}` is defined elementwise.
+
+6.5.1 ADMM
+~~~~~~~~~~~~~~~~~~
+
+The upper problem is equivalent to the following problem:
+
+.. math::
+  \begin{align*}
+  &minimize \quad Tr(SX)- \log\det X + \lambda\|Z\|_{1}\\
+  &subject \ to \quad X = Z
+  \end{align*}
+
+The ADMM algorithm for sparse inverse covariance selection is :
+
+.. math::
+  \begin{align*}
+  X^{k+1} &:= \arg\min_{X} (Tr(SX) - \log\det X + (\rho/2) \|X-Z^{k}+U^{k}\|_{F}^{2}) \\
+  Z^{k+1} &:= \arg\min_{Z} (\lambda\|Z\|_{1} + (\rho/2) \|X^{k+1} - Z + U^{k}\|_{F}^{2}) \\
+  U^{k+1} &:= U^{k} + X^{k+1} - Z^{k+1}
+  \end{align*}
+
+6.5.2 Z update
+~~~~~~~~~~~~~~~~~~~~~
+
+All the calculation in Z update are done in element-wise, as a result the update of Z is a elementwise soft thresholding:
+
+.. math::
+  Z^{k+1}_{ij} := S_{\lambda/\rho}(X_{ij}^{k+1} + U_{ij}^{k})
+
+6.5.3 X update
+~~~~~~~~~~~~~~~~~~~
+
+X update could be further simplify using the following two properties:
+
+.. math::
+  \frac{\partial }{\partial X}\log\det X = X^{-1}, \quad \frac{\partial }{\partial X}Tr(SX) = S
+
+Proof of the first derivative:
+
+.. math::
+  \begin{align*}
+  \log\det (X+\deltaX) &= \log\det(X^{1/2}(I + X^{-1/2}\detla XX^{-1/2})X^{1/2}) \\
+  &= \log\det (X^{1/2}X^{1/2}) + \log\det(I + X^{-1/2}\detla XX^{-1/2}) \\
+  &= \log\det(X) + \sum_{i=1}^{n} \log(1+\lambda_{i}) \\
+  & \approx \log\det X + \sum_{i=1}^{n}\lambda_{i} \\
+  &=\log\det X + Tr(X^{-1/2}\detla XX^{-1/2}) \\
+  &= \log\det X + Tr(X^{-1}\delta X)
+  \end{align*}
+
+.. math::
+  \triangledown \log\det X = \lim_{\delta X \to 0} \frac{Tr(X^{-1}\delta X)}{\delta X} = X^{-1}
+
+Using the upper gradient result, and using the first-order optimality condition is that the gradient should vanish:
+
+.. math::
+  S - X^{-1} + \rho(X-Z^{k}+U^{k}) = 0
+
+As :math:`X \succ 0`, we can rewrite the equation and take the orthogonal eigen-value decomposition of the righthand side.
+
+.. math::
+  \rho X - X^{-1} = \rho(Z^{k} - U^{k}) - S = Q\Lambda Q^{T}
+
+Then we will have :
+
+.. math::
+  \rho\bar{X} - \bar{X}^{-1} = \Lambda
+
+Now we can construct a diagonal solution of this equation (as we only need a solution for ADMM update) :
+
+.. math::
+  \rho \bar{X}_{ii} - 1/\bar{X}_{ii} = \lambda_{i}
+
+.. math::
+  \bar{X}_{ii} = \frac{\lambda_{i} + \sqrt{\lambda_{i}^{2} + 4\rho}}{2\rho}
+
+Which are always positive since :math:`\rho > 0`. It shows that the computational effort of the X-update is that
+of an eigenvalue decomposition of a symmetric matrix. Matlab code::
+
+  % x-update
+  [Q,L] = eig(rho*(Z - U) - S);
+  es = diag(L);
+  xi = (es + sqrt(es.^2 + 4*rho))./(2*rho);
+  X = Q*diag(xi)*Q';
