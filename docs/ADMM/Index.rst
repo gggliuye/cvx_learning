@@ -20,6 +20,8 @@ These pages are corresponding with the paper `Distributed Optimization and Stati
    Introduction
    Precursors
    ADMM
+   GeneralPattern
+   ConstrainedConvex
    L1Norm
    DistributedModelFitting
    Implementation
