@@ -148,7 +148,6 @@ We have the result of ADMM:
 
 And the comparsion:
 
-       | method |  optimal value |  cpu time(s) |
 +--------+----------------+--------------+
 | method |  optimal value |  cpu time(s) |
 +========+================+==============+
