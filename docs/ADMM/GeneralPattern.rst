@@ -52,11 +52,11 @@ We have several options to solve this linear equation:
 
 * Solve directly, form the matrix :math:`P+\rho A^{T}A, ` (:math:`\mathcal{O}(pn^{2})`), then calculate and cache the factorization (:math:`\mathcal{O}(n^{3})`), the back-solve cost :math:`\mathcal{O}(n^{2})`.
 * Further exploit the spairty to save the factorization cost.
-* If we update :math:`\rho`, we will have to update the factorization of :math:`P+\rho A^{T}A, which is a large cost. **We should weight the update of :math:`\rho` and the update of factorization.**
+* If we update :math:`\rho`, we will have to update the factorization of :math:`P+\rho A^{T}A`, which is a large cost. We should weight the update of :math:`\rho` and the update of factorization.
 * We can use the matrix inverse lamma to simplify the inverse, while all the inverse in the expression exist. With the expression we can reduce the problem to a faster calcualtion, if the inverse of P could be calculated fast, or the dimension p is small.
 
 .. math::
-  (P+\rho A^{T}A)^{-1} = P^{-1} + \rho P^{-1}A^{T}(I + \rhoAP^{-1}A^{T})^{-1}AP^{-1}
+  (P+\rho A^{T}A)^{-1} = P^{-1} + \rho P^{-1}A^{T}(I + \rho AP^{-1}A^{T})^{-1}AP^{-1}
 
 Add an equation constraint Fx = g, with an addition constraint variable, the x update will be :
 
@@ -89,4 +89,4 @@ limited memory Broyden-Fletcher-Goldfarb-Shanno(L-BFGS) algorithm. The convergen
 
 4.4 Decomposition
 ---------------------------
- By apply decomposition on the update, we could further use parallex calculation. 
+ By apply decomposition on the update, we could further use parallex calculation.

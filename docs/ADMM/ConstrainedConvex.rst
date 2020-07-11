@@ -6,7 +6,7 @@ Consider the constrained convex optimization problems:
 .. math::
   \begin{align*}
   & minimize \quad f(x) \\
-  & subject \ to \quad x in C
+  & subject \ to \quad x \in C
   \end{align*}
 
 with variable :math:`x \in \mathbb{R}^{n}`, f and C are convex. This problem could be rewrite into :
@@ -77,5 +77,36 @@ The ADMM update will be :
 The update of X could be reform into a linear equation with an addition dual variable, using the first order optimal condition:
 
 .. math::
-  \begin{bmatrix} P + \rho A^{T}A  & F^{T}\\ F & 0 \end{bmatrix}
-  \begin{bmatrix} x^{+} \\ \lambda \end{bmatrix} + \begin{bmatrix}q-\rho A^{T}v \\ -g \end{bmatrix} = 0
+  \begin{bmatrix} P + \rho I  & A^{T}\\ A & 0 \end{bmatrix}
+  \begin{bmatrix} x^{+} \\ \lambda \end{bmatrix} + \begin{bmatrix}q-\rho (z^{k}-u^{k}) \\ -b \end{bmatrix} = 0
+
+With the matlab code ::
+
+  % x-update for the first iteration
+  R = chol([ P+rho*eye(n), A'; A, zeros(m) ]);
+  tmp = R \ (R' \ ([ rho*(z - u) - c; b ]));
+  x = tmp(1:n);
+
+5.2 Test LP
+------------------
+Here we test the following LP problem:
+
+.. math::
+  \begin{align*}
+  &minimize \quad c^{T}x \\
+  &subject\ to \quad Ax = b , \ x \ge 0
+  \end{align*}
+
+Using :math:`x \in \mathbb{R}^{500}` and with :math:`A \in \mathbb{R}^{400\times 500}`, with 500 variables,
+and 400 equality constraints.
+
+We have the result:
+
+
+       +-------+---------+----------+
+       | method |  optimal value |  cpu time(s) |
+       +=======+=========+==========+
+       | CVX  |   371.09  |  1.73   |
+       +-------+---------+----------+
+       | ADMM  |    370.96  |   2.01  |
+       +-------+---------+----------+
