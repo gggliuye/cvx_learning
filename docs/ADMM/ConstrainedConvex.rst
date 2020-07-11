@@ -80,12 +80,6 @@ The update of X could be reform into a linear equation with an addition dual var
   \begin{bmatrix} P + \rho I  & A^{T}\\ A & 0 \end{bmatrix}
   \begin{bmatrix} x^{+} \\ \lambda \end{bmatrix} + \begin{bmatrix}q-\rho (z^{k}-u^{k}) \\ -b \end{bmatrix} = 0
 
-With the matlab code ::
-
-  % x-update for the first iteration
-  R = chol([ P+rho*eye(n), A'; A, zeros(m) ]);
-  tmp = R \ (R' \ ([ rho*(z - u) - c; b ]));
-  x = tmp(1:n);
 
 5.2 Test LP
 ------------------
@@ -100,7 +94,14 @@ Here we test the following LP problem:
 Using :math:`x \in \mathbb{R}^{500}` and with :math:`A \in \mathbb{R}^{400\times 500}`, with 500 variables,
 and 400 equality constraints.
 
-We have the result:
+`Code <http://stanford.edu/~boyd/papers/admm/linprog/linprog.html>`_ and `Example <http://stanford.edu/~boyd/papers/admm/linprog/linprog_example.html>`_ .
+
+We have the result of ADMM:
+
+.. image:: images/lp_amdd_example.jpg
+  :align: center
+
+And the comparsion:
 
 
        +-------+---------+----------+
@@ -109,4 +110,50 @@ We have the result:
        | CVX  |   371.09  |  1.73   |
        +-------+---------+----------+
        | ADMM  |    370.96  |   2.01  |
+       +-------+---------+----------+
+
+
+5.3 Test QP
+------------------
+
+.. math::
+  \begin{align*}
+  &minimize \quad  (1/2)x^{T}Px + q^{T}x \\
+  &subject\ to \quad Ax = b, \ x \ge 0
+  \end{align*}
+
+Using :math:`x \in \mathbb{R}^{500}` and with :math:`A \in \mathbb{R}^{400\times 500}`, with 500 variables,
+and 400 equality constraints.
+
+`Code <>`_ and `Example <>`_ .
+
+With x update of matlab ::
+
+  % x-update
+  if k > 1
+      tmp_b = [ rho*(z - u) - q; b ];
+      tmp = U \ (L \ tmp_b);
+      x = tmp(1:n);
+  else
+      tmp_A = [ P + rho*eye(n), A'; A, zeros(m) ];
+      [L, U] = lu(tmp_A);
+      tmp_b = [ rho*(z - u) - q; b ];
+      tmp = U \ (L \ tmp_b);
+      x = tmp(1:n);
+  end
+
+We have the result of ADMM:
+
+.. image:: images/qp_example.jpg
+  :align: center
+
+And the comparsion:
+
+
+       +-------+---------+----------+
+       | method |  optimal value |  cpu time(s) |
+       +=======+=========+==========+
+       | CVX  |   351.98  |  21.5182   |
+       +-------+---------+----------+
+       | ADMM  |   348.82  |   0.166 |
        +-------+---------+----------+
