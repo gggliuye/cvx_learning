@@ -144,6 +144,53 @@ Applying the consensus variable z :
   \begin{align*}
   &minimize \quad \sum_{i=1}^{N}(A_{i}x_{i} + \mathbb{1})_{+} + (1/2\lambda)\|w\|_{2}^{2} \\
   &subject\ to \quad x_{i} = z
+  \end{align*}
+
+We further simplify the problem with a small adjustment in the regularization term : instead of
+regularize w we will regularize z directly. Then we will have the problem:
+
+.. math::
+  \begin{align*}
+  &minimize \quad \mathbb{1}^{T}(A_{i}x_{i} + \mathbb{1})_{+} + (1/2\lambda)\|z\|_{2}^{2} \\
+  &subject\ to \quad x_{i} = z
+  \end{align*}
+
+The corresponding ADMM updates are :
+
+.. math::
+  \begin{align*}
+  &x^{k+1}_{i} := \arg\min_{x_{i}} (\mathbb{1}^{T}(A_{i}x_{i} + \mathbb{1})_{+} + (\rho/2)\|x_{i} - z^{k} + u^{k}_{i}\|_{2}^{2}) \\
+  &z^{k+1} := \arg\min_{z} ((1/2\lambda)\|z\|_{2}^{2} + \sum_{i=1}^{N} (\rho/2)\|x_{i}^{k+1} - z + u^{k}_{i}\|_{2}^{2}) \\
+  &u^{k+1}_{i} := u_{i}^{k} + x^{k+1}_{i} - z^{k+1}
+  \end{align*}
+
+The update of x will be solved by another optimization problem::
+
+  cvx_begin
+      variable x_var(n)
+      minimize ( sum(pos(A{i}*x_var + 1)) + rho/2*sum_square(x_var - z(:,i) + u(:,i)) )
+  cvx_end
+
+The update of z is simple, using the first order optimal condition we have :
+
+.. math::
+  (1/\lambda)z^{k+1} + \sum_{i=1}^{N}(-\rho(x_{i}^{k+1}- z^{k+1} + u^{k}_{i})) = 0
+
+.. math::
+  z^{k+1} = \frac{\rho N}{(1/\lambda) + N \rho}(\bar{x}^{k+1} + \bar{u}^{k})
+
+Then, we get the final updates of ADMM of linear SVM :
+
+.. math::
+  \begin{align*}
+  &x^{k+1}_{i} := \arg\min_{x_{i}} (\mathbb{1}^{T}(A_{i}x_{i} + \mathbb{1})_{+} + (\rho/2)\|x_{i} - z^{k} + u^{k}_{i}\|_{2}^{2}) \\
+  &z^{k+1} := \frac{\rho N}{(1/\lambda) + N \rho}(\bar{x}^{k+1} + \bar{u}^{k})\\
+  &u^{k+1}_{i} := u_{i}^{k} + x^{k+1}_{i} - z^{k+1}
+  \end{align*}
+
+`Code <http://stanford.edu/~boyd/papers/admm/svm/linear_svm.html>`_ and `Script <http://stanford.edu/~boyd/papers/admm/svm/linear_svm_example.html>`_
+could be found in `ADMM Stanford page <http://stanford.edu/~boyd/papers/admm/>`_ (A distributed version but solved in serial).
+
 
 
 8.3 Splitting across Features
