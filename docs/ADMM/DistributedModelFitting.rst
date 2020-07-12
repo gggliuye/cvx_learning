@@ -74,7 +74,7 @@ For Lasso have the function f being squared l2 norm, and r being the l1 norm. Th
 
 .. math::
   \begin{align*}
-  &x_{i}^{k+1} := \arg\min_{x_{i}} ((1/2)\|A_{i}x_{i} -b_{i}\|_{2}^{2} + (\rho/2)\|https://cvx-learning.readthedocs.io/en/latest/ADMM/L1Norm.html#l1-regulaized-lossx_{.i}-z^{k}+u_{i}^{k}\|_{2}^{2}) \\
+  &x_{i}^{k+1} := \arg\min_{x_{i}} ((1/2)\|A_{i}x_{i} -b_{i}\|_{2}^{2} + (\rho/2)\|x_{i}-z^{k}+u_{i}^{k}\|_{2}^{2}) \\
   &z^{k+1}:= S_{\lambda/\rho N}(\bar{x}^{k+1} + \bar{u}^{k}) \\
   &u^{k+1}_{i} := u_{i}^{k} + x_{i}^{k+1} - z^{k+1}
   \end{align*}
@@ -106,7 +106,7 @@ Which is a optimization problem :
 .. math::
   minimize \quad \sum_{j=1}^{M} (1-y_{j}(w^{T}x_{j}+b))
 
-In partice, we can truncate the results of the model by 1 or -1, so the problem will be better if we optimize this:
+In partice, we can truncate the results of the model to 1 or -1, so the problem will be better if we optimize this:
 
 .. math::
   minimize \quad \sum_{j=1}^{M} (1-y_{j}(w^{T}x_{j}+b))_{+}
@@ -116,6 +116,23 @@ Where we have M obervations in total. The problem is equivalent to :
 .. math::
   minimize \quad \sum_{j=1}^{M}(1 + \begin{bmatrix} -y_{j}x_{j}^{T} & -y_{j} \end{bmatrix}
   \begin{bmatrix} w \\ b \end{bmatrix})_{+}
+
+By forming :
+
+.. math::
+  A = \begin{bmatrix} -y_{1}x_{1}^{T} & -y_{1} \\ : \\ -y_{M}x_{M}^{T} & -y_{M} \end{bmatrix}, \quad
+  x = \begin{bmatrix} w \\ b \end{bmatrix},
+
+We have the reformed problem:
+
+.. math::
+  minimize \quad (Ax + \mathbb{1})_{+}
+
+Adding the regularization term of the linear model weights w:
+
+.. math::
+  minimize \quad (Ax + \mathbb{1})_{+} + (1/2\lambda)\|w\|_{2}^{2}
+
 
 
 
