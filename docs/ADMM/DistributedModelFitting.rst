@@ -223,3 +223,6 @@ The corresponding scaled form of ADMM is :
   & z^{k+1} := \arg\min_{z} (l(\sum_{i=1}^{N}z_{i}-b) + \sum_{i=1}^{N}(\rho/2)\|A_{i}x_{i}^{k+1} - z_{i} + u_{i}^{k} \|_{2}^{2}) \\
   & u_{i}^{k+1} := u_{i}^{k} + A_{i}x_{i}^{k+1} - z^{k+1}_{i}
   \end{align*}
+
+8.3.1 Group Lasso
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
