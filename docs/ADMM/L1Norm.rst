@@ -259,7 +259,7 @@ Or in `Code <http://stanford.edu/~boyd/papers/admm/lasso/lasso_lsqr.html>`_ and 
 see their results `here <http://stanford.edu/~boyd/papers/admm/lasso/lasso_example.html>`_ and `here with LSQR <http://stanford.edu/~boyd/papers/admm/lasso/lasso_lsqr_example.html>`_ .
 
 **The least squares (LSQR) algorithm** is an adaptation of the conjugate gradients (CG) method for rectangular matrices.
- Analytically, LSQR for A*x = b produces the same residuals as CG for the normal equations A'*A*x = A'*b,
+ Analytically, LSQR for Ax = b produces the same residuals as CG for the normal equations A'Ax = A'b,
  but LSQR possesses more favorable numeric properties and is thus generally more reliable. `LSQR <https://www.mathworks.com/help/matlab/ref/lsqr.html#mw_783f22d5-a612-4382-acb8-a4635fb42b52>`_ .
 
 
@@ -269,10 +269,10 @@ see their results `here <http://stanford.edu/~boyd/papers/admm/lasso/lasso_examp
 Given a dataset consisting of samples from a zero mean Gaussian distribution in :math:`\mathbf{R}^{n}` :
 
 .. math::
-  a_{i} ~ \mathbb{N}(0, \Sigma), \quad i = 1, ...,N,
+  a_{i} \~ \mathbb{N}(0, \Sigma), \quad i = 1, ...,N,
 
-Consider the task of estimating the covariance matrix under the prior assumption that :math:`\Simga^{-1}` is sparse.
-Since :math:`(\Simga^{-1})_{i,j} = 0` means that the ith and jth components of the random variable are conditionally independent,
+Consider the task of estimating the covariance matrix under the prior assumption that :math:`\Sigma^{-1}` is sparse.
+Since :math:`(\Sigma^{-1})_{i,j} = 0` means that the ith and jth components of the random variable are conditionally independent,
 this problem is equivalent to the **structure learning** problem of estimating the topology of the undirected graphical model
 representation of the Gaussian. It is also called the **covariance selection problem**.
 
@@ -326,11 +326,11 @@ Proof of the first derivative:
 
 .. math::
   \begin{align*}
-  \log\det (X+\deltaX) &= \log\det(X^{1/2}(I + X^{-1/2}\detla XX^{-1/2})X^{1/2}) \\
-  &= \log\det (X^{1/2}X^{1/2}) + \log\det(I + X^{-1/2}\detla XX^{-1/2}) \\
+  \log\det (X+\delta X) &= \log\det(X^{1/2}(I + X^{-1/2}\delta XX^{-1/2})X^{1/2}) \\
+  &= \log\det (X^{1/2}X^{1/2}) + \log\det(I + X^{-1/2}\delta XX^{-1/2}) \\
   &= \log\det(X) + \sum_{i=1}^{n} \log(1+\lambda_{i}) \\
   & \approx \log\det X + \sum_{i=1}^{n}\lambda_{i} \\
-  &=\log\det X + Tr(X^{-1/2}\detla XX^{-1/2}) \\
+  &=\log\det X + Tr(X^{-1/2}\delta XX^{-1/2}) \\
   &= \log\det X + Tr(X^{-1}\delta X)
   \end{align*}
 

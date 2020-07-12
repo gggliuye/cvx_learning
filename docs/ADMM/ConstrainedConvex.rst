@@ -155,3 +155,93 @@ And the comparsion:
 +--------+----------------+--------------+
 | ADMM   |        348.82  |       0.166  |
 +--------+----------------+--------------+
+
+5.4 Polyhedra Intersection
+---------------------------------------
+
+Here we consider the problem to find the intersection of two polyhedra, which is to solve the follwoing feaibility problem:
+
+.. math::
+  \begin{align*}
+  & find \quad x \\
+  & subject \ to \quad A_{1}x \le b_{1}, \ A_{2}x \le b_{2}
+  \end{align*}
+
+Which is equivalent to solve the following optimization problem:
+
+.. math::
+  \begin{align*}
+  &minimize \quad I_{C_{1}}(x) + I_{C_{2}}(x) \\
+  &where \quad C_{1} = \{ x \mid A_{1}x \le b_{1} \}, \ C_{2} = \{ x \mid A_{2}x \le b_{2} \}
+  \end{align*}
+
+We can then reform it into ADMM expression:
+
+.. math::
+  \begin{align*}
+  &minimize \quad I_{C_{1}}(x) + I_{C_{2}}(z) \\
+  &subject\ to \quad x - z = 0
+  \end{align*}
+
+Then we can have that the updates are :
+
+.. math::
+  \begin{align*}
+  &x^{k+1} := \arg\min_{x} (I_{C_{1}}(x) + (\rho/2)\|x - z^{k} +u^{k}  \|_{2}^{2} ) \\
+  &z^{k+1} := \arg\min_{z} (I_{C_{2}}(x) + (\rho/2)\|x^{k+1} - z +u^{k}  \|_{2}^{2} ) \\
+  &u^{k+1} := u^{k} + x^{k+1} - z^{k+1}
+  \end{align*}
+
+As we know the proximity operator of the indicator function is the projection operator, we have the updates:
+
+.. math::
+  \begin{align*}
+  &x^{k+1} := \Pi_{C_{1}}(z^{k} - u^{k}) \\
+  &z^{k+1} := \Pi_{C_{2}}(x^{k+1} + u^{k}) \\
+  &u^{k+1} := u^{k} + x^{k+1} - z^{k+1}
+  \end{align*}
+
+x update is to solve the following convex optimization problem:
+
+.. math::
+  \begin{align*}
+  &minimize\quad x - (z^{k} - u^{k}) \\
+  &subject\ to \quad A_{1}x \le b_{1}
+  \end{align*}
+
+With matlab code using cvx::
+
+  % use cvx to find point in first polyhedra
+  cvx_begin quiet
+      variable x(n)
+      minimize (sum_square(x - (z - u)))
+      subject to
+          A1*x <= b1
+  cvx_end
+
+z update is to solve :
+
+.. math::
+  \begin{align*}
+  &minimize\quad z - (x^{k+1} + u^{k}) \\
+  &subject\ to \quad A_{2}z \le b_{2}
+  \end{align*}
+
+With matlab code using cvx::
+
+  % use cvx to find point in second polyhedra
+  cvx_begin quiet
+      variable z(n)
+      minimize (sum_square(x - (z - u)))
+      subject to
+          A2*z <= b2
+  cvx_end
+
+
+We compare the ADMM method with the alternating projections algorithm, Result::
+
+  ADMM : Elapsed time is 4.43757 seconds.
+  Alternating projections : Elapsed time is 5.321952 seconds.
+
+.. image:: images/polyhedra_intersection.jpg
+   :align: center
