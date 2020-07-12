@@ -124,7 +124,7 @@ With the dual function d being:
 Using the first order optimal condition of the dual function :
 
 .. math::
-  (\bar{z} - \bar{a}) - \frac{lambda}{\rho N} = 0
+  (\bar{z} - \bar{a}) - \frac{\lambda}{\rho N} = 0
 
 Finally, we have :
 

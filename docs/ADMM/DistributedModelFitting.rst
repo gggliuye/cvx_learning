@@ -226,3 +226,5 @@ The corresponding scaled form of ADMM is :
 
 8.3.1 Group Lasso
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Code <http://stanford.edu/~boyd/papers/admm/group_lasso/group_lasso_feat_split.html>`_ and `Script <http://stanford.edu/~boyd/papers/admm/group_lasso/group_lasso_feat_split_example.html>`_ .
