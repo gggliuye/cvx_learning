@@ -120,7 +120,7 @@ Where we have M obervations in total. The problem is equivalent to :
 By forming :
 
 .. math::
-  A = \begin{bmatrix} -y_{1}x_{1}^{T} & -y_{1} \\ : \\ -y_{M}x_{M}^{T} & -y_{M} \end{bmatrix}, \quad
+  A = \begin{bmatrix} -y_{1}x_{1}^{T} & -y_{1} \\ : & :\\ -y_{M}x_{M}^{T} & -y_{M} \end{bmatrix}, \quad
   x = \begin{bmatrix} w \\ b \end{bmatrix},
 
 We have the reformed problem:
@@ -133,7 +133,17 @@ Adding the regularization term of the linear model weights w:
 .. math::
   minimize \quad (Ax + \mathbb{1})_{+} + (1/2\lambda)\|w\|_{2}^{2}
 
+If we apply the distributed model where i indicates a sub-set of samples, we have :
 
+.. math::
+  minimize \quad \sum_{i=1}^{N}(A_{i}x + \mathbb{1})_{+} + (1/2\lambda)\|w\|_{2}^{2}
+
+Applying the consensus variable z :
+
+.. math::
+  \begin{align*}
+  &minimize \quad \sum_{i=1}^{N}(A_{i}x_{i} + \mathbb{1})_{+} + (1/2\lambda)\|w\|_{2}^{2} \\
+  &subject\ to \quad x_{i} = z
 
 
 8.3 Splitting across Features
