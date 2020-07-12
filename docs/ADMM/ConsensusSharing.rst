@@ -25,13 +25,13 @@ Then we can rewrite the problem into a **global consensus problem** (since that 
 The augmented Lagrangian is :
 
 .. math::
-  \mathcal{L}(x,z,y) = \sum_{i=1}^{N}f_{i}(x_{i} + y_{i}^{T}(x_{i}-z) + (\rho/2)\|x_{i} -z \|_{2}^{2})
+  \mathcal{L}(x,z,y) = \sum_{i=1}^{N}f_{i}(x_{i}) + y_{i}^{T}(x_{i}-z) + (\rho/2)\|x_{i} -z \|_{2}^{2})
 
 The updates of ADMM will be :
 
 .. math::
   \begin{align*}
-  &x^{k+1}_{i} := \arg\min_{x_{i}} (f_{i}(x_{i} + y_{i}^{kT}(x_{i}-z^{k}) + (\rho/2)\|x_{i} -z^{k} \|_{2}^{2}) \\
+  &x^{k+1}_{i} := \arg\min_{x_{i}} (f_{i}(x_{i}) + y_{i}^{kT}(x_{i}-z^{k}) + (\rho/2)\|x_{i} -z^{k} \|_{2}^{2}) \\
   &z^{k+1} := \arg\min_{z} \sum_{i=1}^{N}(y_{i}^{kT}(x_{i}^{k+1}-z) + (\rho/2)\|x_{i}^{k+1} -z \|_{2}^{2}) \\
   &y^{k+1}_{i} := y^{k}_{i} + \rho(x^{k+1}_{i}-z^{k+1})
   \end{align*}
@@ -64,7 +64,7 @@ Finally we have the ADMM updates:
 
 .. math::
   \begin{align*}
-  &x^{k+1}_{i} := \arg\min_{x_{i}} (f_{i}(x_{i} + y_{i}^{kT}(x_{i}-\bar{x}^{k}) + (\rho/2)\|x_{i} -\bar{x}^{k} \|_{2}^{2}) \\
-  &z^{k+1} = \bar{X}^{k+1}\\
+  &x^{k+1}_{i} := \arg\min_{x_{i}} (f_{i}(x_{i}) + y_{i}^{kT}(x_{i}-\bar{x}^{k}) + (\rho/2)\|x_{i} -\bar{x}^{k} \|_{2}^{2}) \\
+  &z^{k+1} = \bar{x}^{k+1}\\
   &y^{k+1}_{i} := y^{k}_{i} + \rho(x^{k+1}_{i}-\bar{x}^{k+1})
   \end{align*}

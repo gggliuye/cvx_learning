@@ -67,6 +67,58 @@ Using the scaled form of ADMM updates (see 7.3 sharing problems for more details
 * Sparse Logistic Regression
 * Support Vector Machine
 
+8.2.1 Group Lasso
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For Lasso have the function f being squared l2 norm, and r being the l1 norm. Then the ADMM udpates are:
+
+.. math::
+  \begin{align*}
+  &x_{i}^{k+1} := \arg\min_{x_{i}} ((1/2)\|A_{i}x_{i} -b_{i}\|_{2}^{2} + (\rho/2)\|https://cvx-learning.readthedocs.io/en/latest/ADMM/L1Norm.html#l1-regulaized-lossx_{.i}-z^{k}+u_{i}^{k}\|_{2}^{2}) \\
+  &z^{k+1}:= S_{\lambda/\rho N}(\bar{x}^{k+1} + \bar{u}^{k}) \\
+  &u^{k+1}_{i} := u_{i}^{k} + x_{i}^{k+1} - z^{k+1}
+  \end{align*}
+
+
+See `here <https://cvx-learning.readthedocs.io/en/latest/ProximalAlgorithms/Applications.html#lasso>`_ for some details about the update of x.
+The difference from the `serial version <https://cvx-learning.readthedocs.io/en/latest/ADMM/L1Norm.html#lasso>`_ is that :
+
+* The update of different group of variables :math:`x_{i}` could be carry out in parallel.
+* The collection and averaging steps.
+
+8.2.2 Distributed l_1-regularized logistic regression
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Could be compared with the `serial version <https://cvx-learning.readthedocs.io/en/latest/ADMM/L1Norm.html#l1-regulaized-loss>`_.
+Could be seen `function <http://stanford.edu/~boyd/papers/admm/logreg-l1/distr_l1_logreg.html>`_ and
+`Script <http://stanford.edu/~boyd/papers/admm/logreg-l1/distr_l1_logreg_example.html>`_ using L-BFGS for distributed calculations.
+
+8.2.3 Support Vector Machine
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here we model a linear support vector machine problem, which is a linear model fitting problem.
+Which is to find a best linear model applied to feature variables x (:math:`w^{T}x_{j} + b`) to best fit the observation y (:math:`y_{j}`), where y is a binary variable.
+
+Which is to say, if the observation :math:`y_{j}` is 1, we want :math:`w^{T}x_{j} + b \to 1`
+and if the observation :math:`y_{j}` is -1, we want :math:`w^{T}x_{j} + b \to -1`.
+Which is a optimization problem :
+
+.. math::
+  minimize \quad \sum_{j=1}^{M} (1-y_{j}(w^{T}x_{j}+b))
+
+In partice, we can truncate the results of the model by 1 or -1, so the problem will be better if we optimize this:
+
+.. math::
+  minimize \quad \sum_{j=1}^{M} (1-y_{j}(w^{T}x_{j}+b))_{+}
+
+Where we have M obervations in total. The problem is equivalent to :
+
+.. math::
+  minimize \quad \sum_{j=1}^{M}(1 + \begin{bmatrix} -y_{j}x_{j}^{T} & -y_{j} \end{bmatrix}
+  \begin{bmatrix} w \\ b \end{bmatrix})_{+}
+
+
+
 8.3 Splitting across Features
 -------------------------
 
