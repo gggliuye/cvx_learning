@@ -102,7 +102,7 @@ We can further simplify the z update by the problem:
 
 .. math::
   \begin{align*}
-  &minimize g(N\bar{z}) + (\rho/2)\sum_{i=1}^{N}\|z_{i} -a_{i}\|_{2}^{2} \\
+  &minimize \quad g(N\bar{z}) + (\rho/2)\sum_{i=1}^{N}\|z_{i} -a_{i}\|_{2}^{2} \\
   &subject\ to \quad \bar{z} = (1/N)\sum_{i=1}^{N}z_{i}
   \end{align*}
 
