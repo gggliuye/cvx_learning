@@ -269,7 +269,7 @@ see their results `here <http://stanford.edu/~boyd/papers/admm/lasso/lasso_examp
 Given a dataset consisting of samples from a zero mean Gaussian distribution in :math:`\mathbf{R}^{n}` :
 
 .. math::
-  a_{i} \~ \mathbb{N}(0, \Sigma), \quad i = 1, ...,N,
+  a_{i} \sim \mathbb{N}(0, \Sigma), \quad i = 1, ...,N,
 
 Consider the task of estimating the covariance matrix under the prior assumption that :math:`\Sigma^{-1}` is sparse.
 Since :math:`(\Sigma^{-1})_{i,j} = 0` means that the ith and jth components of the random variable are conditionally independent,

@@ -23,6 +23,7 @@ These pages are corresponding with the paper `Distributed Optimization and Stati
    GeneralPattern
    ConstrainedConvex
    L1Norm
+   ConsensusSharing
    DistributedModelFitting
    Implementation
    NumericalExamples
