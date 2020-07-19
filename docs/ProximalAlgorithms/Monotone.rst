@@ -118,7 +118,7 @@ Which is exactly the solution of the saddle point of L(x,y).
 5. Algorithm
 -------------------------
 
-*Fact*: :math:`\forall z \in H, \ c > 0, \exist ! \ u \in H. \ s.t \ z-u\in cT(u)`. i.e. :math:`z\in (I + cT)(u)`
+*Fact*: :math:`\forall z \in H, \ c > 0, \exists ! \ u \in H. \ s.t \ z-u\in cT(u)`. i.e. :math:`z\in (I + cT)(u)`
 
 *Proof*: Suppose there exists another u' not equal to u, which satisfies the same conditions, i.e. :math:`z\in (I + cT)(u')`
 
@@ -134,7 +134,7 @@ Which is exactly the solution of the saddle point of L(x,y).
 .. math::
   u = u'
 
-Done proof.
+**Done proof.**
 
 From this fact (:math:`z\in (I + cT)(u)`), we have :
 
@@ -145,12 +145,48 @@ is a single-valued form H to H. and we can also prove that it is non-expansive.
 
 As we have P(z) =z, if and only if :math:`0\in T(z)`:
 
+5.1 Algorithm
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 *Algorithm*: :math:`z^{k+1} \approx P_{k}(z^{k}) = (I+c_{k}T)^{-1}(z^{k})`
 
-If we take T = :math:`\partial f`, we have:
+5.2 Case 1 : partial derivative
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Case 1* : If we take T = :math:`\partial f`, we have:
 
 .. math::
   z^{k+1} \approx P_{k}(z^{k}) = (I+c_{k}\partial f)^{-1}(z^{k})
 
 .. math::
   z^{k+1} + c_{k}\partial f(z^{k+1}) \approx z^{k}
+
+.. math::
+  \partial f(z^{k+1}) + (1/c_{k}) (z^{k+1} -z^{k}) \approx 0
+
+.. math::
+  z^{k+1}\approx \arg\min_{z} (f(z) + (1/2c_{k})\|z - z^{k}  \|_{2}^{2})
+
+5.3 Case 2: convex-concave
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+For T corresponding to a convex-concave function L , it becomes :
+
+.. math::
+  (x^{k+1}, y^{k+1}) \approx \arg minimax_{x,y} \Lambda_{k}(x,y)
+
+.. math::
+  \Lambda_{k}(x,y) = L(x,y) + \frac{1}{2c_{k}}\|x-x^{k}\|^{2}_{2} - \frac{1}{2c_{k}}\|y-y^{k}\|^{2}_{2}
+
+6. Stop Criteria
+-------------------------
+
+A :
+
+.. math::
+  \|z^{k+1} - P_{k}(z^{k}) \| \le \varepsilon_{k}, \quad \sum_{k=0}^{\infty} \varepsilon_{k} < \infty
+
+B :
+
+.. math::
+  \|z^{k+1} - P_{k}(z^{k}) \| \le \delta_{k}\|z^{k+1} -z^{k}\|, \quad \sum_{k=0}^{\infty} \delta_{k} < \infty
