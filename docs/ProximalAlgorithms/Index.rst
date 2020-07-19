@@ -16,6 +16,7 @@ These pages are corresponding with the paper `Proximal Algorithms Foundations an
    :maxdepth: 3
    :caption: Contents:
 
+   Monotone
    Introduction
    Properties
    Interpretations
