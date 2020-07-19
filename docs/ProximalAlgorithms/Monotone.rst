@@ -190,3 +190,15 @@ B :
 
 .. math::
   \|z^{k+1} - P_{k}(z^{k}) \| \le \delta_{k}\|z^{k+1} -z^{k}\|, \quad \sum_{k=0}^{\infty} \delta_{k} < \infty
+
+7. Applications
+-------------------------
+
+* :math:`T = \partial f`, f is the essential objective function in the problem.
+* :math:`T = - \partial g`, f is the concave objective function in the dual problem.
+* :math:`T_{L}` corresponding to the convex-concave Largrangian function.
+
+8. Convergence
+----------------------
+
+See the paper.
