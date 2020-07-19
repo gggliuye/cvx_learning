@@ -25,5 +25,6 @@ These pages are corresponding with the paper `Distributed Optimization and Stati
    L1Norm
    ConsensusSharing
    DistributedModelFitting
+   NonConvex
    Implementation
    NumericalExamples
