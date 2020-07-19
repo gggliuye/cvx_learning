@@ -143,4 +143,14 @@ From this fact (:math:`z\in (I + cT)(u)`), we have :
 
 is a single-valued form H to H. and we can also prove that it is non-expansive.
 
+As we have P(z) =z, if and only if :math:`0\in T(z)`:
+
 *Algorithm*: :math:`z^{k+1} \approx P_{k}(z^{k}) = (I+c_{k}T)^{-1}(z^{k})`
+
+If we take T = :math:`\partial f`, we have:
+
+.. math::
+  z^{k+1} \approx P_{k}(z^{k}) = (I+c_{k}\partial f)^{-1}(z^{k})
+
+.. math::
+  z^{k+1} + c_{k}\partial f(z^{k+1}) \approx z^{k}
