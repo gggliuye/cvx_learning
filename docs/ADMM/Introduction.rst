@@ -40,7 +40,7 @@ Robust methods for :
 
 * Dual problem :math:`\to` Dual ascent method :math:`\to` Decomposition.
 * Method of Multipliers :math:`\to` Augmented Lagrangian :math:`\to` Cannot decompose (as the variables are entangled)
-* ADMM :math:`\to` Decomposed variation of augmented lagraigian method.
+* ADMM :math:`\to` Decomposed variation of augmented lagrangian method.
 
 1.4 Interpretation as tatonnement process
 -----------------------------
