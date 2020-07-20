@@ -53,12 +53,12 @@ As a result, we have:
 2. Monotone operator
 -----------------------------
 
-*Definition* : Let H be a real Hilbert spave with inner product :math:`<\cdot, \cdot>`. A multifunction T : H :math:`\to` H is said to be a *monotone operator* if:
+**Definition Monotone** : Let H be a real Hilbert spave with inner product :math:`<\cdot, \cdot>`. A multifunction T : H :math:`\to` H is said to be a *monotone operator* if:
 
 .. math::
   <z-z', w- w'> \ge 0 \quad whenever \quad w\in T(z), \ w'\in T(z')
 
-It is said to be *maximal monotone* if, in addtion, the graph
+It is said to be **maximal monotone** if, in addtion, the graph
 
 .. math::
   G(T) = \{ (z, w)\in H \times H \mid w \in T(z)  \}
@@ -68,8 +68,17 @@ is not properly contained in the graph of any other monotone operator T': H :mat
 * If T is a subdiffferential :math:`\partial f` of a lower semi-continuous convex function f : :math:`H \to (-\infty , +\infty], f \ne +\infty`, then
 T is maximal monotone, and the relation :math:`0\in T(z)` means that f(z) = min f.
 
+**Strongly Nonotone** with modulus :math:`\alpha > 0`, i.e, one have:
+
+.. math::
+  <z-z', w- w'> \ge \alpha \|z-z'\|^{2} \quad whenever \quad w\in T(z), \ w'\in T(z')
+
+* Which means that :math:`T' = T  - \alpha I` is monotone.
+
 3 Variational Inequalities
 ---------------------------
+
+The variational inequalities expression is:
 
 .. math::
   T(z) = \begin{cases}
@@ -106,7 +115,11 @@ and y is the dual variable. Solve the problem is the find the saddle point the l
 We build another operator :math:`T_{L}(z)` the be the set of all w = (v,u) such that:
 
 .. math::
-  L(x',y)- <x',v> + <y,u> \ge L(x,y) - <x,v> + <y,u> \ge L(x,y')-<x,v>+<y',u> \ \forall x'\in H_{1},y'\in H_{2}
+  \begin{align*}
+  L(x',y)- <x',v> + <y,u> & \ge L(x,y) - <x,v> + <y,u> \\
+  & \ge L(x,y')-<x,v>+<y',u> \\
+  & \forall x'\in H_{1},y'\in H_{2}
+  \end{align*}
 
 Solving the problem :math:`0 \in T_{L}(z)`, will obtain z=(x,y) such that:
 
@@ -118,9 +131,9 @@ Which is exactly the solution of the saddle point of L(x,y).
 5. Algorithm
 -------------------------
 
-*Fact*: :math:`\forall z \in H, \ c > 0, \exists ! \ u \in H. \ s.t \ z-u\in cT(u)`. i.e. :math:`z\in (I + cT)(u)`
+**Fact**: :math:`\forall z \in H, \ c > 0, \exists ! \ u \in H. \ s.t \ z-u\in cT(u)`. i.e. :math:`z\in (I + cT)(u)`
 
-*Proof*: Suppose there exists another u' not equal to u, which satisfies the same conditions, i.e. :math:`z\in (I + cT)(u')`
+**Proof**: Suppose there exists another u' not equal to u, which satisfies the same conditions, i.e. :math:`z\in (I + cT)(u')`
 
 .. math::
   <u-u', cT(u)- cT(u')> \ge 0
@@ -134,7 +147,7 @@ Which is exactly the solution of the saddle point of L(x,y).
 .. math::
   u = u'
 
-**Done proof.**
+**Done proof**
 
 From this fact (:math:`z\in (I + cT)(u)`), we have :
 
@@ -145,15 +158,11 @@ is a single-valued form H to H. and we can also prove that it is non-expansive.
 
 As we have P(z) =z, if and only if :math:`0\in T(z)`:
 
-5.1 Algorithm
-~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Algorithm*: :math:`z^{k+1} \approx P_{k}(z^{k}) = (I+c_{k}T)^{-1}(z^{k})`
+**Algorithm**: :math:`z^{k+1} \approx P_{k}(z^{k}) = (I+c_{k}T)^{-1}(z^{k})`
 
-5.2 Case 1 : partial derivative
-~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Case 1* : If we take T = :math:`\partial f`, we have:
+**Case 1** : If we take T = :math:`\partial f`, we have:
 
 .. math::
   z^{k+1} \approx P_{k}(z^{k}) = (I+c_{k}\partial f)^{-1}(z^{k})
@@ -167,10 +176,8 @@ As we have P(z) =z, if and only if :math:`0\in T(z)`:
 .. math::
   z^{k+1}\approx \arg\min_{z} (f(z) + (1/2c_{k})\|z - z^{k}  \|_{2}^{2})
 
-5.3 Case 2: convex-concave
-~~~~~~~~~~~~~~~~~~~~~~~~
 
-For T corresponding to a convex-concave function L , it becomes :
+**Case 2** : For T corresponding to a convex-concave function L , it becomes :
 
 .. math::
   (x^{k+1}, y^{k+1}) \approx \arg minimax_{x,y} \Lambda_{k}(x,y)
@@ -201,4 +208,7 @@ B :
 8. Convergence
 ----------------------
 
-See the paper.
+See more in the paper.
+
+* The strong convergence is affirmative if :math:`T = \partial f` with f quadratic.
+* The strong convergence is assured if :math:`c_{k}` is bounded away from zero and T is strongly monotone. In which case :math:`P_{k}' = (I + c_{k}'T')^{-1}` is nonexpansive for any :math:`c_{k} >0`  (left to prove).
