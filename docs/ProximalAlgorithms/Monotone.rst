@@ -2,7 +2,8 @@ Monotone Operators
 ==============================
 
 
-Learning notes for the paper *Monotone operators and the proximal point algorithm*, by R. Tyrrell Rockafellar.
+Learning notes for the paper `Monotone operators and the proximal point algorithm <http://dx.doi.org/10.1137/0314056>`_ , by R. Tyrrell Rockafellar.
+and `On the Douglas-Rachford splitting method and the proximal point algorithm for maximal monotone operators <Rachford_splitting_method_and_the_proximal_point_algorithm_for_maximal_monotone_operators>`_ , by Jonathan. Eckstein，Dimitri P. Bertsekas.
 
 This paper was lined as follows:
 
@@ -16,7 +17,7 @@ This paper was lined as follows:
 1 Some Backgrounds
 ------------------------------------
 
-*Semi-continuity*
+**Semi-continuity**
 
 (See more from the wiki page) *Semi-continuity* is a property of extended real-valued functions (it is weaker than continuity) .
 
@@ -39,7 +40,7 @@ More precisly :
 
 With :math:`c_{k} > 0`.
 
-*Inner product* :math:`<\cdot, \cdot>`
+**Inner product** :math:`<\cdot, \cdot>`
 
 * Conjugate symmetric :math:`\bar{<x, y>} = <y,x>`。
 * Linear in its first argument: :math:`<ax_{1} + bx_{2}, y> = a<x_{1}, y> + b<x_{2}, y>`.
@@ -49,6 +50,15 @@ As a result, we have:
 
 .. math::
   <x,ay_{1} +by_{2}> = \bar{a}<x, y_{1}> + \bar{b}<x, y_{2}>
+
+**Notations**:
+
+* Operator : T.
+* Overload the notataion of T and its graph : :math:`T = \{ (x,y) \mid y \in T(x) \}`
+* :math:`\dom T  = \{ x\in H \mid \exists y\in H : (x,y) \in T \}`
+* Range or Image of T : :math:`\im T = \{ y\in H \mid \exists x\in H:(x,y)\in T \}`
+* :math:`A+B = \{ (x, y+z) \mid (x,y)\in A, (x,z) \in B  \}`
+* Identity operator I : :math:`\{ (x,x) \mid x in H \}`
 
 2. Monotone operator
 -----------------------------
@@ -65,15 +75,52 @@ It is said to be **maximal monotone** if, in addtion, the graph
 
 is not properly contained in the graph of any other monotone operator T': H :math:`\to` H.
 
-* If T is a subdiffferential :math:`\partial f` of a lower semi-continuous convex function f : :math:`H \to (-\infty , +\infty], f \ne +\infty`, then
-T is maximal monotone, and the relation :math:`0\in T(z)` means that f(z) = min f.
+* An operator is (maximal) monotone if and only if its inverse is (maximal) monotone.
+* The best known monotone operator is the subgradient mapping :math:`\partial f` of a closed proper convex function.
+* If T is a subdiffferential :math:`\partial f` of a lower semi-continuous convex function f : :math:`H \to (-\infty , +\infty], f \ne +\infty`, then T is maximal monotone, and the relation :math:`0\in T(z)` means that f(z) = min f.
 
-**Strongly Nonotone** with modulus :math:`\alpha > 0`, i.e, one have:
+
+**Strongly Monotone** with modulus :math:`\alpha > 0`, i.e, one have:
 
 .. math::
   <z-z', w- w'> \ge \alpha \|z-z'\|^{2} \quad whenever \quad w\in T(z), \ w'\in T(z')
 
 * Which means that :math:`T' = T  - \alpha I` is monotone.
+
+**Theorem 1.** A monotone operator T on H is maximal if and only if im(I+T) = H.
+
+**Proof**: Use Zorn's Lemma (or, equivalently the axiom of choice): that a partially ordered set containing upper
+bounds for every chain (that is, every totally ordered subset) necessarily contains at least one maximal element.
+
+**n=Nonexpansive**: An operator C on H is said to be nonexpansive if :
+
+.. math::
+  \| y'-y\| \le \|x'- x\| \quad \forall (x,y), (x',y') \in C.
+
+* Nonexpansive operators are necessarily single-valued and Lipschitz continuous.
+
+**Firmly Nonexpansive**: An operator J on H is said to be firmly nonexpansive if :
+
+.. math::
+  \| y'-y\|^{2} \le <x'- x, y'-y> \quad \forall (x,y), (x',y') \in J.
+
+**Lemma 1. (Firmly Nonexpansive)** :
+
+* All firmly nonexpansive operators are nonexpansive. (observiously)
+* An operator J is firmly nonexpansive if and only if 2j-I is nonexpansive. (straightforward)
+* An operator is firmly nonexpansive if and only if it is of the form :math:`(1/2)(C+I)`, where C is nonexpansive. (the inverse of the upper one)
+* An operator J is firmly nonexpansive if and only if I-J is firmly nonexpansive.
+
+**Theorem 2.** Let c be any positive scalar. An operator T on H is monotone if and only if its resolvent :math:`J_{cT} = (I+ cT)^{-1}` is
+firmly nonexpansive. Furthermore, T is maximal monotone if and only if :math:`J_{cT}` is firmly nonexpansive and :math:`\dom (J_{cT}) = H`.
+
+* The purpose here is to stress the complete symmetry that exists between (maximal) monotone operators and (full-domained) firmly nonexpansive operators over any Hilbert space.
+
+**Proof** :
+
+.. math::
+  (x,y) \in T \Leftrightarrow (x+cy, x)\in (I+cT)^{-1}
+
 
 3 Variational Inequalities
 ---------------------------
