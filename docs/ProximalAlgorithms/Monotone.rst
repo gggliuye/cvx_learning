@@ -55,8 +55,8 @@ As a result, we have:
 
 * Operator : T.
 * Overload the notataion of T and its graph : :math:`T = \{ (x,y) \mid y \in T(x) \}`
-* :math:`\dom T  = \{ x\in H \mid \exists y\in H : (x,y) \in T \}`
-* Range or Image of T : :math:`\im T = \{ y\in H \mid \exists x\in H:(x,y)\in T \}`
+* :math:`dom T  = \{ x\in H \mid \exists y\in H : (x,y) \in T \}`
+* Range or Image of T : :math:`im T = \{ y\in H \mid \exists x\in H:(x,y)\in T \}`
 * :math:`A+B = \{ (x, y+z) \mid (x,y)\in A, (x,z) \in B  \}`
 * Identity operator I : :math:`\{ (x,x) \mid x in H \}`
 
@@ -112,7 +112,7 @@ bounds for every chain (that is, every totally ordered subset) necessarily conta
 * An operator J is firmly nonexpansive if and only if I-J is firmly nonexpansive.
 
 **Theorem 2.** Let c be any positive scalar. An operator T on H is monotone if and only if its resolvent :math:`J_{cT} = (I+ cT)^{-1}` is
-firmly nonexpansive. Furthermore, T is maximal monotone if and only if :math:`J_{cT}` is firmly nonexpansive and :math:`\dom (J_{cT}) = H`.
+firmly nonexpansive. Furthermore, T is maximal monotone if and only if :math:`J_{cT}` is firmly nonexpansive and :math:`dom (J_{cT}) = H`.
 
 * The purpose here is to stress the complete symmetry that exists between (maximal) monotone operators and (full-domained) firmly nonexpansive operators over any Hilbert space.
 
@@ -120,6 +120,18 @@ firmly nonexpansive. Furthermore, T is maximal monotone if and only if :math:`J_
 
 .. math::
   (x,y) \in T \Leftrightarrow (x+cy, x)\in (I+cT)^{-1}
+
+.. math::
+  \begin{align*}
+  T \ monotone &\Leftrightarrow <x'-x, y'-y> \ge 0 \ \forall (x,y),(x',y')\in T. \\
+  & \Leftrightarrow <x'-x, cy'-cy> \ge 0 \ \forall (x,y),(x',y')\in T. \\
+  & \Leftrightarrow <x'-x, cy'-cy> + \|x'-x\|^{2} \ge \|x'-x\|^{2} \ \forall (x,y),(x',y')\in T. \\
+  & \Leftrightarrow <x'-x +cy'-cy, x'-x> \ge \|x'-x\|^{2} \ \forall (x,y),(x',y')\in T. \\
+  & \Leftrightarrow (I+cT)^{-1} \ firmly\ nonexpansive
+  \end{align*}
+
+Clearly, T is maximal if and only if cT is maximal. So, by Theroem 1, T is maximal if and only if im(T+cI) = H. This is in turn true
+if and only if :math:`(I+cT)^{-1}` has domain H, establishing the seconf statement. :math:`\square`
 
 
 3 Variational Inequalities
