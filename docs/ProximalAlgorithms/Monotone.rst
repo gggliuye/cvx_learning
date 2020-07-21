@@ -278,7 +278,8 @@ B :
 8. Convergence
 ----------------------
 
-See more in this paper `On the Douglas-Rachford splitting method and the proximal point algorithm for maximal monotone operators <Rachford_splitting_method_and_the_proximal_point_algorithm_for_maximal_monotone_operators>`_.
+See more in this
+ paper `On the Douglas-Rachford splitting method and the proximal point algorithm for maximal monotone operators <Rachford_splitting_method_and_the_proximal_point_algorithm_for_maximal_monotone_operators>`_.
 
 * The strong convergence is affirmative if :math:`T = \partial f` with f quadratic.
 * The strong convergence is assured if :math:`c_{k}` is bounded away from zero and T is strongly monotone. In which case :math:`P_{k}' = (I + c_{k}'T')^{-1}` is nonexpansive for any :math:`c_{k} >0`  (left to prove).
