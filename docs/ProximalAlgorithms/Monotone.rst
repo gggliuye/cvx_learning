@@ -14,7 +14,7 @@ This paper was lined as follows:
 
 
 
-1 Some Backgrounds
+1. Some Backgrounds
 ------------------------------------
 
 **Semi-continuity**
@@ -133,8 +133,19 @@ firmly nonexpansive. Furthermore, T is maximal monotone if and only if :math:`J_
 Clearly, T is maximal if and only if cT is maximal. So, by Theroem 1, T is maximal if and only if im(T+cI) = H. This is in turn true
 if and only if :math:`(I+cT)^{-1}` has domain H, establishing the seconf statement. :math:`\square`
 
+**Corollary 2.1.** An operator K is firmly nonexpansive if and only if :math:`K^{-1} - I` is monotone. K is firmly nonexpansive with full domain if and only if :math:`K^{-1} - I` is maximal monotone.
 
-3 Variational Inequalities
+**Corollary 2.2.** For any c >0, the resolvent :math:`J_{cT}` of a monotone operator T is single-valued. If T is also maximal, then :math:`J_{cT}` has full domain.
+
+**Corollary 2.3.** (The Representation Lemma). Let c >0 and let T be monotone on H. Then every element z of H can be written in at most one way as x+cy, where :math:`y\in Tx`. If T is maximal, then every z of H can be writeen in exactly one way as x + cy, where :math:`y\in Tx`.
+
+**Corollary 2.4.** The functional taking each operator T to :math:`(I+T)^{-1}` is a bijection between the collection of maximal monotone operators on H and the collection of firmly nonexpansive operators on H.
+
+**Lemma 2.** Given any maximal monotone operator T, real number c > 0, and :math:`x\in H`, we have :math:`0\in Tx`, if and only if :math:`J_{cT}(x) = x`.
+
+**Proof**: By direction calculation, :math:`J_{cT} = \{ (x+cy,x)\mid (x,y)\in T  \}`, hence , :math:`0\in Tx \Leftrightarrow (x,0)\in T  \Leftrightarrow (x,x) \in J_{cT}`. Since :math:`J_{cT}` is single-valued, the proof is complete. :math:`\square`
+
+3. Variational Inequalities
 ---------------------------
 
 The variational inequalities expression is:
