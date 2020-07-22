@@ -55,9 +55,26 @@ We can realize such reconstruction with Matlab CVX , for example of reconstructi
 
 **Result**:
 
-.. image:: images/tv_noise.jpg
+.. image:: images/tv_nosie.jpg
   :align: center
 
 
 2. Line Process
 -----------------------
+
+Adding a spatial line process also allows to recover piecewise smooth surface. By defining the following energy function with dual lattice l .
+
+.. math::
+  \begin{align*}
+  & E (u,d) \\
+  & = \sum_{s\in S}( (u_{s} - d_{s})^{2} + \lambda \sum_{t\in \mathcal{G}_{s}}[(u_{s} - u_{t})^{2}l_{s,t}  + \Phi(l_{s,t}) ] )
+  \end{align*}
+
+
+The lattice l has the following properties:
+
+.. math::
+  \begin{align*}
+  & l_{s,t} \rightarrow 0, \quad \Phi(l_{s,t}) \rightarrow 1, \Rightarrow \ outlier, \ loss = 0\\
+  & l_{s,t} \rightarrow 1, \quad \Phi(l_{s,t}) \rightarrow 0, \Rightarrow \ inlier, \ loss = r^{2}
+  \end{align*}
