@@ -9,3 +9,4 @@ These pages consist of various summary of the paper I found variable.
 
    CvxSLAM
    AugmentedLagrangianProximal
+   Unification
