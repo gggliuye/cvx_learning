@@ -5,3 +5,10 @@ On the Unification of Line Processes, Outlier Rejection, and Robust Statistics w
 published 1995.
 
 This paper mainly shows the unification of **line process** (mainly used in Robust Statistics) and **outlier rejection**.
+
+Involving problems:
+
+* Surface Recovery
+* Image Segmentation (recovery of piecewise smooth regions using reguarization)
+* Image Reconstruction
+* Optical Flow
