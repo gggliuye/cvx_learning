@@ -165,7 +165,7 @@ Huber loss matlab implementation: ::
 
 **Result** for example of reconstruction of a noised 'wedding cake' of 50 times 50 pixels:
 
-.. image:: images/tv_nosie.jpg
+.. image:: images/tv_nosie_all.jpg
   :align: center
 
 +--------+--------------+
@@ -180,3 +180,34 @@ Huber loss matlab implementation: ::
 
 4. Unifying Robust Estimation and Outlier Processes
 -----------------------------------------
+
+* Generalization of the notion of line process.
+* Apply to both data and spatial terms.
+* Result in robust estimation.
+
+4.1 Outlier Processes
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Recall the upper expression, l indicates the outliers, and it is an analog line process. This accounts for violations of the spatial
+smoothness term, but does not account for violations of the data term.
+So the auther then generalized the notion of a 'line process' to that of an 'outlier process' that can be applied to both data and spatial terms.
+To *formulate a process that performs outlier rejection in the same spirit as the robust estimators do*. The surface recovery problem then becomes:
+
+.. math::
+  \begin{align*}
+  & E (u,d) \\
+  & = \sum_{s\in S}( (u_{s} - d_{s})^{2}m_{s} + \Phi_{D}(m_{s}) + \lambda \sum_{t\in \mathcal{G}_{s}}[(u_{s} - u_{t})^{2}l_{s,t}  + \Phi_{S}(l_{s,t}) ] )
+  \end{align*}
+
+Where introduce a new indicator for rejecting the measurements. **Notes its similarity to outlier rejection and robust statistics**.
+
+4.2 Outlier Processes to Robust Estimator
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The optimization problem then becomes :
+
+.. math::
+  \begin{align*}
+  \min_{u,m,l}& \sum_{s\in S} (u_{s} - d_{s})^{2}m_{s} + \Phi_{D}(m_{s}) \\
+  &  + \lambda \sum_{s\in S}\sum_{t\in \mathcal{G}_{s}}[(u_{s} - u_{t})^{2}l_{s,t}  + \Phi_{S}(l_{s,t}) ] 
+  \end{align*}
