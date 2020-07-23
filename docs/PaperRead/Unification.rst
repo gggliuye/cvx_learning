@@ -175,7 +175,7 @@ Huber loss matlab implementation: ::
 +--------+--------------+
 | L1     |  0.53065     |
 +--------+--------------+
-| HUber  |   14.93040   |
+| Huber  |   14.93040   |
 +--------+--------------+
 
 4. Unifying Robust Estimation and Outlier Processes
@@ -208,6 +208,47 @@ The optimization problem then becomes :
 
 .. math::
   \begin{align*}
-  \min_{u,m,l}& \sum_{s\in S} (u_{s} - d_{s})^{2}m_{s} + \Phi_{D}(m_{s}) \\
-  &  + \lambda \sum_{s\in S}\sum_{t\in \mathcal{G}_{s}}[(u_{s} - u_{t})^{2}l_{s,t}  + \Phi_{S}(l_{s,t}) ] 
+  \min_{u,m,l}& \sum_{s\in S}[ (u_{s} - d_{s})^{2}m_{s} + \Phi_{D}(m_{s}) ]\\
+  &  + \lambda \sum_{s\in S}\sum_{t\in \mathcal{G}_{s}}[(u_{s} - u_{t})^{2}l_{s,t}  + \Phi_{S}(l_{s,t}) ]
   \end{align*}
+
+.. math::
+  \begin{align*}
+  \min_{u}& \min_{m}[\sum_{s\in S} (u_{s} - d_{s})^{2}m_{s} + \Phi_{D}(m_{s}) ] \\
+  &  + \lambda [ \min_{l}\sum_{s\in S}\sum_{t\in \mathcal{G}_{s}}[(u_{s} - u_{t})^{2}l_{s,t}  + \Phi_{S}(l_{s,t}) ] ]
+  \end{align*}
+
+The upper expression consists of two parallex minimization process, which are similiar , and can be generalized by the function:
+
+.. math::
+  \rho(x) = \inf_{0\le z\le 1}(x^{2}z +\Phi(z))
+
+Finally, we rewrite the problem as :
+
+.. math::
+  \min_{u}\sum_{s\in S}\rho_{D}(u_{s}-d_{s}) + \lambda\sum_{s\in S}\sum_{t\in \mathcal{G}_{s}}\rho_{S}(u_{s} - u_{t})
+
+We have exactly the expression of a robust estimation.
+
+**Example** : take :math:`\Phi(z) = (\sqrt(z)-1)^{2}`, where :math:`0\le z \le` :
+
+.. math::
+  \begin{align*}
+  E(x,z) &= x^{2} + \Phi(z) \\
+  &= x^{2} + (\sqrt(z)-1)^{2} \\
+  \end{align*}
+
+Minimize with respect to z, we take the first order optimal condition :
+
+.. math::
+  \frac{\partial E}{\partial z} (x,z) = x^{2} + \frac{\sqrt{z}-1}{\sqrt{z}} = 0
+
+.. math::
+  z = \frac{1}{(x^{2}+1)^{2}}
+
+Then we have :
+
+.. math::
+  \rho(x) = \frac{x^{2}}{1+x^{2}}
+
+4.3 From Robust Estimators to Outlier Processes.
