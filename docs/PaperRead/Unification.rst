@@ -32,7 +32,7 @@ The problem can be modeled by the following energy function:
 Which consists of two terms: measurements (set D), and a smoothness term (set S, function of neighbor points, this term can also be seen as an regularization). All two terms are evulated by L2 norm.
 With L2 reguarization term will lead to a *very* smooth result, while we could use L1 norm to perserve sharp edges.
 
-We can realize such reconstruction with Matlab CVX , for example of reconstruction of a noised 'wedding cake':
+We can realize such reconstruction with Matlab CVX :
 
 
 **L2 norm**: ::
@@ -52,11 +52,6 @@ We can realize such reconstruction with Matlab CVX , for example of reconstructi
       Uy = Utv(2:end,2:end) - Utv(1:end-1,2:end); % y (vert) differences
       minimize(norm([Ux(:); Uy(:)], 1) + gamma_l1*norm(Utv(Known)-Unoise(Known),2)); % tv roughness measure
   cvx_end
-
-**Result**:
-
-.. image:: images/tv_nosie.jpg
-  :align: center
 
 
 2. Line Process
@@ -95,13 +90,12 @@ Let's consider the case of model fitting problem. Our objective to minimize a pe
 * The choice of different :math:`\rho` functions results in different robust estimators and the robustness of a particular estimator refers to its insensitivity.
 
 3.1 Robust Estimators
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Quadratic**:
 
 .. image:: images/quadratic.jpg
   :align: center
-  :width: 40%
 
 .. math::
   \rho (x) = x^{2} , \quad \Phi(x) = 2x
@@ -133,7 +127,7 @@ The quadratic (least square) approach is notoriously sensitive to outliers, as t
   \rho(x, \sigma) = \log(1+\frac{1}{2} (\frac{x}{\sigma})^{2})
 
 .. math::
-  \Phi(x, \sigma) = \frac{2x}{2s\sigma^{2} +x^{2}}
+  \Phi(x, \sigma) = \frac{2x}{2\sigma^{2} +x^{2}}
 
 **Truncated quadratic**:
 
@@ -147,3 +141,42 @@ The quadratic (least square) approach is notoriously sensitive to outliers, as t
 .. math::
   \Phi(x, \beta) = \begin{cases} 2x \quad \mid x\mid \le \sqrt{\beta} \\
   0 \quad otherwise \end{cases}
+
+3.2 Robust Regularization
+~~~~~~~~~~~~~~~~~~~~~~
+
+Apply the robust function to our surface recovery problem:
+
+.. math::
+  \begin{align*}
+  \min_{u} &\ E (u,d)\\
+  & = E_{D}(u,d) + E_{S}(u) \\
+  & = \sum_{s\in S}[ \rho_{D}(u_{s} - d_{s}) + \lambda \sum_{t\in \mathcal{G}_{s}} \rho_{S}(u_{s} - u_{t})  ]
+  \end{align*}
+
+Huber loss matlab implementation: ::
+
+  cvx_begin quiet
+      variable Ulp(m, n);
+      Ux = Ulp(2:end,2:end) - Ulp(2:end,1:end-1); % x (horiz) differences
+      Uy = Ulp(2:end,2:end) - Ulp(1:end-1,2:end); % y (vert) differences
+      minimize(sum(huber([Ux(:); Uy(:)], 0.5)) + gamma*norm(Ulp(Known)-Unoise(Known),2)); % huber roughness measure
+  cvx_end
+
+**Result** for example of reconstruction of a noised 'wedding cake' of 50 times 50 pixels:
+
+.. image:: images/tv_nosie.jpg
+  :align: center
+
++--------+--------------+
+| method |  cpu time(s) |
++========+==============+
+| L2     |  0.28199     |
++--------+--------------+
+| L1     |  0.53065     |
++--------+--------------+
+| HUber  |   14.93040   |
++--------+--------------+
+
+4. Unifying Robust Estimation and Outlier Processes
+-----------------------------------------
