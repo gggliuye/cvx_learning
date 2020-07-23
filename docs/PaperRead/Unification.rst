@@ -252,3 +252,64 @@ Then we have :
   \rho(x) = \frac{x^{2}}{1+x^{2}}
 
 4.3 From Robust Estimators to Outlier Processes.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We start from the robust estimator function :math:`\rho`:
+
+.. math::
+  \rho(x) = \min_{z}(x^{2}z +\Phi(z))
+
+From the first order optimal condition (derivative of z is zero) we have :
+
+.. math::
+  x^{2} + \Phi'_{z^{*}} = 0
+
+Take the derivate of x we have :
+
+.. math::
+  \rho'(x) = 2xz^{*}
+
+From the upper two functions we have :
+
+.. math::
+  x^{2} + \Phi'_{\frac{\rho'(x)}{2x}} = 0 \quad (A)
+
+**Then we will integrate the upper function to get :math:`\Phi`**
+
+First define another function to simplify the process :
+
+.. math::
+  \phi(x^{2}) = \rho(x)
+
+Then we will have :
+
+.. math::
+  \phi'(x^{2}) = \rho'(x)/2x
+
+Then we could rewrite function (A) as :
+
+.. math::
+  -x^{2} = \Phi'(\phi'(x^{2}))
+
+The integration could be written as :
+
+.. math::
+  \int \Phi'(\phi'(x^{2}))\phi''(x^{2})dx^{2} = \int -x^{2}\phi''(x^{2})dx^{2}
+
+.. math::
+  \Phi(\phi'(x^{2})) = -x^{2}\phi'(x^{2}) + \phi(x^{2})
+
+From the former expressions we could also have :
+
+.. math::
+  z^{*} = \rho'(x)/2x = \phi'(x^{2})
+
+As a result, we have :
+
+.. math::
+  \Phi(z) = \phi((\phi')^{-1}(z)) - z(\phi')^{-1}(z)
+
+With the constraint of the indicator z, that its value falls between 0 and 1, we reqiure:
+
+.. math::
+  \lim(w\to 0)\phi'(w)=1, \ and \ \lim_{w\to\infty}\phi'(w) = 0
