@@ -101,9 +101,10 @@ Let's consider the case of model fitting problem. Our objective to minimize a pe
 
 .. image:: images/quadratic.jpg
   :align: center
+  :width: 40%
 
 .. math::
-  \rho (x) = x^{2} , quad \Phi(x) = 2x
+  \rho (x) = x^{2} , \quad \Phi(x) = 2x
 
 The quadratic (least square) approach is notoriously sensitive to outliers, as the error grows greatly as the error increases.
 
@@ -133,3 +134,16 @@ The quadratic (least square) approach is notoriously sensitive to outliers, as t
 
 .. math::
   \Phi(x, \sigma) = \frac{2x}{2s\sigma^{2} +x^{2}}
+
+**Truncated quadratic**:
+
+.. image:: images/truncated.jpg
+  :align: center
+
+.. math::
+  \rho(x, \beta) = \begin{cases} x^{2} \quad \mid x\mid \le \sqrt{\beta} \\
+  \beta \quad otherwise \end{cases}
+
+.. math::
+  \Phi(x, \beta) = \begin{cases} 2x \quad \mid x\mid \le \sqrt{\beta} \\
+  0 \quad otherwise \end{cases}
