@@ -274,7 +274,7 @@ From the upper two functions we have :
 .. math::
   x^{2} + \Phi'_{\frac{\rho'(x)}{2x}} = 0 \quad (A)
 
-**Then we will integrate the upper function to get :math:`\Phi`**
+**Then we will integrate the upper function to get** :math:`\Phi`
 
 First define another function to simplify the process :
 
@@ -312,4 +312,87 @@ As a result, we have :
 With the constraint of the indicator z, that its value falls between 0 and 1, we reqiure:
 
 .. math::
-  \lim(w\to 0)\phi'(w)=1, \ and \ \lim_{w\to\infty}\phi'(w) = 0
+  \lim_{w\to 0}\phi'(w)=1, \ and \ \lim_{w\to\infty}\phi'(w) = 0
+
+5. Adding Spatial Interactions
+-------------------------
+
+Here we consider adding some spatial interactions terms to the energy function.
+
+* Hysteresis (Canny, 1986) , for formation of unbroken contours.
+* Non-maximum Suppression (Nevatia and Babu, 1980) for inhibiting multiple responses to s single edge present in the data.
+
+**GNC**, Here we consider the example of GNC , a piece wise polynomial approximation to the trucated quadratic :
+
+.. image:: images/gnc.jpg
+  :align: center
+
+.. math::
+  \begin{align*}
+  & \rho(x,\lamdba,c) \\
+  & \begin{cases}
+  \lambda^{2}x^{2} \quad 0\le \lambda^{2}x^{2} < \frac{c}{1+c} \\
+  2\lambda\mid x\mid \sqrt{c(1+c)} - c(1+ \lambda^{2}x^{2}) \ \frac{c}{1+c}\le \lambda^{2}x^{2}< \frac{1+c}{c} \\
+  1 \quad \quad otherwise
+  \end{cases}
+  \end{align*}
+
+.. math::
+  \begin{align*}
+  & \rho'(x,\lamdba,c) \\
+  & \begin{cases}
+  2\lambda x \quad 0\le \lambda^{2}x^{2} <\frac{c}{1+c} \\
+  2\lambda sign(x) \sqrt{c(1+c)} - c(\lambda x) \ \frac{c}{1+c}\le \lambda^{2}x^{2}< \frac{1+c}{c} \\
+  0 \quad \quad otherwise
+  \end{cases}
+  \end{align*}
+
+
+To recover the line process of GNC, we get  (:math:`w = \lambda x`):
+
+.. math::
+  \phi(w,c) = \begin{cases}
+  w \quad \quad 0 \le w < \frac{c}{1+c} \\
+  2\sqrt{cw(1+c)} - c(1+2) \ \frac{c}{1+c}\le w < \frac{1+c}{c} \\
+  1 \quad \quad otherwise
+  \end{cases}
+
+.. math::
+  \phi'(w,c) = \begin{cases}
+  1 \quad \quad 0 \le w < \frac{c}{1+c} \\
+  c(\sqrt{\frac{1+c}{wc}} -1 ) \ \frac{c}{1+c}\le w < \frac{1+c}{c} \\
+  0 \quad \quad otherwise
+  \end{cases}
+
+.. math::
+  \phi''(w,c) = \begin{cases}
+  0 \quad \quad 0 \le w < \frac{c}{1+c} \\
+  -\frac{1}{2}\sqrt{\frac{c(1+c)}{w^{3}}} \ \frac{c}{1+c}\le w < \frac{1+c}{c} \\
+  0 \quad \quad otherwise
+  \end{cases}
+
+Which satisfies :
+
+.. math::
+  \lim_{w\to 0}\phi'(w)=1, \ and \ \lim_{w\to\infty}\phi'(w) = 0
+
+Finally we have the penalty function :
+
+.. math::
+  (\phi')^{-1}(z) = \frac{c(1+c)}{(c+z)^{2}}
+
+.. math::
+  \Phi(z,c) = \frac{c(1-z)}{c+z}
+
+.. math::
+  E(x, lambda, c, z) =  \lambda^{2}x^{2}z + \Phi(z,c)
+
+The following image draws the GNC penalty functions :math:`\Phi(z,c)` and :math:`E(x,\lambda,c,z)` for different choice of z :
+
+.. image:: images/GNC_penalty.jpg
+  :align: center
+
+The following image draws the GNC penalty functions :math:`\Phi(z,c)` and :math:`\rho(x,\lambda,c)` for different choice of c :
+
+.. image:: images/GNC_penalty_2.jpg
+  :align: center
