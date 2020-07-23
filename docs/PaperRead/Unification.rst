@@ -71,10 +71,65 @@ Adding a spatial line process also allows to recover piecewise smooth surface. B
   \end{align*}
 
 
-The lattice l has the following properties:
+As a result l will be an indicator of inliers, and :math:`\Phi` will be a penalty function:
 
 .. math::
   \begin{align*}
-  & l_{s,t} \rightarrow 0, \quad \Phi(l_{s,t}) \rightarrow 1, \Rightarrow \ outlier, \ loss = 0\\
-  & l_{s,t} \rightarrow 1, \quad \Phi(l_{s,t}) \rightarrow 0, \Rightarrow \ inlier, \ loss = r^{2}
+  & l_{s,t} \rightarrow 0, \quad \Phi(l_{s,t}) \rightarrow 1 \ \Rightarrow \ outlier, \ loss = 0\\
+  & l_{s,t} \rightarrow 1, \quad \Phi(l_{s,t}) \rightarrow 0 \ \Rightarrow \ inlier, \ loss = r^{2}
   \end{align*}
+
+For an example, we could have :
+
+.. math::
+  \Phi(z) = (\sqrt(z)-1)^{2}
+
+3. Robust Statistics
+---------------------------
+Let's consider the case of model fitting problem. Our objective to minimize a penalty function of the observations and the predictions.
+
+.. math::
+  \min_{u} \sum_{s\in S}\rho(d_{s} - u(s;a), \sigma_{s})
+
+* This expression corresponding to M-estimate (Maximum-likelihood estimation)
+* The choice of different :math:`\rho` functions results in different robust estimators and the robustness of a particular estimator refers to its insensitivity.
+
+3.1 Robust Estimators
+------------------------
+
+**Quadratic**:
+
+.. image:: images/quadratic.jpg
+  :align: center
+
+.. math::
+  \rho (x) = x^{2} , quad \Phi(x) = 2x
+
+The quadratic (least square) approach is notoriously sensitive to outliers, as the error grows greatly as the error increases.
+
+
+**Huber**:
+
+.. image:: images/huber.jpg
+  :align: center
+
+.. math::
+  \phi_{\sigma}(x) = \begin{cases}
+  x^{2}/x\sigma + \sigma/2 \quad \mid x\mid \le sigma \\
+  \mid x\mid \quad \quad \mid x\mid > \sigma \end{cases}
+
+.. math::
+  \Phi_{\sigma}(x) = \begin{cases}
+  x/\sigma \quad \mid x\mid \le \sigma \\
+  sign(x) \ \mid x \mid > \sigma \end{cases}
+
+**Lorentzian**:
+
+.. image:: images/lorentzian.jpg
+  :align: center
+
+.. math::
+  \rho(x, \sigma) = \log(1+\frac{1}{2} (\frac{x}{\sigma})^{2})
+
+.. math::
+  \Phi(x, \sigma) = \frac{2x}{2s\sigma^{2} +x^{2}}
