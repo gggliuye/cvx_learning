@@ -329,8 +329,8 @@ Here we consider adding some spatial interactions terms to the energy function.
 
 .. math::
   \begin{align*}
-  & \rho(x,\lamdba,c) \\
-  & \begin{cases}
+  & \rho(x,\lambda,c) \\
+  & = \begin{cases}
   \lambda^{2}x^{2} \quad 0\le \lambda^{2}x^{2} < \frac{c}{1+c} \\
   2\lambda\mid x\mid \sqrt{c(1+c)} - c(1+ \lambda^{2}x^{2}) \ \frac{c}{1+c}\le \lambda^{2}x^{2}< \frac{1+c}{c} \\
   1 \quad \quad otherwise
@@ -339,8 +339,8 @@ Here we consider adding some spatial interactions terms to the energy function.
 
 .. math::
   \begin{align*}
-  & \rho'(x,\lamdba,c) \\
-  & \begin{cases}
+  & \rho'(x,\lambda,c) \\
+  & = \begin{cases}
   2\lambda x \quad 0\le \lambda^{2}x^{2} <\frac{c}{1+c} \\
   2\lambda sign(x) \sqrt{c(1+c)} - c(\lambda x) \ \frac{c}{1+c}\le \lambda^{2}x^{2}< \frac{1+c}{c} \\
   0 \quad \quad otherwise
@@ -385,7 +385,7 @@ Finally we have the penalty function :
   \Phi(z,c) = \frac{c(1-z)}{c+z}
 
 .. math::
-  E(x, lambda, c, z) =  \lambda^{2}x^{2}z + \Phi(z,c)
+  E(x, \lambda, c, z) =  \lambda^{2}x^{2}z + \Phi(z,c)
 
 The following image draws the GNC penalty functions :math:`\Phi(z,c)` and :math:`E(x,\lambda,c,z)` for different choice of z :
 
