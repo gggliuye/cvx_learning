@@ -368,3 +368,68 @@ of an eigenvalue decomposition of a symmetric matrix. Matlab code::
   es = diag(L);
   xi = (es + sqrt(es.^2 + 4*rho))./(2*rho);
   X = Q*diag(xi)*Q';
+
+6.6 Total Variation Reconstruction
+------------------------------
+
+Consider a total variation reconstruction of a 1d data(vector date).
+
+.. math::
+  minimize \frac{1}{2}\|x-b\|_{2}^{2} + \lambda \sum_{i = 0}^{n-1}\mid x_{i+1} - x_{i}\mid
+
+Construct a D matrix for the calculation of derivatives, we have the problem:
+
+.. math::
+  minimize \frac{1}{2}\|x-b\|_{2}^{2} + \lambda \mid Dx\mid_{F}
+
+The upper norm :math:`\mid \mid_{F}` means elementwised l1 sum. And apply the consensus form (ADMM):
+
+.. math::
+  \begin{align*}
+  & minimize \ \frac{1}{2}\|x-b\|_{2}^{2} + \lambda \mid z\mid_{F} \\
+  &subject\ to \ Dx = z
+  \end{align*}
+
+Apply the ADMM updates :
+
+.. math::
+  \begin{align*}
+  &x^{k+1} := \arg \min_{x} \frac{1}{2}\|x-b\|_{2}^{2}  + \frac{\rho}{2} \| Dx - (z^{k} - u^{k})  \|_{2}^{2} \\
+  &z^{k+1}_{i} := \arg\min_{z_{i}} \mid z_{i}\mid + \frac{\rho}{2} \| (Dx^{k+1})_{i} - z_{i} + u^{k}_{i}  \|_{2}^{2} \\
+  &u^{k+1} := u^{k} + Dx^{k+1} - z^{k+1}
+  \end{align*}
+
+We can easily get the update of x using the first order optimal condition, result in the matlab code ::
+
+  x = (I + rho*DtD) \ (b + rho*D'*(z-u));
+
+And the update of z ::
+
+  z = shrinkage(D*x + u, lambda/rho);
+
+We will get the convergence result.
+
+.. image:: images/tv_admm.jpg
+  :align: center
+
+We further compare the ADMM method with the CVX SDP method. ::
+
+  cvx_begin quiet
+      variable xtv(n,1);
+      xtv_diff = xtv(2:end,1) - xtv(1:end-1,1); % x (horiz) differences
+      minimize(norm(xtv_diff, 1) + gamma_l1*norm(xtv-b,2)); %tv roughness measure
+  cvx_end
+
+We saw that the CVX SDP method result highly depends on the parameter gamma_l1, while the ADMM results are much
+more stable and fast.
+
+.. image:: images/tv_plot.jpg
+  :align: center
+
+  +--------+--------------+
+  | method |  cpu time(s) |
+  +========+==============+
+  | ADMM   |  0.009279    |
+  +--------+--------------+
+  | CVX SDP|  0.319832    |
+  +--------+--------------+
