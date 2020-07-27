@@ -16,14 +16,22 @@ In which case, a circulant matrix is introduced, which can be transformed into d
 The discrete gradient operator :math:`\partial_{1}` and :math:`\partial_{2}` are linear :math:`\mathcal{R}^{n}\to \mathcal{R}^{n-1}` (e.g. each element is :math:`x_{i+1}-x_{i}`)
 For image processing cases, they are discretized in the horizontal and vertical directions respectively.
 
-While in this paper, we introcduce a circular boundary condition to make the gradients :math:`\mathcal{R}^{n}\to \mathcal{R}^{n}` to make the gradient of each
-direction a circulant matrices:
+While in this paper, we introcduce a circular boundary condition to make the gradients :math:`\mathcal{R}^{n}\to \mathcal{R}^{n}`
+to make the gradient of each direction a circular boundary conditions:
+
+.. math::
+  (\partial_{1}x)(i,j) = \begin{cases} x(i+1,j) - x(i,j) \quad if i \l n_{1} \\
+  x(1,j) - x(n_{1},j) \quad i =n_{1} \end{cases}
+
+.. math::
+  (\partial_{2}x)(i,j) = \begin{cases} x(i,j+1) - x(i,j) \quad if j \l n_{2} \\
+  x(i,1) - x(i,n_{2}) \quad j =n_{2} \end{cases}
+
+* The gradient of x direction could be easily expressed by circular matrix form, while it is harder to process in both directions. (that may be the reason, that some MVS method perfer to apply in to one direction each time)
 
 .. math::
   \partial_{1} = \begin{bmatrix} -1 & 1 & 0 & ... &0& 0\\ 0& -1 & 1& ... &0& 0 \\ ... \\ 1 &0 &0&...&0&-1 \end{bmatrix}
 
-.. math::
-  \partial_{2} = \begin{bmatrix} -1 & 0 & 0 & ... &0 & 1\\ 1& -1 & 0& ... &0& 0 \\ ... \\ 0 &0 &0&...&1&-1 \end{bmatrix}
 
 * The counterpart of this formulation is that it can lead to some artifacts on the image borders.
 * In this case, the gradient operators are circulant matrix. They could be diagonalized by DFT.
@@ -75,6 +83,7 @@ We will solve a similar one :
   &subject\ to \quad x \in \mathcal{R}^{n},\ \|Ax- x^{0}\|_{N} \le \alpha
   \end{align*}
 
+Where :math:`\nabla^{T} = [\partial_{1}, \partial_{2}]` .
 For N=2,  L2 norm usually corresponding to the restoration of a blurry image with additive Gaussian noise (Gaussian distribution corresponding to L2 norm).
 And the take A to be H , a spatially invariant blurry transform. So we have the problem :
 
@@ -102,7 +111,7 @@ The ADMM updates are :
 .. math::
   \begin{align*}
   & x^{k+1} := \arg\min_{x\in K} (\rho/2)\| \nabla x - z^{k} + u^{k} \|_{2}^{2} \\
-  & z^{k+1} := \arg\min_{z}( \mid z\mid + (\rho/2)\| \nabla x^{k+1} - z + u^{k} \|_{2}^{2})
+  & z^{k+1} := \arg\min_{z}( \mid z\mid + (\rho/2)\| \nabla x^{k+1} - z + u^{k} \|_{2}^{2})\\
   & u^{k+1} := u^{k} + \nabla x^{k+1} - z^{k+1}
   \end{align*}
 
@@ -114,3 +123,6 @@ The upper updates are equvalient to :
   & z^{k+1} := S_{1/\rho}(\nabla x^{k+1}+u^{k}) \\
   & u^{k+1} := u^{k} + \nabla x^{k+1} - z^{k+1}
   \end{align*}
+
+The original paper use the Augmented Lagrangian to derivate the ADMM updates,
+while we use the unscaled form of ADMM updates here. They should be equivalent.
