@@ -20,11 +20,11 @@ While in this paper, we introcduce a circular boundary condition to make the gra
 to make the gradient of each direction a circular boundary conditions:
 
 .. math::
-  (\partial_{1}x)(i,j) = \begin{cases} x(i+1,j) - x(i,j) \quad if i \l n_{1} \\
+  (\partial_{1}x)(i,j) = \begin{cases} x(i+1,j) - x(i,j) \quad if \ i < n_{1} \\
   x(1,j) - x(n_{1},j) \quad i =n_{1} \end{cases}
 
 .. math::
-  (\partial_{2}x)(i,j) = \begin{cases} x(i,j+1) - x(i,j) \quad if j \l n_{2} \\
+  (\partial_{2}x)(i,j) = \begin{cases} x(i,j+1) - x(i,j) \quad if\ j < n_{2} \\
   x(i,1) - x(i,n_{2}) \quad j =n_{2} \end{cases}
 
 * The gradient of x direction could be easily expressed by circular matrix form, while it is harder to process in both directions. (that may be the reason, that some MVS method perfer to apply in to one direction each time)
@@ -35,6 +35,20 @@ to make the gradient of each direction a circular boundary conditions:
 
 * The counterpart of this formulation is that it can lead to some artifacts on the image borders.
 * In this case, the gradient operators are circulant matrix. They could be diagonalized by DFT.
+
+**Convolution Theorem**:
+
+.. math::
+  \begin{align*}
+  &w(t)= u(t)v(t) \\
+  & W(f) = U(f) * V(f)
+  \end{align*}
+
+.. math::
+  \begin{align*}
+  &w(t)= u(t) * v(t) \\
+  & W(f) = U(f)  V(f)
+  \end{align*}
 
 **Diagonalize of Circulant Matrices**:
 
@@ -67,7 +81,7 @@ see `here <../ADMM/Index.html>`_
 3. Application TV-L2
 --------------------------
 
-The problem is :
+Could be used in **Deconvolution** problems. The general problem is :
 
 .. math::
   \begin{align*}
@@ -127,7 +141,56 @@ The upper updates are equvalient to :
 The original paper use the Augmented Lagrangian to derivate the ADMM updates,
 while we use the unscaled form of ADMM updates here. They should be equivalent.
 
+* The upper variable x should be the vector form of the image, and the gradient operator :math:`\nabla` could be sexpressed by an matrix.
+* The circular operator corresponds to circular matrix.
+* The author used a DFT transformed space to process the optimzation, which makes the computational cose much lower.
+
 **Process in two directions seperatly**:
+
+This is mine implementation of TV denoise of image, by applying total variation operation in two directions
+separatly, we could realize the algorithm much faster. We could get a good result in a few steps,
+While we may converge much slower to the global optimal.
+The whole matlab code could be found `here <https://github.com/gggliuye/cvx_learning/tree/master/matlab/ADMM/FFT>`_
 
 .. image:: images/sep_2_dir.jpg
   :align: center
+
+3. Application TV-LP
+--------------------------
+
+Could be used in **Super-resolution, Inpainting and Deconvolution** problems.
+The image formation model could be written as :
+
+.. math::
+  x^{0} = SHx + b
+
+* H is a spatially invariant convolution (or more generally a circulant matrix).
+* b is an additive white noise. The author only focused on Laplacian Gaussian and uniform noise in this paper.
+* :math:`S:\mathcal{R}^{n} \to \mathcal{R}^{m}` is a rectangular matrix with a special structure. **Vignetting and impainting, Sub-sampling, etc**
+
+The problem could be expressed as follows :
+
+.. math::
+  \begin{align*}
+  &minimize \quad \|\nabla x\|_{1} \\
+  &subject\ to \quad x\in \mathcal{R}^{n},\ \|SHx - x^{0}\|_{p} \le \alpha
+  \end{align*}
+
+The author used a consensus form :
+
+.. math::
+  \begin{align*}
+  &minimize \quad \| w\|_{1} \\
+  &subject\ to \quad w = \nabla x,\ z = Hx, \|Sz - x^{0}\|_{p} \le \alpha
+  \end{align*}
+
+4. Image Decomposition
+----------------------------
+
+Image cartioon+texture decomposition problems.
+
+.. math::
+  \begin{align*}
+  &minimize \quad f_{1}(u) + f_{2}(v) \\
+  &subject\ to \quad x^{0} = u+v
+  \end{align*}
