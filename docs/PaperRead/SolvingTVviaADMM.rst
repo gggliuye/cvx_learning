@@ -20,7 +20,33 @@ While in this paper, we introcduce a circular boundary condition to make the gra
 direction a circulant matrices:
 
 .. math::
-  \partial_{1} = \begin{bmatrix} -1 & 1 & 0 & ... &0& 0\\ 0& -1 & 1& ... &0& 0 \\ ... \\ 1 &0 &0&...&0&-1 \end{bmatrix}
 
+\partial_{1} = \begin{bmatrix} -1 & 1 & 0 & ... &0& 0\\ 0& -1 & 1& ... &0& 0 \\ ... \\ 1 &0 &0&...&0&-1 \end{bmatrix}
 .. math::
   \partial_{2} = \begin{bmatrix} -1 & 0 & 0 & ... &0 & 1\\ 1& -1 & 0& ... &0& 0 \\ ... \\ 0 &0 &0&...&1&-1 \end{bmatrix}
+
+* The counterpart of this formulation is that it can lead to some artifacts on the image borders.
+* In this case, the gradient operators are circulant matrix. They could be diagonalized by DFT.
+
+**Diagonalize of Circulant Matrices**:
+
+For the circulant matrix C(w) we have :
+
+.. math::
+  C(w) = \begin{bmatrix} w_{1} & w_{2} & w_{3} & ... & w_{n}\\ w_{n}& w_{1} & w_{2}& ... & w_{n-1} \\ ... \\ w_{2} &w_{3} &w_{4}&...&w_{1} \end{bmatrix}
+
+.. math::
+  C(w) = \mathbb{F}Diag(\mathbb{F}w)\mathbb{F}^{-1}
+
+.. math::
+  C(w) = \mathbb{F}^{-1}Diag(\bar{\mathbb{F}w})\mathbb{F}
+
+Where, :math:`\mathbb{F}\in \mathcal{C}^{n\times k}`:
+
+.. math::
+  \mathbb{F} = \begin{bmatrix} 1 & 1 & 1 & ... & 1\\ 1& \omega & \omega^{2}& ... & \omega^{n-1} \\ ... \\ 1 &\omega^{k-1} &\omega^{2(k-1)}&...&\omega^{(n-1)(k-1)} \end{bmatrix}
+
+We can also rescale horizontal or vertical, to make the matrix non-squared. Then, we have :
+
+.. math::
+  \partial_{1} = \mathbb{F}^{-1}D_{1}\mathbb{F}, \ and\ \partial_{2} = \mathbb{F}^{-1}D_{2}\mathbb{F}
