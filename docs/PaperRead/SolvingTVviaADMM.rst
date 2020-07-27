@@ -20,8 +20,8 @@ While in this paper, we introcduce a circular boundary condition to make the gra
 direction a circulant matrices:
 
 .. math::
+  \partial_{1} = \begin{bmatrix} -1 & 1 & 0 & ... &0& 0\\ 0& -1 & 1& ... &0& 0 \\ ... \\ 1 &0 &0&...&0&-1 \end{bmatrix}
 
-\partial_{1} = \begin{bmatrix} -1 & 1 & 0 & ... &0& 0\\ 0& -1 & 1& ... &0& 0 \\ ... \\ 1 &0 &0&...&0&-1 \end{bmatrix}
 .. math::
   \partial_{2} = \begin{bmatrix} -1 & 0 & 0 & ... &0 & 1\\ 1& -1 & 0& ... &0& 0 \\ ... \\ 0 &0 &0&...&1&-1 \end{bmatrix}
 
@@ -49,9 +49,9 @@ Where, :math:`\mathbb{F}\in \mathcal{C}^{n\times k}`:
 We can also rescale horizontal or vertical, to make the matrix non-squared. Then, we have :
 
 .. math::
-  \partial_{1} = \mathbb{F}^{-1}D_{1}\mathbb{F}, \ and\ \partial_{2} = \mathbb{F}^{-1}D_{2}\mathbb{F}
+  \partial_{1} = \mathbb{F}^{-1}D_{1}\mathbb{F} \quad and\quad \partial_{2} = \mathbb{F}^{-1}D_{2}\mathbb{F}
 
 2. ADMM
 ---------------------
 
-see `here <../ADMM/Index.html>`_
+see `here <../ADMM/Index>`_
