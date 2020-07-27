@@ -48,7 +48,7 @@ i.e. the dual objective value is lower bounds of the primal optimal value.
 * The primal problem is strictly feasible. i.e. exist an x with F(x) > 0.
 * The dual problem is strictly feasible. i.e. exist a Z with :math:`Z=Z^{T}>0`.
 
-(:math:`F(x) ge 0` is the **feasible** condition, while F(x) > 0 is the **strictly feasible** condtion).
+(:math:`F(x) \ge 0` is the **feasible** condition, while F(x) > 0 is the **strictly feasible** condtion).
 If both conditions hold, the optimal set X and Z are nonempty.
 
 In this case,
