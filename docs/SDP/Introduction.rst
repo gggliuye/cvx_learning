@@ -12,7 +12,7 @@
 
 The problem data are the vector c and symmetric matrices :math:`F_{i}`.
 
-* The inequality sign means F(x) is positive semidefinite, i.e. :math:`z^{T}F(x)z \ge 0 \forall z \in \mathcal{R}^{n}` . It is equivalent to a set of infinite set of linear constraints. It is therefore that the theory of semidefinite programming closely parallels the theory of linear programming.
+* The inequality sign means F(x) is positive semidefinite, i.e. :math:`z^{T}F(x)z \ge 0, \ \forall z \in \mathcal{R}^{n}` . It is equivalent to a set of infinite set of linear constraints. It is therefore that the theory of semidefinite programming closely parallels the theory of linear programming.
 * Many algorithms for solving LPs should have generalization that handle semidefinite programs.  (e.g. LP is a SDP problem)
 * There are some important differences. Duality results are weaker for SDPs than for LPs, and there is no straightforward or practival simplex method for SDPs.
 * Recognizing Schur complements in nonlinear expressions is often the key step in reformulating nonlinear convex optimization problems as SDPs.
@@ -88,7 +88,7 @@ Consider the differential inclusion:
 This a linear system with uncertain, time-varying, unity-bounded, diagonal feedback.
 
 We seek an invariant ellipsoid. i.e. an ellipsoid :math:`\mathcal{E} = \{x\mid x^{T}Px\le 1  \}` such that for any x and u satisfy the upper equations,
-:math:`x(T)\in \mathcal{E}` implies :math:`x(t) \in \mathcal{E} \forall t \ge T`. Which means the system will always be in the state
+:math:`x(T)\in \mathcal{E}` implies :math:`x(t) \in \mathcal{E} , \ \forall t \ge T`. Which means the system will always be in the state
 ellipsoid in the future.
 
 The ellipsoid is invariant if and only if the function :math:`V(x) = x(t)^{T}Px(t)` is nonincreasing for any x and u that satisfy the state transformation equations.
