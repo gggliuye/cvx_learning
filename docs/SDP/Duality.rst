@@ -44,9 +44,11 @@ in which we use :math:`Tr(AB)\ge 0` when :math:`A = A^{T}\ge 0` and :math:`B=B^{
 i.e. the dual objective value is lower bounds of the primal optimal value.
 
 **Theorem Strong Duality.** we have p* = d* if either of the following conditions holds:
+
 * The primal problem is strictly feasible. i.e. exist an x with F(x) > 0.
 * The dual problem is strictly feasible. i.e. exist a Z with :math:`Z=Z^{T}>0`.
 
+(:math:`F(x) ge 0` is the **feasible** condition, while F(x) > 0 is the **strictly feasible** condtion).
 If both conditions hold, the optimal set X and Z are nonempty.
 
 In this case,
