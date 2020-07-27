@@ -50,3 +50,8 @@ We can also rescale horizontal or vertical, to make the matrix non-squared. Then
 
 .. math::
   \partial_{1} = \mathbb{F}^{-1}D_{1}\mathbb{F}, \ and\ \partial_{2} = \mathbb{F}^{-1}D_{2}\mathbb{F}
+
+2. ADMM
+---------------------
+
+see `here <../ADMM/Index.html>`_
