@@ -147,6 +147,8 @@ while we use the unscaled form of ADMM updates here. They should be equivalent.
 
 **Process in two directions seperatly**:
 
+While using the vector form of the image will result in a very large model.
+
 This is mine implementation of TV denoise of image, by applying total variation operation in two directions
 separatly, we could realize the algorithm much faster. We could get a good result in a few steps,
 While we may converge much slower to the global optimal.
