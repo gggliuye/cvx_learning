@@ -126,3 +126,8 @@ The upper updates are equvalient to :
 
 The original paper use the Augmented Lagrangian to derivate the ADMM updates,
 while we use the unscaled form of ADMM updates here. They should be equivalent.
+
+**Process in two directions seperatly**:
+
+.. image:: images/sep_2_dir.jpg
+  :align: center
