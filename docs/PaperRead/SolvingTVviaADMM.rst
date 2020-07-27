@@ -13,7 +13,7 @@ For 2D cases, the situation is more complicate, as the derivatives have two dire
 into a general ADMM form.
 In which case, a circulant matrix is introduced, which can be transformed into diagonal matrix using Discrete Fourier Transformation.
 
-The discrete gradient operator :math:`\partial_{1}` and :math:`\partial_{2}` are linear :math:`\mathcal{R}^{n}\to \mathcal{R}^{n-1}` (e.g. each element is :math:`x_{i+1}-x{i}`)
+The discrete gradient operator :math:`\partial_{1}` and :math:`\partial_{2}` are linear :math:`\mathcal{R}^{n}\to \mathcal{R}^{n-1}` (e.g. each element is :math:`x_{i+1}-x_{i}`)
 For image processing cases, they are discretized in the horizontal and vertical directions respectively.
 
 While in this paper, we introcduce a circular boundary condition to make the gradients :math:`\mathcal{R}^{n}\to \mathcal{R}^{n}` to make the gradient of each
