@@ -92,3 +92,10 @@ We seek an invariant ellipsoid. i.e. an ellipsoid :math:`\mathcal{E} = \{x\mid x
 ellipsoid in the future.
 
 The ellipsoid is invariant if and only if the function :math:`V(x) = x(t)^{T}Px(t)` is nonincreasing for any x and u that satisfy the state transformation equations.
+
+.. math::
+  \begin{align*}
+  \frac{d}{dt}V(x(t)) & = (Px(t))^{T}\frac{dx(t)}{t} + (\frac{dx(t)}{dt})^{T}Px(t) \\
+  & = \begin{bmatix} x(t) \\ u(t)\end{bmatrix}^{T}
+  \begin{bmatix} A^{T}P+PA & PB \\B^{T}P & 0 u(t)\end{bmatrix} \begin{bmatix} x(t) \\ u(t)\end{bmatrix}
+  \end{align*}

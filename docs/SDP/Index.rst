@@ -11,3 +11,4 @@ Semidefinite Programming
    :caption: Contents:
 
    Introduction
+   Duality
