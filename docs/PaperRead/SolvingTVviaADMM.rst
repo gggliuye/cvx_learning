@@ -94,5 +94,23 @@ The problem could be transformed into the consensus form (ADMM form):
 .. math::
   \begin{align*}
   &minimize \quad \| \nabla z\|_{1} \\
-  &subject\ to \quad x \in K, \ y = \nabla x, \ y\in \mathcal{R}^{n\times n}
+  &subject\ to \quad x \in K, \ z = \nabla x, \ y\in \mathcal{R}^{n\times n}
+  \end{align*}
+
+The ADMM updates are :
+
+.. math::
+  \begin{align*}
+  & x^{k+1} := \arg\min_{x\in K} (\rho/2)\| \nabla x - z^{k} + u^{k} \|_{2}^{2} \\
+  & z^{k+1} := \arg\min_{z}( \mid z\mid + (\rho/2)\| \nabla x^{k+1} - z + u^{k} \|_{2}^{2})
+  & u^{k+1} := u^{k} + \nabla x^{k+1} - z^{k+1}
+  \end{align*}
+
+The upper updates are equvalient to :
+
+.. math::
+  \begin{align*}
+  & x^{k+1} := \arg\min_{x\in K} (\rho/2)\| \nabla x - z^{k} + u^{k} \|_{2}^{2} \\
+  & z^{k+1} := S_{1/\rho}(\nabla x^{k+1}+u^{k}) \\
+  & u^{k+1} := u^{k} + \nabla x^{k+1} - z^{k+1}
   \end{align*}

@@ -71,7 +71,7 @@ By noting :math:`u = (1/\rho)y ` we have the simpified form of ADMM:
 We can see that :
 
 .. math::
-  n^{k} = u^{0} + \sum_{i=1}^{k}r^{i}
+  u^{k} = u^{0} + \sum_{i=1}^{k}r^{i}
 
 3.3 Optimality Conditions and Stopping Criterion
 ------------------------------------------
