@@ -54,4 +54,45 @@ We can also rescale horizontal or vertical, to make the matrix non-squared. Then
 2. ADMM
 ---------------------
 
-see `here <../ADMM/Index>`_
+see `here <../ADMM/Index.html>`_
+
+3. Application TV-L2
+--------------------------
+
+The problem is :
+
+.. math::
+  \begin{align*}
+  &minimize \quad \| \nabla x\|_{1} + \tau \|Ax- x^{0}\|_{N} \\
+  &subject\ to \quad x \in \mathcal{R}^{n}
+  \end{align*}
+
+We will solve a similar one :
+
+.. math::
+  \begin{align*}
+  &minimize \quad \| \nabla x\|_{1} \\
+  &subject\ to \quad x \in \mathcal{R}^{n},\ \|Ax- x^{0}\|_{N} \le \alpha
+  \end{align*}
+
+For N=2,  L2 norm usually corresponding to the restoration of a blurry image with additive Gaussian noise (Gaussian distribution corresponding to L2 norm).
+And the take A to be H , a spatially invariant blurry transform. So we have the problem :
+
+.. math::
+  \begin{align*}
+  &minimize \quad \| \nabla x\|_{1} \\
+  &subject\ to \quad x \in \mathcal{R}^{n},\ \|Hx- x^{0}\|_{2} \le \alpha
+  \end{align*}
+
+Note the set :
+
+.. math::
+  K = \{ x\in \mathcal{R}^{n} \mid \|Hx- x^{0}\|_{2} \le \alpha \}
+
+The problem could be transformed into the consensus form (ADMM form):
+
+.. math::
+  \begin{align*}
+  &minimize \quad \| \nabla z\|_{1} \\
+  &subject\ to \quad x \in K, \ y = \nabla x, \ y\in \mathcal{R}^{n\times n}
+  \end{align*}
