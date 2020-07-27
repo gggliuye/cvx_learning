@@ -46,7 +46,7 @@ QCQP could be cast as SDP, while, QCQP could be more efficiently solved via the 
 ------------------------------
 
 .. math::
-  \minimize \quad \max_{i}\mid a_{i}^{T} -b_{i} \mid
+  minimize \quad \max_{i}\mid a_{i}^{T} -b_{i} \mid
 
 2.4 Structural optimziation
 ------------------------------
@@ -62,7 +62,7 @@ So that we have :
 .. math::
   \begin{align*}
   &(x^{i})^{T}Ax^{i}+b^{T}x^{i} + c \le 0, i =1,...,K, \\
-  &(y^{j})^{T}Ay^{j}+b^{T}y^{j} + c \le 0, j =1,...,K,
+  &(y^{j})^{T}Ay^{j}+b^{T}y^{j} + c \le 0, j =1,...,L,
   \end{align*}
 
 We may further constrain the function to be an ellipsoid (i.e. A>0) .
@@ -96,6 +96,6 @@ The ellipsoid is invariant if and only if the function :math:`V(x) = x(t)^{T}Px(
 .. math::
   \begin{align*}
   \frac{d}{dt}V(x(t)) & = (Px(t))^{T}\frac{dx(t)}{t} + (\frac{dx(t)}{dt})^{T}Px(t) \\
-  & = \begin{bmatix} x(t) \\ u(t)\end{bmatrix}^{T}
-  \begin{bmatix} A^{T}P+PA & PB \\B^{T}P & 0 u(t)\end{bmatrix} \begin{bmatix} x(t) \\ u(t)\end{bmatrix}
+  & = \begin{bmatrix} x(t) \\ u(t)\end{bmatrix}^{T}
+  \begin{bmatrix} A^{T}P+PA & PB \\B^{T}P & 0 u(t)\end{bmatrix} \begin{bmatrix} x(t) \\ u(t)\end{bmatrix}
   \end{align*}
