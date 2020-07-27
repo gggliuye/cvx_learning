@@ -155,6 +155,11 @@ The whole matlab code could be found `here <https://github.com/gggliuye/cvx_lear
 .. image:: images/sep_2_dir.jpg
   :align: center
 
+Image example:
+
+.. image:: images/image_example.jpg
+  :align: center
+
 3. Application TV-LP
 --------------------------
 
