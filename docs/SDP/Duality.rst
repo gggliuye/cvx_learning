@@ -28,8 +28,27 @@ The lagrangian of the original problem is :
 .. math::
   \mathcal{L}(x,z)^{*} = -Tr(F_{0}Z)
 
-**This dual problem is also a SDP.**
+**This dual problem is also a SDP.** i.e. it can be put into the same formulation as the primal problem.
 
+**Proof**:
+
+Firstly, we note that the feasible set :math:`\{ Z\mid Z= Z^{T}\in R^{n\times n}, Tr(F_{i}Z)=c_{i}, i=1,..,m \}` is actually an affine set.
+As any linear combination of the elements in the set is also in the set, as we have :
+
+.. math::
+  \alpha_{1}Z_{1} + \alpha_{2}Z_{2} = (\alpha_{1}Z_{1} + \alpha_{2}Z_{2})^{T} ,\ \alpha_{1} + \alpha_{2} = 1
+
+.. math::
+  Tr(F_{i}(\alpha_{1}Z_{1} + \alpha_{2}Z_{2})) = \alpha_{1}Tr(F_{i}Z_{1}) + \alpha_{2}Tr(F_{i}Z_{2}) = c_{i}
+
+So we can express the feasible set in the form:
+
+.. math::
+  \{G(y)=G_{0} + y_{1}G_{1} + \cdot \cdot\cdot + y_{p}G_{p}\mid y\in \mathcal{R}^{p} \}
+
+
+3.1 Strong Duality
+------------------------
 
 **Duality Gap** is (using the upper constrains and the definition of F(x)):
 
@@ -42,9 +61,6 @@ in which we use :math:`Tr(AB)\ge 0` when :math:`A = A^{T}\ge 0` and :math:`B=B^{
   c^{T}x \ge -Tr(F_{0}Z)
 
 i.e. the dual objective value is lower bounds of the primal optimal value.
-
-3.1 Strong Duality
-------------------------
 
 **Theorem Strong Duality.** we have p* = d* if either of the following conditions holds:
 
@@ -120,3 +136,5 @@ Which could be formed as **Primal-Dual Optimization Problem** :
   & minimize \quad c^{T}x + Tr(F_{0}Z) \\
   & subject\ to \quad F(x) \ge 0,\ Z\ge 0,\ Tr(F_{i}Z) = c_{i}, i=1,...,m
   \end{align*}
+
+Which is also an SDP.

@@ -12,3 +12,4 @@ Semidefinite Programming
 
    Introduction
    Duality
+   CentralPath
