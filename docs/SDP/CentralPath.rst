@@ -20,11 +20,7 @@ Its barrier is (finity only the problem is strictly feasible) :
 
 The upper function is : **analytic, stritly convex, and self-concordant** .
 It has the following results.
-
-Using :
-
-.. math::
-  \Delta \log\det X = X^{-1}
+Using :math:`\Delta \log\det X = X^{-1}`.
 
 .. math::
   (\Delta \phi(x))_{i} = \lim_{\delta x \to 0}\frac{Tr(\phi(x+\delta x))}{\delta x} = - Tr(F(x)^{-1}F_{i})
@@ -33,4 +29,11 @@ Using :
   (\Delta^{2} \phi(x))_{i,j} = Tr(F(x)^{-2}F_{i}F_{j})
 
 .. math::
-  \log\det (X+\delta X)^{-1}
+  \begin{align*}
+  \log\det (X+\delta X)^{-1} &\approx \log\det X^{-1} + \sum_{i}(\Delta \phi(x))_{i}\delta x_{i}
+  + \sum_{i}\sum_{j} \frac{1}{2} \delta x_{i}(\Delta^{2} ]\phi(x))_{i,j}\delta x_{j} \\
+  & = \log\det X^{-1} - \sum_{i} Tr(X^{-1}F_{i})\delta x_{i} + \sum_{i,j}\frac{1}{2} \delta x_{i} Tr(X^{-1}F_{i}X^{-1}F_{j}) x_{j} \\
+  & = \log\det X^{-1} - Tr(X^{-1}\delta X) + \frac{1}{2} Tr(X^{-1}\delta X X^{-1}\delta X)
+  \end{align*}
+
+The first line uses the second order approximation, and using :math:`\delta X = \sum_{x}\delta x_{i}F_{i}`.
