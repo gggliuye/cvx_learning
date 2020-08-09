@@ -134,11 +134,29 @@ function over all points with the same value of cost function as x.
 
 See the convergence properties in the paper.
 
+.. math::
+  \# Newton \ steps \le 5 + 11\Phi(x)
+
+
 4.5 Central Path: Duality gap
 ---------------------------
 
 .. math::
   \begin{align*}
-  x^{*}(\gamma) = & \arg\min && \log\det F(x)^{-1} \\
-  & subject\ to && F(x) > 0, c^{T}x =\gamma
+  (x^{*}(\eta), Z^{*}(\eta)) = & \arg\min && -\log\det F(x) - \log\det Z \\
+  & subject\ to && F(x) > 0, Z>0\\
+  & && Tr(F_{i}Z) = c_{i}, i = 1,...,m,\\
+  & && c^{T}x + Tr(F_{0}Z) = \eta
   \end{align*}
+
+The constrains are primal strictly feasible conditions, dual strictly feasible conditions, and the definition of duality gap.
+The objective functions are the sum of barrier functions for primal variable and dual variable.
+We also have :
+
+.. math::
+  Z^{*}(\eta) F(x^{*}(\eta)) = (\eta/n) I
+
+The difference (a measure of the deviation of x, Z from centrality) is :
+
+.. math::
+  \Phi(x, Z) = - \log\det F(x)Z + n\log Tr(F(x)Z) - n\log n
