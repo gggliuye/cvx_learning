@@ -109,12 +109,12 @@ It shows that :math:`F(x^{*}(\gamma))^{-1}/\lambda` is dual feasible when :math:
 We could also see that it solve the following dual SDP:
 
 .. math::
-  \begin{align*}
+  \begin{align}
   &minimize \quad & \log\det Z^{-1} \\
   &subject\ to & Tr(F_{i}Z) =c_{i}, i=1,...,m, \\
   & & Z>0, \\
   & & -Tr(F_{0}Z) = \gamma - n/\lambda
-  \end{align*}
+  \end{align}
 
 If we use this as a dual problem point. we have the corresponding duality gap:
 
@@ -123,3 +123,5 @@ If we use this as a dual problem point. we have the corresponding duality gap:
 
 The Lagrangian multiplier :math:`\lambda` is related to the duality gap of the point on the path
 of centers and the associated dual feasible point.
+
+See the convergence properties in the paper.
