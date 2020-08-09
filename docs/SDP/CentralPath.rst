@@ -60,7 +60,7 @@ We can use the Newton's method to solve the analytic center as an iterative proc
 
 .. math::
   \begin{align*}
-  \delta^{k} = &\arg\min_{v\in \mathcal{R}^{m}} \phi(x+v) \\
+  \delta x^{N} = &\arg\min_{v\in \mathcal{R}^{m}} \phi(x+v) \\
   & \arg\min_{v\in \mathcal{R}^{m}} \log\det(F(x) +F(v))^{-1} \\
   & \arg\min_{v\in \mathcal{R}^{m}}\{ - (\log\det F(x)^{-1} - Tr(F(x)^{-1}F(v)) + \frac{1}{2} Tr(F(x)^{-1}F(v) F(x)^{-1}F(v))) \} \\
   & \arg\min_{v\in \mathcal{R}^{m}} \{ -\sum_{i}v_{i}Tr(F^{-1/2}F_{i}F^{-1/2}) + \frac{1}{2} \sum_{i,j}v_{i}v_{j}Tr((F^{-1/2}F_{i}F^{-1/2})(F^{-1/2}F_{j}F^{-1/2})) \} \\
@@ -70,4 +70,9 @@ We can use the Newton's method to solve the analytic center as an iterative proc
   \end{align*}
 
 Where :math:`F(v) = \sum_{i}v_{i}F_{i}`, and :math:`A =\sum_{i}v_{i} F^{-1/2}F_{i}F^{-1/2}`, and the final
-line uses the Frobenius norm.
+line uses the Frobenius norm. Which is a least squares problem with m variables and n(n+1)/2 equations.
+
+Then the step size could be calcuated using line search algorithm :math:`\hat_{p} = \arg\min_{p} \phi(x+p\delta x^{N})`
+Which could be simplfied by eigenvalue calculation.
+
+The convergence analysis could be seen in the paper.
