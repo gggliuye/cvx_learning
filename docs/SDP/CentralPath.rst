@@ -60,7 +60,7 @@ We can use the Newton's method to solve the analytic center as an iterative proc
 
 .. math::
   \begin{align*}
-  \delta x^{N} = &\arg\min_{v\in \mathcal{R}^{m}} \phi(x+v) \\
+  \delta x^{N} &= \arg\min_{v\in \mathcal{R}^{m}} \phi(x+v) \\
   &= \arg\min_{v\in \mathcal{R}^{m}} \log\det(F(x) +F(v))^{-1} \\
   &= \arg\min_{v\in \mathcal{R}^{m}}\{ - (\log\det F(x)^{-1} - Tr(F(x)^{-1}F(v)) + \frac{1}{2} Tr(F(x)^{-1}F(v) F(x)^{-1}F(v))) \} \\
   &= \arg\min_{v\in \mathcal{R}^{m}} \{ -\sum_{i}v_{i}Tr(F^{-1/2}F_{i}F^{-1/2}) + \frac{1}{2} \sum_{i,j}v_{i}v_{j}Tr((F^{-1/2}F_{i}F^{-1/2})(F^{-1/2}F_{j}F^{-1/2})) \} \\
@@ -72,7 +72,54 @@ We can use the Newton's method to solve the analytic center as an iterative proc
 Where :math:`F(v) = \sum_{i}v_{i}F_{i}`, and :math:`A =\sum_{i}v_{i} F^{-1/2}F_{i}F^{-1/2}`, and the final
 line uses the Frobenius norm. Which is a least squares problem with m variables and n(n+1)/2 equations.
 
-Then the step size could be calcuated using line search algorithm :math:`\hat_{p} = \arg\min_{p} \phi(x+p\delta x^{N})`
+Then the step size could be calcuated using line search algorithm :math:`\hat{p} = \arg\min_{p} \phi(x+p\delta x^{N})`
 Which could be simplfied by eigenvalue calculation.
 
 The convergence analysis could be seen in the paper.
+
+4.4 Central Path: Objective
+---------------------------
+
+Consider the following inequalities :math:`F(x)>0, c^{T}x=\gamma` , where :math:`p^{*}<\gamma<\bar{p}` (from our assumptions), where :math:`\bar{p} = \sup \{c^{T}x\mid F(x)>0 \}` the bound
+of the objective problem. We could define the analytic center of these inequalities:
+
+.. math::
+  \begin{align*}
+  x^{*}(\gamma) = & \arg\min & \log\det F(x)^{-1} \\
+  & subject\ to & F(x) > 0, c^{T}x =\gamma
+  \end{align*}
+
+The curve of :math:`x^{*}(\gamma)` is called **the central path** for the semidefinite problem in Chapter 1.
+As :math:`\gamma` getting close to :math:`p^{*}`, x converges to an optimal point.
+
+With the lagrangian:
+
+.. math::
+  \mathcal{L}(x, \lambda) = \log\det F(x)^{-1} + \lambda (c^{T}x - \gamma)
+
+Apply the opimal condition:
+
+.. math::
+  \partial \mathcal{L}(x, \lambda) / \partial x = - \log\det (F(x^{*}(\gamma))^{-1}F_{i}) + \lambda c_{i} = 0
+
+.. math::
+  \log\det (F(x^{*}(\gamma))^{-1}F_{i}) =  \lambda c_{i} , \quad i = 1,...,m
+
+It shows that :math:`F(x^{*}(\gamma))^{-1}/\lambda` is dual feasible when :math:`\lambda>0` (as it satisfies the dual feasible conditions).
+We could also see that it solve the following dual SDP:
+
+.. math::
+  \begin{align*}
+  &minimize \quad & \log\det Z^{-1} \\
+  &subject\ to & Tr(F_{i}Z) =c_{i}, i=1,...,m, \\
+  & & Z>0, \\
+  & & -Tr(F_{0}Z) = \gamma - n/\lambda
+  \end{align*}
+
+If we use this as a dual problem point. we have the corresponding duality gap:
+
+.. math::
+  \eta = Tr(F(x)Z) = Tr(F(x^{*}(\gamma)) F(x^{*}(\gamma))^{-1}/\lambda ) = Tr(I/\lambda) = n/\lambda
+
+The Lagrangian multiplier :math:`\lambda` is related to the duality gap of the point on the path
+of centers and the associated dual feasible point.

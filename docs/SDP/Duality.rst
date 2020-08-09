@@ -127,7 +127,7 @@ The primal dual methods for SDP is :
 
 * Generate a sequence of primal and dual feasible points :math:`x^{(k)}` and :math:`z^{(k)}`, where k donates the iteration numbers.
 * :math:`x^{(k)}` is suboptimal, which gives an upper bound. And :math:`z^{(k)}` as a certificate, which gives an lower bound.
-* We have the duality gap from the upper derivatives :math:`c^{T}x - p^{*} \le \eta^{k} = c^{T}x^{(k)} + Tr(F_{0}Z^{(k)}) `, we could use this as the stopping certierion :math:`c^{T}x^{(k)} + Tr(F_{0}Z^{(k)}) \le \epsilon` .
+* We have the duality gap from the upper derivatives :math:`c^{T}x - p^{*} \le \eta^{k} = c^{T}x^{(k)} + Tr(F_{0}Z^{(k)})` , we could use this as the stopping certierion :math:`c^{T}x^{(k)} + Tr(F_{0}Z^{(k)}) \le \epsilon` .
 
 Which could be formed as **Primal-Dual Optimization Problem** :
 
