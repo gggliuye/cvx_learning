@@ -25,10 +25,10 @@ It has the following results.
 Using :math:`\Delta \log\det X = X^{-1}`.
 
 .. math::
-  (\Delta \phi(x))_{i} = \lim_{\delta x \to 0}\frac{Tr(\phi(x+\delta x))}{\delta x} = - Tr(F(x)^{-1}F_{i})
+  (\Delta \phi(x))_{i} = -Tr(F_{i}\Delta\log\det(F)) = - Tr(F_{i}F(x)^{-1})
 
 .. math::
-  (\Delta^{2} \phi(x))_{i,j} = Tr(F(x)^{-1}F_{i}F(x)^{-1}F_{j})
+  (\Delta^{2} \phi(x))_{i,j} = -Tr(F_{j}\Delta(Tr(F^{-1}F_{i})))= Tr(F(x)^{-1}F_{i}F(x)^{-1}F_{j})
 
 .. math::
   \begin{align*}
@@ -85,8 +85,8 @@ of the objective problem. We could define the analytic center of these inequalit
 
 .. math::
   \begin{align*}
-  x^{*}(\gamma) = & \arg\min & \log\det F(x)^{-1} \\
-  & subject\ to & F(x) > 0, c^{T}x =\gamma
+  x^{*}(\gamma) = & \arg\min && \log\det F(x)^{-1} \\
+  & subject\ to && F(x) > 0, c^{T}x =\gamma
   \end{align*}
 
 The curve of :math:`x^{*}(\gamma)` is called **the central path** for the semidefinite problem in Chapter 1.
@@ -110,10 +110,10 @@ We could also see that it solve the following dual SDP:
 
 .. math::
   \begin{align}
-  &minimize \quad & \log\det Z^{-1} \\
-  &subject\ to & Tr(F_{i}Z) =c_{i}, i=1,...,m, \\
-  & & Z>0, \\
-  & & -Tr(F_{0}Z) = \gamma - n/\lambda
+  &minimize \quad && \log\det Z^{-1} \\
+  &subject\ to && Tr(F_{i}Z) =c_{i}, i=1,...,m, \\
+  & && Z>0, \\
+  & && -Tr(F_{0}Z) = \gamma - n/\lambda
   \end{align}
 
 If we use this as a dual problem point. we have the corresponding duality gap:
@@ -124,4 +124,21 @@ If we use this as a dual problem point. we have the corresponding duality gap:
 The Lagrangian multiplier :math:`\lambda` is related to the duality gap of the point on the path
 of centers and the associated dual feasible point.
 
+Define the *deviation from the central path*:
+
+.. math::
+ \Phi(x) = \log\det F(x)^{-1} - \log\det F(x^{*}(c^{T}x))^{-1}
+
+The difference between the value of the barrier function at the point x and the minimum of the barrier
+function over all points with the same value of cost function as x.
+
 See the convergence properties in the paper.
+
+4.5 Central Path: Duality gap
+---------------------------
+
+.. math::
+  \begin{align*}
+  x^{*}(\gamma) = & \arg\min && \log\det F(x)^{-1} \\
+  & subject\ to && F(x) > 0, c^{T}x =\gamma
+  \end{align*}
