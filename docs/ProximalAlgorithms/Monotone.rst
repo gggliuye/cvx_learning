@@ -5,6 +5,10 @@ Monotone Operators
 Learning notes for the paper `Monotone operators and the proximal point algorithm <http://dx.doi.org/10.1137/0314056>`_ , by R. Tyrrell Rockafellar.
 and `On the Douglas-Rachford splitting method and the proximal point algorithm for maximal monotone operators <Rachford_splitting_method_and_the_proximal_point_algorithm_for_maximal_monotone_operators>`_ , by Jonathan. Eckstein，Dimitri P. Bertsekas.
 
+This paper describe the relationship of several algorithms that Douglas-Rachford splitting method is a special case of the proximal point algorithm,
+and Alternating diections method is an application of Douglas-Rachford splitting method. As a result, the properties of proximal point algorithm
+could be used to ADMM, result in a generalized ADMM algorithm.
+
 This paper was lined as follows:
 
 * Definition of monntone operator :math:`T(z)`.
