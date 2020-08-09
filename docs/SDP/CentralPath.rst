@@ -61,12 +61,12 @@ We can use the Newton's method to solve the analytic center as an iterative proc
 .. math::
   \begin{align*}
   \delta x^{N} = &\arg\min_{v\in \mathcal{R}^{m}} \phi(x+v) \\
-  & \arg\min_{v\in \mathcal{R}^{m}} \log\det(F(x) +F(v))^{-1} \\
-  & \arg\min_{v\in \mathcal{R}^{m}}\{ - (\log\det F(x)^{-1} - Tr(F(x)^{-1}F(v)) + \frac{1}{2} Tr(F(x)^{-1}F(v) F(x)^{-1}F(v))) \} \\
-  & \arg\min_{v\in \mathcal{R}^{m}} \{ -\sum_{i}v_{i}Tr(F^{-1/2}F_{i}F^{-1/2}) + \frac{1}{2} \sum_{i,j}v_{i}v_{j}Tr((F^{-1/2}F_{i}F^{-1/2})(F^{-1/2}F_{j}F^{-1/2})) \} \\
-  & \arg\min_{v\in \mathcal{R}^{m}} -2Tr(A) + Tr(A^{T}A) \\
-  & \arg\min_{v\in \mathcal{R}^{m}} Tr((-I+A)^{T}(-I+A)) \\
-  & \arg\min_{v\in \mathcal{R}^{m}} \| -I + A  \|_{F}
+  &= \arg\min_{v\in \mathcal{R}^{m}} \log\det(F(x) +F(v))^{-1} \\
+  &= \arg\min_{v\in \mathcal{R}^{m}}\{ - (\log\det F(x)^{-1} - Tr(F(x)^{-1}F(v)) + \frac{1}{2} Tr(F(x)^{-1}F(v) F(x)^{-1}F(v))) \} \\
+  &= \arg\min_{v\in \mathcal{R}^{m}} \{ -\sum_{i}v_{i}Tr(F^{-1/2}F_{i}F^{-1/2}) + \frac{1}{2} \sum_{i,j}v_{i}v_{j}Tr((F^{-1/2}F_{i}F^{-1/2})(F^{-1/2}F_{j}F^{-1/2})) \} \\
+  &= \arg\min_{v\in \mathcal{R}^{m}} (-2Tr(A) + Tr(A^{T}A) )\\
+  &= \arg\min_{v\in \mathcal{R}^{m}} Tr((-I+A)^{T}(-I+A)) \\
+  &= \arg\min_{v\in \mathcal{R}^{m}} \| -I + A  \|_{F}
   \end{align*}
 
 Where :math:`F(v) = \sum_{i}v_{i}F_{i}`, and :math:`A =\sum_{i}v_{i} F^{-1/2}F_{i}F^{-1/2}`, and the final
