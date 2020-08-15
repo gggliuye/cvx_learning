@@ -7,6 +7,12 @@ the barrier 'force field'.
 
 Suppose the strictly feasible holds.
 
+Build the Log-barrier function (carefully choosen) based on a function (primal objective function, or
+with the duality function together),
+with a relaxation on the constrains to parameter :math:`\gamma\ (\eta)`.
+Then found the analytic center :math:`x(\gamma)`, with the sequence of :math:`\{ x(\gamma) \}`, we could
+get closer and closer to the optimal, with the convergence properties analysised later.
+
 4.1 Barrier Function for a linear matrix inequality
 ------------------------
 
@@ -100,12 +106,19 @@ With the lagrangian:
 Apply the opimal condition:
 
 .. math::
-  \partial \mathcal{L}(x, \lambda) / \partial x = - \log\det (F(x^{*}(\gamma))^{-1}F_{i}) + \lambda c_{i} = 0
+  \partial \mathcal{L}(x, \lambda) / \partial x = - Tr (F(x^{*}(\gamma))^{-1}F_{i}) + \lambda c_{i} = 0
 
 .. math::
-  \log\det (F(x^{*}(\gamma))^{-1}F_{i}) =  \lambda c_{i} , \quad i = 1,...,m
+  Tr (F(x^{*}(\gamma))^{-1}F_{i}) =  \lambda c_{i} , \quad i = 1,...,m
 
 It shows that :math:`F(x^{*}(\gamma))^{-1}/\lambda` is dual feasible when :math:`\lambda>0` (as it satisfies the dual feasible conditions).
+
+The duality gap with primal-dual feasible pair :math:`x=x^{*}(\gamma), Z=F(x^{*}(\gamma))^{-1}/\lambda` is:
+
+.. math::
+  \eta = Tr(F(x)Z) = Tr(F(x^{*}(\gamma)) F(x^{*}(\gamma))^{-1}/\lambda ) = Tr(I/\lambda) = n/\lambda
+
+
 We could also see that it solve the following dual SDP:
 
 .. math::
@@ -116,21 +129,16 @@ We could also see that it solve the following dual SDP:
   & && -Tr(F_{0}Z) = \gamma - n/\lambda
   \end{align}
 
-If we use this as a dual problem point. we have the corresponding duality gap:
-
-.. math::
-  \eta = Tr(F(x)Z) = Tr(F(x^{*}(\gamma)) F(x^{*}(\gamma))^{-1}/\lambda ) = Tr(I/\lambda) = n/\lambda
-
 The Lagrangian multiplier :math:`\lambda` is related to the duality gap of the point on the path
 of centers and the associated dual feasible point.
 
 Define the *deviation from the central path*:
 
 .. math::
- \Phi(x) = \log\det F(x)^{-1} - \log\det F(x^{*}(c^{T}x))^{-1}
+ \Psi(x) = \log\det F(x)^{-1} - \log\det F(x^{*}(c^{T}x))^{-1}
 
 The difference between the value of the barrier function at the point x and the minimum of the barrier
-function over all points with the same value of cost function as x.
+function over all points with the same value of cost function as x. (if it equals zeros, then x in the central path.)
 
 See the convergence properties in the paper.
 

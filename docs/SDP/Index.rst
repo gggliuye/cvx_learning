@@ -5,6 +5,10 @@ Semidefinite Programming
 
 **SDP**
 
+* Introduction of SDP, several examples of SDP.
+* Duality properties, dual problem is also SDP, optimal conditions, duality gap, primal-dual problem.
+* Log-barrier function, analytic center, central path (objective function, duality gap).
+
 
 .. toctree::
    :maxdepth: 3
@@ -13,3 +17,4 @@ Semidefinite Programming
    Introduction
    Duality
    CentralPath
+   PrimalDual
