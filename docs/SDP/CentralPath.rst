@@ -28,17 +28,17 @@ Its barrier is (finity only the problem is strictly feasible) :
 
 The upper function is : **analytic, stritly convex, and self-concordant** .
 It has the following results.
-Using :math:`\Delta \log\det X = X^{-1}`.
+Using :math:`\nabla \log\det X = X^{-1}`.
 
 .. math::
-  (\Delta \phi(x))_{i} = -Tr(F_{i}\Delta\log\det(F)) = - Tr(F_{i}F(x)^{-1})
+  (\nabla \phi(x))_{i} = -Tr(F_{i}\nabla\log\det(F)) = - Tr(F_{i}F(x)^{-1})
 
 .. math::
-  (\Delta^{2} \phi(x))_{i,j} = -Tr(F_{j}\Delta(Tr(F^{-1}F_{i})))= Tr(F(x)^{-1}F_{i}F(x)^{-1}F_{j})
+  (\nabla^{2} \phi(x))_{i,j} = -Tr(F_{j}\nabla(Tr(F^{-1}F_{i})))= Tr(F(x)^{-1}F_{i}F(x)^{-1}F_{j})
 
 .. math::
   \begin{align*}
-  \log\det (X+\delta X)^{-1} &\approx \log\det X^{-1} + \sum_{i}(\Delta \phi(x))_{i}\delta x_{i}
+  \log\det (X+\delta X)^{-1} &\approx \log\det X^{-1} + \sum_{i}(\nabla \phi(x))_{i}\delta x_{i}
   + \sum_{i}\sum_{j} \frac{1}{2} \delta x_{i}(\Delta^{2} ]\phi(x))_{i,j}\delta x_{j} \\
   & = \log\det X^{-1} - \sum_{i} Tr(X^{-1}F_{i})\delta x_{i} + \sum_{i,j}\frac{1}{2} \delta x_{i} Tr(X^{-1}F_{i}X^{-1}F_{j}) x_{j} \\
   & = \log\det X^{-1} - Tr(X^{-1}\delta X) + \frac{1}{2} Tr(X^{-1}\delta X X^{-1}\delta X)
@@ -57,7 +57,7 @@ Suppose X is bounded. As the barrier is stirctly convex, it has an unique minimi
 Using the first-order optimal condition:
 
 .. math::
-  (\Delta \phi(x^{*}))_{i} = - Tr(F(x^{*})^{-1}F_{i}) = 0
+  (\nabla \phi(x^{*}))_{i} = - Tr(F(x^{*})^{-1}F_{i}) = 0
 
 The log function of a linear set (detX) could be seen as product of a set of distances. We have the similar interpretation as the general
 center path algorith, as a point that maximized the product of a set of distances.
@@ -135,7 +135,7 @@ of centers and the associated dual feasible point.
 Define the *deviation from the central path*:
 
 .. math::
- \Psi(x) = \log\det F(x)^{-1} - \log\det F(x^{*}(c^{T}x))^{-1}
+ \psi(x) = \log\det F(x)^{-1} - \log\det F(x^{*}(c^{T}x))^{-1}
 
 The difference between the value of the barrier function at the point x and the minimum of the barrier
 function over all points with the same value of cost function as x. (if it equals zeros, then x in the central path.)
@@ -148,6 +148,8 @@ See the convergence properties in the paper.
 
 4.5 Central Path: Duality gap
 ---------------------------
+
+Optimal the sum of primal and dual function, with a relaxation on the duality gap constraint.
 
 .. math::
   \begin{align*}
@@ -164,7 +166,19 @@ We also have :
 .. math::
   Z^{*}(\eta) F(x^{*}(\eta)) = (\eta/n) I
 
+And :math:`\eta = c^{T}x +TrF_{0}Z = Tr(F(x)Z)` (using :math:`Tr(F_{i}Z) = c_{i}`),
+Therefore the optimal of the upper problem is :
+
+.. math::
+  \begin{align}
+  -\log\det F(x^{*}(\eta))Z^{*}(\eta) &= - \log\det(\eta/n)I = - n\log(\eta/n) = n\log n - n\log(\eta) \\
+  &= n\log n - n\log Tr(F(x)Z)
+  \end{align}
+
 The difference (a measure of the deviation of x, Z from centrality) is :
 
 .. math::
-  \Phi(x, Z) = - \log\det F(x)Z + n\log Tr(F(x)Z) - n\log n
+  \begin{align}
+  \psi(x, Z) &= - \log\det F(x)Z + \log\det F(x^{*}(\eta))Z^{*}(\eta) \\
+  &= - \log\det F(x)Z + n\log Tr(F(x)Z) - n\log n \\
+  \end{align}
