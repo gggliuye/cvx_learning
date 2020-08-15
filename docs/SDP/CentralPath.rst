@@ -119,7 +119,7 @@ The duality gap with primal-dual feasible pair :math:`x=x^{*}(\gamma), Z=F(x^{*}
   \eta = Tr(F(x)Z) = Tr(F(x^{*}(\gamma)) F(x^{*}(\gamma))^{-1}/\lambda ) = Tr(I/\lambda) = n/\lambda
 
 
-We could also see that it solve the following dual SDP:
+We could also see that it solve the following dual SDP [1]_ :
 
 .. math::
   \begin{align}
@@ -145,6 +145,7 @@ See the convergence properties in the paper.
 .. math::
   \# Newton \ steps \le 5 + 11\Phi(x)
 
+.. [1] See the proof [here]().
 
 4.5 Central Path: Duality gap
 ---------------------------
@@ -161,12 +162,12 @@ Optimal the sum of primal and dual function, with a relaxation on the duality ga
 
 The constrains are primal strictly feasible conditions, dual strictly feasible conditions, and the definition of duality gap.
 The objective functions are the sum of barrier functions for primal variable and dual variable.
-We also have :
+We also have [2]_ :
 
 .. math::
   Z^{*}(\eta) F(x^{*}(\eta)) = (\eta/n) I
 
-And :math:`\eta = c^{T}x +TrF_{0}Z = Tr(F(x)Z)` (using :math:`Tr(F_{i}Z) = c_{i}`),
+And :math:`\eta = c^{T}x +Tr(F_{0}Z) = Tr(F(x)Z)` (using :math:`Tr(F_{i}Z) = c_{i}`),
 Therefore the optimal of the upper problem is :
 
 .. math::
@@ -182,3 +183,5 @@ The difference (a measure of the deviation of x, Z from centrality) is :
   \psi(x, Z) &= - \log\det F(x)Z + \log\det F(x^{*}(\eta))Z^{*}(\eta) \\
   &= - \log\det F(x)Z + n\log Tr(F(x)Z) - n\log n \\
   \end{align}
+
+.. [2] Similar to the proof in [1]_ , we could get that :math:`Z^{*}(\eta) = F(x^{*}(\eta))^{-1}\eta/n`, which is equivalent to the expression.
