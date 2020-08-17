@@ -1,6 +1,8 @@
 5. Primal-dual potential reduction methods
 =============================================
 
+Build the potential energy function, use 1st/2nd order approximation (based on the convexity properties), then apply
+Newton's method for descent direction, plane search for step size.
 
 5.1  General Description
 -----------------------------
@@ -85,7 +87,7 @@ We have :
 .. math::
   \psi(x^{(k+1)}, Z^{(k+1)}) \le \psi(x^{(k)}, Z^{(k)}) - 0.78
 
-.. [2] Proof could be found `here <https://github.com/gggliuye/cvx_learning/blob/master/docs/SDP/handproofs/potential_reduction_3.pdf>`_ . 
+.. [2] Proof could be found `here <https://github.com/gggliuye/cvx_learning/blob/master/docs/SDP/handproofs/potential_reduction_3.pdf>`_ .
 
 5.3 Potential reduction method 2
 -----------------------------------
