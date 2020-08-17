@@ -61,7 +61,7 @@ It raises as the optimal condition of the following two quadratic minimization p
   & && Tr(F_{i}V) = 0, i=1,...,m.
   \end{align*}
 
-.. [1] Proof could be found [here](), and an example of LP problem could be found [here]()
+.. [1] Proof could be found `here <https://github.com/gggliuye/cvx_learning/blob/master/docs/SDP/handproofs/potential_reduction_1.pdf>`_ , and an example of LP problem could be found in page 2.
 
 5.2 Potential reduction method 1
 -----------------------------------
@@ -85,7 +85,7 @@ We have :
 .. math::
   \psi(x^{(k+1)}, Z^{(k+1)}) \le \psi(x^{(k)}, Z^{(k)}) - 0.78
 
-.. [2] Proof could be found [here]()
+.. [2] Proof could be found `here <https://github.com/gggliuye/cvx_learning/blob/master/docs/SDP/handproofs/potential_reduction_3.pdf>`_ . 
 
 5.3 Potential reduction method 2
 -----------------------------------

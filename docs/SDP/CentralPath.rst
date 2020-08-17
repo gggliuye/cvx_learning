@@ -145,7 +145,7 @@ See the convergence properties in the paper.
 .. math::
   \# Newton \ steps \le 5 + 11\Phi(x)
 
-.. [1] See the proof [here]().
+.. [1] See the proof `here <https://github.com/gggliuye/cvx_learning/blob/master/docs/SDP/handproofs/potential_reduction_2.pdf>`_ .
 
 4.5 Central Path: Duality gap
 ---------------------------
