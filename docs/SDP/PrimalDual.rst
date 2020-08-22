@@ -16,6 +16,7 @@ analytic center.
   & = (n+ \mu\sqrt{n}) \log(Tr(F(x)Z)) - \log\det F(x)Z - n\log n
   \end{align}
 
+Where :math:`\mu` is a parameter that sets the relative weight of the term involving duality gap and the derivation from center term.
 As :math:`\psi > 0`, we have :math:`\eta \le \exp(\psi/(\mu\sqrt{n}))`, therefore if the potential funcion value is small,
 the duality gap must be small.
 
@@ -136,3 +137,10 @@ The potential function could be written as :
 
 Where :math:`F=F(x)`, :math:`\delta F = \sum_{i=1}^{m}\delta x_{i}F_{i}`, :math:`c_{1} = \frac{c^{T}\delta x}{Tr(F(x)Z)}`,
 and :math:`c_{2} = \frac{Tr(F_{0}\delta Z)}{Tr(F(x)Z)}`. It could be simplified by eigenvalue decompositions and solve via standard methods.
+
+5.6 Numerical examples
+-----------------------------
+
+* From the results shown in the paper, we coulde see the reduction in the duality gap, and the reduction of the derivation from analytic center.
+* The number of iterations required grows much more slowly than :math:`n^{1/2}`, and can also be assumed to be almost constant (as is shown in the result plots). **The typcial number of iteration used is 6-10** .
+* The effort of each iteration depends on the matrix structure, and the matrix size.

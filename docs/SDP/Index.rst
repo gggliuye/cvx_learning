@@ -18,3 +18,4 @@ Semidefinite Programming
    Duality
    CentralPath
    PrimalDual
+   PhaseI
