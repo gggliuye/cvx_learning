@@ -169,7 +169,7 @@ Here we apply a convex relaxation upon this part. Introduce a generic function :
 Finally, we obtain **the relaxed convex optimization problem** :
 
 .. math::
-   \beign{align}
+   \begin{align}
    minimize \quad & \sup_{\varphi\in K}\int_{\Omega\times\mathbb{R}}\varphi Dv \\
    subject\ to \quad & \lim_{t\to -\infty}v(x,t)=1, \quad \lim_{t\to +\infty}v(x,t) = 0
    \end{align}
@@ -213,4 +213,4 @@ The convergence proof could be seen in the paper.
   \bar{x}^{n+1} = 2*x^{n+1} - x^{n}
   \end{cases}
 
-Which :math:`\tau` and :math:`\sigma` are choosen based on :math:`\tau\sigmaL^{2}<1` (L : the Lipschitz parameter).
+Which :math:`\tau` and :math:`\sigma` are choosen based on :math:`\tau\sigma L^{2}<1` (L : the Lipschitz parameter).
