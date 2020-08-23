@@ -88,18 +88,18 @@ I skip the related works here, as I haven't read them.
 And define the upper level sets of u by the characteristic function :math:`\mathbf{1}_{u} : \Omega \times \mathbb{R}\to \{0,1\}` of the subgraph of u :
 
 .. math::
-  \mathbf{1}_{u}(x,t) = \begin{cases} 1, \quad if t < u(x) \\
+  \mathbf{1}_{u}(x,t) = \begin{cases} 1, \quad if \ t < u(x) \\
   0, \quad else \end{cases}
 
 .. image:: images/sbv.PNG
    :align: center
-   :width: 60%
+   :width: 50%
 
 **Step 2 : Theorem 1.** For a function :math:`u\in SBV(\Omega)` the Mumford-Shah functional can be
 written as :
 
 .. math::
-  E(u) = \sup_{\varphi \in K}\int_{\Omega\times \mathbb{R}}\varphiD\mathbf{1}_{u}
+  E(u) = \sup_{\varphi \in K}\int_{\Omega\times \mathbb{R}}\varphi D\mathbf{1}_{u}
 
 with a convex set :
 
@@ -107,7 +107,22 @@ with a convex set :
   \begin{align}
   K = & \{  \varphi\in C_{0}(\Omega\times \mathbb{R}; \mathbb{R}^{2}): \\
   & \varphi^{t}(x,t) \ge \frac{\varphi^{x}(x,t)^{2}}{4} - \lambda (t-f(x))^{2}, \\
-  &\mid \int_{t_{1}}^{t_{2}} \varphi^{x}(x,s)ds \mid , x\in \Omega , t, t_{1}, t_{2}\in \mathbb{R} \},
+  &\mid \int_{t_{1}}^{t_{2}} \varphi^{x}(x,s)ds \mid \le \nu , x\in \Omega , t, t_{1}, t_{2}\in \mathbb{R} \},
   \end{align}
+
+**Proof Theorem 1.** : First we observe that the right hand part, the intergration, is a integration of changement of the space :math:`\Omega\times \mathbb{R}`,
+It is equivalent to the intergraion of the energy flow on the boundary (the normal of the function at boundaries :math:`\nu_{\Gamma_{u}}`):
+
+.. math::
+  \int_{\Omega\times \mathbb{R}}\varphi D\mathbf{1}_{u} = \int_{\Gamma_{u}}\varphi\cdot \nu_{\Gamma_{u}}d\mathcal{H}^{2}
+
+.. math::
+  \nu_{\Gamma_{u}} = \begin{cases}
+  \frac{(\triangledown u, -1)}{\sqrt{\mid\triangledown u \mid^{2} +1}}, \quad if\ u \in \Omega\setminus S_{u} \\
+  (\nu_{u},0), \quad \quad if\ u \in S_{u}
+  \end{cases}
+
+As in the boundary :math:`\Omega\setminus S_{u}`, we have the gradient w.r.t. t zero, and w.r.t. x :math:`\triangledown u`. And in :math:`S_{u}`, we have
+the gradient w.r.t. t zero, and w.r.t. x the unit vector pointing from outside to inside.
 
 .. [1] i.e. functions u of bounded variation for which the derivative Du is the sum of an absolutely  continuous part :math:`\triangledown u \cdot dx` and a discontinuous singular part :math:`S_{u}`, see Figure 2.
