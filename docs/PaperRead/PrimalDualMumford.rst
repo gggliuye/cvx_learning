@@ -215,4 +215,36 @@ The convergence proof could be seen in the paper.
   \end{cases}
 
 Where :math:`\tau` and :math:`\sigma` are choosen based on :math:`\tau\sigma L^{2}<1` (L : the Lipschitz parameter).
-And the projection onto K is calculated using Dykstra's iterative projection algorithm (`A method for finding projections onto the intersection of convex sets in Hilbert spaces <https://link.springer.com/chapter/10.1007/978-1-4613-9940-7_3>`_ ).
+And the projection onto K is calculated using Dykstra's iterative projection algorithm [2]_ (`A method for finding projections onto the intersection of convex sets in Hilbert spaces <https://link.springer.com/chapter/10.1007/978-1-4613-9940-7_3>`_ ).
+
+.. [2] In the next paper, these projections will be generalized to solve using the properties of Moreau's theorem, and the resolvent operator. Or we could intreprete it as `the proximal algorithm <https://cvx-learning.readthedocs.io/en/latest/ProximalAlgorithms/Interpretations.html?highlight=resolvent#resolvent-of-subdifferential-operator>`_ .
+
+3. First-order Primal-Dual
+-----------------------------
+
+From the paper `A first-order primal-dual algorithm for convex problems with applications to imaging <https://link.springer.com/article/10.1007/s10851-010-0251-1>`_ .
+Here a more general saddle-point problem is considered:
+
+.. math::
+  \min_{x\in X}\max_{y\in Y}<Kx, y> + G(x) - F^{*}(y)
+
+where :math:`G: X\to [0, +\infty]` and :math:`F^{*} : Y\to [0,+\infty]` are proper, convex, lower-semicontinous (l.s.c) functions. :math:`F^{*}` being
+itself the convex conjugate of a convex l.s.c. function F.
+
+.. math::
+  F^{*}(y) = \sup_{x}(y^{T}x + F(x))
+
+The beginning of this article shows various of the properties of the resolvent, which has close relation with the `proximal operator <https://cvx-learning.readthedocs.io/en/latest/ProximalAlgorithms/Index.html>`_ .
+
+Especially, that the resolvent operator and the proximal operator are equivalent `interpretation <https://cvx-learning.readthedocs.io/en/latest/ProximalAlgorithms/Interpretations.html#resolvent-of-subdifferential-operator>`_ .
+
+.. math::
+  x = (I + \tau \partial F)^{-1}(y) = \mathbf{prox}_{\tau F}(y) = \arg\min_{x}(F(x) + \frac{1}{2\tau}\| x-y\|^{2})
+
+And the `Moreau's decomposition theorem <https://cvx-learning.readthedocs.io/en/latest/ProximalAlgorithms/Properties.html#moreau-decomposition>`_ .
+
+.. math::
+  x = \tau \mathbf{prox}_{\tau^{-1}F^{*}}(\tau^{-1}x) + \mathbf{prox}_{\tau F}(x)
+
+.. math::
+  x = \tau (I + \tau^{-1}\partial F^{*})^{-1}(\tau^{-1}x) + (I + \tau\partial F )^{-1}(x)

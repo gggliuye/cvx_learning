@@ -200,7 +200,7 @@ The following image is in a Euclidean space, the Moreau's theorem can be seen as
 
 The following relation always holds :
 
-.. math:
+.. math::
   v = \mathbf{prox}_{f}(v) + \mathbf{prox}_{f^{*}}(v)
 
 where :
@@ -296,3 +296,33 @@ Take the gradient of both sides,
 
 
 Proved the theorem.
+
+2.4.7 Proof 3. Moreau decomposition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Start from the Moreau identity for monotone operators from `page <https://regularize.wordpress.com/2017/02/24/moreaus-identity-for-monotone-operators/>`_ .
+
+**Lemma 1** : Let A be a monotone operator, :math:`\lambda > 0` and denote by :math:`R_{\lambda A} = (I+\lambda A)^{-1}` the
+resolvent of :math:`\lambda A`. Then it holds that :
+
+.. math::
+  R_{\lambda A^{-1}}(x) = x - \lambda R_{\lambda^{-1}A}(\lambda^{-1}x)
+
+**Proof** : we start from the left hand side that :math:`y = R_{\lambda A^{-1}}(x)` and deduce :
+
+.. math::
+  \begin{align}
+  x &\in y + \lambda A^{-1}y \\
+  \frac{x-y}{\lambda} &\in A^{-1}y \\
+  y &\in A(\frac{x-y}{\lambda}) \\
+  \frac{x}{\lambda} &\in \frac{1}{\lambda}A(\frac{x-y}{\lambda}) + \frac{x-y}{\lambda} \\
+  \frac{x-y}{\lambda} & = (I+\lambda^{-1}A)^{-1}(\lambda^{-1}x) \\
+  x - \lambda(I+\lambda^{-1}A)^{-1}(\lambda^{-1}x) &= y
+  \end{align}
+
+:math:`\square`
+
+From this lemma we could get :
+
+.. math::
+  v = \lambda \mathbf{prox}_{\lambda^{-1}f}(\lambda^{-1}v) + \mathbf{prox}_{\lambda f^{*}}(v)
