@@ -48,7 +48,7 @@ The authors also descussed :math:`E_{\infty}` :
   \begin{align}
   E_{\infty} &= \int_{\Gamma}[\nu_{\infty} - (\frac{\partial g}{\partial n})^{2}]ds \\
   &= \int_{\Gamma}\rho(dx, dy, x, y) \\
-  &= \int_{\Gamma} \frac{\nu_{infty} (dx^{2}+dy^{2}) - (g_{x}dy + g_{y}dx)^{2} }{\sqrt{dx^{2} + dy^{2}}}
+  &= \int_{\Gamma} \frac{\nu_{\infty} (dx^{2}+dy^{2}) - (g_{x}dy + g_{y}dx)^{2} }{\sqrt{dx^{2} + dy^{2}}}
   \end{align}
 
 **Generalized deodesic problem** :
@@ -59,7 +59,7 @@ The authors also descussed :math:`E_{\infty}` :
 If we define the solution f to be g when far from the boundaries and take :math:`f_{\infty}` when very close to :math:`\Gamma` :
 
 .. math::
-  f_{\infty}(r,s) = g(r,s) + \epsilon sgn(r)\exp(-\mid r\mid / \epsilon)\farc{\partial g}{\partial r}(0,s)
+  f_{\infty}(r,s) = g(r,s) + \epsilon sgn(r)\exp(-\mid r\mid / \epsilon)\frac{\partial g}{\partial r}(0,s)
 
 Where :math:`\mu = 1/\epsilon, \ \nu = \epsilon \nu_{infty}`, With this f function, we will have :
 
@@ -84,7 +84,7 @@ Where we have f the known observation of the image, :math:`f:\Omega\subset \math
 
 I skip the related works here, as I haven't read them.
 
-**First Step** this article try to reform the formule of Mumford-Shah functional, by defining :math:`u\in SBV(\Omega)` , the special functions of bounded variation [1]_ .
+**Step 1** : this article try to reform the formule of Mumford-Shah functional, by defining :math:`u\in SBV(\Omega)` , the special functions of bounded variation [1]_ .
 And define the upper level sets of u by the characteristic function :math:`\mathbf{1}_{u} : \Omega \times \mathbb{R}\to \{0,1\}` of the subgraph of u :
 
 .. math::
@@ -93,6 +93,21 @@ And define the upper level sets of u by the characteristic function :math:`\math
 
 .. image:: images/sbv.PNG
    :align: center
+   :width: 60%
 
+**Step 2 : Theorem 1.** For a function :math:`u\in SBV(\Omega)` the Mumford-Shah functional can be
+written as :
+
+.. math::
+  E(u) = \sup_{\varphi \in K}\int_{\Omega\times \mathbb{R}}\varphiD\mathbf{1}_{u}
+
+with a convex set :
+
+.. math::
+  \begin{align}
+  K = & \{  \varphi\in C_{0}(\Omega\times \mathbb{R}; \mathbb{R}^{2}): \\
+  & \varphi^{t}(x,t) \ge \frac{\varphi^{x}(x,t)^{2}}{4} - \lambda (t-f(x))^{2}, \\
+  &\mid \int_{t_{1}}^{t_{2}} \varphi^{x}(x,s)ds \mid , x\in \Omega , t, t_{1}, t_{2}\in \mathbb{R} \},
+  \end{align}
 
 .. [1] i.e. functions u of bounded variation for which the derivative Du is the sum of an absolutely  continuous part :math:`\triangledown u \cdot dx` and a discontinuous singular part :math:`S_{u}`, see Figure 2.
