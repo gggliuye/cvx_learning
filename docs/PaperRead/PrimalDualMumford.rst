@@ -84,6 +84,9 @@ Where we have f the known observation of the image, :math:`f:\Omega\subset \math
 
 I skip the related works here, as I haven't read them.
 
+2.1 Step 1
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 **Step 1** : this article try to reform the formule of Mumford-Shah functional, by defining :math:`u\in SBV(\Omega)` , the special functions of bounded variation [1]_ .
 And define the upper level sets of u by the characteristic function :math:`\mathbf{1}_{u} : \Omega \times \mathbb{R}\to \{0,1\}` of the subgraph of u :
 
@@ -94,6 +97,11 @@ And define the upper level sets of u by the characteristic function :math:`\math
 .. image:: images/sbv.PNG
    :align: center
    :width: 50%
+
+.. [1] i.e. functions u of bounded variation for which the derivative Du is the sum of an absolutely  continuous part :math:`\triangledown u \cdot dx` and a discontinuous singular part :math:`S_{u}`, see Figure 2.
+
+2.2 Step 2
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Step 2 : Theorem 1.** For a function :math:`u\in SBV(\Omega)` the Mumford-Shah functional can be
 written as :
@@ -107,7 +115,8 @@ with a convex set :
   \begin{align}
   K = & \{  \varphi\in C_{0}(\Omega\times \mathbb{R}; \mathbb{R}^{2}): \\
   & \varphi^{t}(x,t) \ge \frac{\varphi^{x}(x,t)^{2}}{4} - \lambda (t-f(x))^{2}, \\
-  &\mid \int_{t_{1}}^{t_{2}} \varphi^{x}(x,s)ds \mid \le \nu , x\in \Omega , t, t_{1}, t_{2}\in \mathbb{R} \},
+  &\mid \int_{t_{1}}^{t_{2}} \varphi^{x}(x,s)ds \mid \le \nu ,\\
+  \ x\in \Omega ,\ t, t_{1}, t_{2}\in \mathbb{R} \},
   \end{align}
 
 **Proof Theorem 1.** : First we observe that the right hand part, the intergration, is a integration of changement of the space :math:`\Omega\times \mathbb{R}`,
@@ -122,7 +131,69 @@ It is equivalent to the intergraion of the energy flow on the boundary (the norm
   (\nu_{u},0), \quad \quad if\ u \in S_{u}
   \end{cases}
 
-As in the boundary :math:`\Omega\setminus S_{u}`, we have the gradient w.r.t. t zero, and w.r.t. x :math:`\triangledown u`. And in :math:`S_{u}`, we have
+As in the boundary :math:`\Omega\setminus S_{u}`, we have the gradient w.r.t. t zero, and w.r.t. x :math:`\triangledown u`, followed by a normalization step. And in :math:`S_{u}`, we have
 the gradient w.r.t. t zero, and w.r.t. x the unit vector pointing from outside to inside.
+Taking this expression into the integration :
 
-.. [1] i.e. functions u of bounded variation for which the derivative Du is the sum of an absolutely  continuous part :math:`\triangledown u \cdot dx` and a discontinuous singular part :math:`S_{u}`, see Figure 2.
+.. math::
+  \int_{\Gamma_{u}}\varphi\cdot \nu_{\Gamma_{u}}d\mathcal{H}^{2} = \int_{\Omega \setminus S_{u}}\frac{\varphi^{x}\cdot \triangledown u - \varphi^{t}}{\sqrt{\mid\triangledown u \mid^{2} +1}}dx +
+  \int_{S_{u}}(\int_{u^{-}}^{u^{+}}\varphi^{x}dt )\nu_{u}d\mathcal{H}^{1}
+
+If we add constraints that :
+
+.. math::
+  \frac{\varphi^{x}\cdot \triangledown u - \varphi^{t}}{\sqrt{\mid\triangledown u \mid^{2} +1}} \le \mid\triangledown u\mid^{2} + (f-u)^{2}
+
+.. math::
+  \mid \int_{u^{-}}^{u^{+}}\varphi^{x}dt \mid \le \nu
+
+Which is the constraint that :math:`\varphi` lies in the convex set K. And it imples that :
+
+.. math::
+  \int_{\Omega\times \mathbb{R}}\varphi D\mathbf{1}_{u} \le E(u)
+
+.. math::
+  E(u) \ge \sup_{\varphi \in K}\int_{\Omega\times \mathbb{R}}\varphi D\mathbf{1}_{u}
+
+We could further prove that this difference is rather small, that we could assume it is an equal, with an arbitrarily small error. :math:`\square` .
+
+2.3 Step 3
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Step 3. Relaxation** in the upper reformed Mumford-Shah function, the characteristic function :math:`\matbf{1}_{u}`  is a non-convex function.
+Here we apply a convex relaxation upon this part. Introduce a generic function :math:`v(x,t):\Omega\times\mathbb{R}\to [0,1]` to substitue :math:`\matbf{1}_{u}` , which satisfies:
+
+.. math::
+  \lim_{t\to -\infty}v(x,t)=1, \quad \lim_{t\to +\infty}v(x,t) = 0
+
+Finally, we obtain **the relaxed convex optimization problem** :
+
+.. math::
+   \beign{align}
+   minimize & \sup_{\varphi\in K}\int_{\Omega\times\mathbb{R}}\varphi Dv \\
+   subject\ to & \lim_{t\to -\infty}v(x,t)=1, \quad \lim_{t\to +\infty}v(x,t) = 0
+   \end{align}
+
+2.4 Discrete Setting
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Consider the discrete case. Use a regular :math:`(N\times N)\times M` pixel gird in space :math:`\Omega \times \mathcal{R}` :
+
+.. math::
+  G = \{ (i\Delta_{x}, j\Delta_{x}, k\Delta_{t}): i,j = 1,2,...,N, \ k = 1,2,...,M \}
+
+* Authors define the discrete space C for v :
+
+.. math::
+  C= \{x\in X\mid x(i,j,k)\in [0,1], x(i,j,1)=1, x(i,j,M)=0 \}
+
+* And develop a discrete version of convex set K.
+* The discrete graident operator could be expressed by a matrix A.
+
+Then we have a discrete version of the problem:
+
+.. math::
+  \min_{x\in C}\max_{y\in K}<Ax, y>
+
+2.5 Primal-Dual method
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
