@@ -41,6 +41,7 @@ In this case, it will be a **The Plateau problem** .
 
 .. image:: images/geodesic.PNG
    :align: center
+   :width: 50%
 
 The authors also descussed :math:`E_{\infty}` :
 
@@ -82,7 +83,7 @@ The notaion of Mumford-Shah functional in this article:
 
 Where we have f the known observation of the image, :math:`f:\Omega\subset \mathbb{R}^{2} \to \mathbb{R}`, and :math:`u:\Omega\to\mathbb{R}` a piece wise smooth function (our desired solution).
 
-I skip the related works here, as I haven't read them.
+I skip the related works here, as I haven't read them (paper worth reading `An efficient primal-dual hybrid gradient algorithm for total variation image restoration <https://link.springer.com/article/10.1007/s11075-018-0618-8>`_ ).
 
 2.1 Step 1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -210,7 +211,8 @@ The convergence proof could be seen in the paper.
   \begin{cases}
   y^{n+1} = \Pi_{K}(y^{n} + \sigma(A\bar{x}^{n}-h)) \\
   x^{n+1} = \Pi_{C}(x^{n} - \tau (A^{*}y^{n+1}+g)) \\
-  \bar{x}^{n+1} = 2*x^{n+1} - x^{n}
+  \bar{x}^{n+1} = 2\cdot x^{n+1} - x^{n}
   \end{cases}
 
-Which :math:`\tau` and :math:`\sigma` are choosen based on :math:`\tau\sigma L^{2}<1` (L : the Lipschitz parameter).
+Where :math:`\tau` and :math:`\sigma` are choosen based on :math:`\tau\sigma L^{2}<1` (L : the Lipschitz parameter).
+And the projection onto K is calculated using Dykstra's iterative projection algorithm (`A method for finding projections onto the intersection of convex sets in Hilbert spaces <https://link.springer.com/chapter/10.1007/978-1-4613-9940-7_3>`_ ).
