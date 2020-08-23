@@ -116,7 +116,7 @@ with a convex set :
   K = & \{  \varphi\in C_{0}(\Omega\times \mathbb{R}; \mathbb{R}^{2}): \\
   & \varphi^{t}(x,t) \ge \frac{\varphi^{x}(x,t)^{2}}{4} - \lambda (t-f(x))^{2}, \\
   &\mid \int_{t_{1}}^{t_{2}} \varphi^{x}(x,s)ds \mid \le \nu ,\\
-  \ x\in \Omega ,\ t, t_{1}, t_{2}\in \mathbb{R} \},
+  &\ x\in \Omega ,\ t, t_{1}, t_{2}\in \mathbb{R} \},
   \end{align}
 
 **Proof Theorem 1.** : First we observe that the right hand part, the intergration, is a integration of changement of the space :math:`\Omega\times \mathbb{R}`,
@@ -160,8 +160,8 @@ We could further prove that this difference is rather small, that we could assum
 2.3 Step 3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Step 3. Relaxation** in the upper reformed Mumford-Shah function, the characteristic function :math:`\matbf{1}_{u}`  is a non-convex function.
-Here we apply a convex relaxation upon this part. Introduce a generic function :math:`v(x,t):\Omega\times\mathbb{R}\to [0,1]` to substitue :math:`\matbf{1}_{u}` , which satisfies:
+**Step 3. Relaxation** in the upper reformed Mumford-Shah function, the characteristic function :math:`\mathbf{1}_{u}`  is a non-convex function.
+Here we apply a convex relaxation upon this part. Introduce a generic function :math:`v(x,t):\Omega\times\mathbb{R}\to [0,1]` to substitue :math:`\mathbf{1}_{u}` , which satisfies:
 
 .. math::
   \lim_{t\to -\infty}v(x,t)=1, \quad \lim_{t\to +\infty}v(x,t) = 0
@@ -170,8 +170,8 @@ Finally, we obtain **the relaxed convex optimization problem** :
 
 .. math::
    \beign{align}
-   minimize & \sup_{\varphi\in K}\int_{\Omega\times\mathbb{R}}\varphi Dv \\
-   subject\ to & \lim_{t\to -\infty}v(x,t)=1, \quad \lim_{t\to +\infty}v(x,t) = 0
+   minimize \quad & \sup_{\varphi\in K}\int_{\Omega\times\mathbb{R}}\varphi Dv \\
+   subject\ to \quad & \lim_{t\to -\infty}v(x,t)=1, \quad \lim_{t\to +\infty}v(x,t) = 0
    \end{align}
 
 2.4 Discrete Setting
@@ -197,3 +197,20 @@ Then we have a discrete version of the problem:
 
 2.5 Primal-Dual method
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here the authors consider a more general problem:
+
+.. math::
+  \min_{x\in C}\max_{y\in K}<Ax,y> + <g,x> -<h,y>
+
+Which is a seddle-point problem, and will be solved by sequential apply Newton's method to the two variables.
+The convergence proof could be seen in the paper.
+
+.. math::
+  \begin{cases}
+  y^{n+1} = \Pi_{K}(y^{n} + \sigma(A\bar{x}^{n}-h)) \\
+  x^{n+1} = \Pi_{C}(x^{n} - \tau (A^{*}y^{n+1}+g)) \\
+  \bar{x}^{n+1} = 2*x^{n+1} - x^{n}
+  \end{cases}
+
+Which :math:`\tau` and :math:`\sigma` are choosen based on :math:`\tau\sigmaL^{2}<1` (L : the Lipschitz parameter).
