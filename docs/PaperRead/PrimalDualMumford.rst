@@ -268,8 +268,8 @@ We have the dual function :
 .. math::
   \begin{align}
   g(\lambda) &= \inf_{x\in X, y}\matbcal{L}(x,y,\lambda) \\
-  &= \inf_{x\in X,y} -(\lambda^{T}y - F(y)) - (\lambda^{T}Kx - G(x)) \\
-  &= - \sup_{y}(\lambda^{T}y - F(y)) - \sup_{x\in X}(-\lambda^{T}Kx - G(x)) \\
+  &= \inf_{x\in X,y} -(<\lambda, y> - F(y)) - (<\lambda,Kx> - G(x)) \\
+  &= - \sup_{y}(<\lambda ,y> - F(y)) - \sup_{x\in X}(-<\lambda,Kx> - G(x)) \\
   & = -F^{*}(\lambda) - G^{*}(-K^{*}y)
   \end{align}
 
