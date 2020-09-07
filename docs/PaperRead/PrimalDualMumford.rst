@@ -248,15 +248,13 @@ or of the corresponding dual problem:
 .. math::
   \max_{y\in Y} -(G^{*}(-K^{*}y) + F^{*}(y))
 
-**Proof** :
-
 The nonlinear primal problem is equivalent to the problem:
 
 .. math::
-  \being{align}
-  minimize \ & F(y) + G(x) \\
-  subject\ to \ & Kx = y, \ x\in X
-  \end{align}
+  \being{align*}
+  &minimize \quad F(y) + G(x) \\
+  &subject\ to \quad Kx = y, \ x\in X
+  \end{align*}
 
 The lagrangian function is :
 
@@ -267,10 +265,10 @@ We have the dual function :
 
 .. math::
   \begin{align}
-  g(\lambda) &= \inf_{x\in X, y}\matbcal{L}(x,y,\lambda) \\
+  g(\lambda) &= \inf_{x\in X, y}\matcal{L}(x,y,\lambda) \\
   &= \inf_{x\in X,y} -(<\lambda, y> - F(y)) - (<\lambda,Kx> - G(x)) \\
-  &= - \sup_{y}(<\lambda ,y> - F(y)) - \sup_{x\in X}(-<\lambda,Kx> - G(x)) \\
-  & = -F^{*}(\lambda) - G^{*}(-K^{*}y)
+  &= - \sup_{y}(<\lambda ,y> - F(y)) - \sup_{x\in X}(<-K^{*}\lambda,x> - G(x)) \\
+  & = -F^{*}(\lambda) - G^{*}(-K^{*}\lambda)
   \end{align}
 
 The beginning of this article shows various of the properties of the resolvent, which has close relation with the `proximal operator <https://cvx-learning.readthedocs.io/en/latest/ProximalAlgorithms/Index.html>`_ .
@@ -287,3 +285,16 @@ And the `Moreau's decomposition theorem <https://cvx-learning.readthedocs.io/en/
 
 .. math::
   x = \tau (I + \tau^{-1}\partial F^{*})^{-1}(\tau^{-1}x) + (I + \tau\partial F )^{-1}(x)
+
+3.2 Algorithm
+~~~~~~~~~~~~~~~~
+
+* Initialization : Choose :math:`\tau, \sigma >0, \theta\in [0,1]`, :math:`(x^{0}, y^{0}) \in X\times Y`, and set :math:`\bar{x}^{0} = x^{0}`.
+* Iterations : Update :math:`x^{n}, y^{n}, \bar{x}^{n}` as follows:
+
+.. math::
+  \begin{cases}
+  y^{n+1} = (I +\sigma \partial F^{*})^{-1}(y^{n} + \sigma K \bar{x}^{n}) \\
+  x^{n+1} = (I +\tau \partial G)^{-1}(x^{n} - \tau K^{*} y^{n+1}) \\
+  \bar{x}^{n+1} = x^{n+1} + \theta (x^{n+1} - x^{n})
+  \end{cases}
