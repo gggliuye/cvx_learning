@@ -222,6 +222,9 @@ And the projection onto K is calculated using Dykstra's iterative projection alg
 3. First-order Primal-Dual
 -----------------------------
 
+3.1 Primal-Dual formulation
+~~~~~~~~~~~~~~~~~~~
+
 From the paper `A first-order primal-dual algorithm for convex problems with applications to imaging <https://link.springer.com/article/10.1007/s10851-010-0251-1>`_ .
 Here a more general saddle-point problem is considered:
 
@@ -232,7 +235,43 @@ where :math:`G: X\to [0, +\infty]` and :math:`F^{*} : Y\to [0,+\infty]` are prop
 itself the convex conjugate of a convex l.s.c. function F.
 
 .. math::
-  F^{*}(y) = \sup_{x}(y^{T}x + F(x))
+  F^{*}(y) = \sup_{x}(y^{T}x - F(x))
+
+
+This saddle-point problem is a primal-dual formulation of the nonlinear primal problem :
+
+.. math::
+  \min_{x\in X} F(Kx) + G(x)
+
+or of the corresponding dual problem:
+
+.. math::
+  \max_{y\in Y} -(G^{*}(-K^{*}y) + F^{*}(y))
+
+**Proof** :
+
+The nonlinear primal problem is equivalent to the problem:
+
+.. math::
+  \being{align}
+  minimize \ & F(y) + G(x) \\
+  subject\ to \ & Kx = y, \ x\in X
+  \end{align}
+
+The lagrangian function is :
+
+.. math::
+  \mathcal{L}(x,y, \lambda) = F(y) + G(x) + \lambda^{T}(Kx - y)
+
+We have the dual function :
+
+.. math::
+  \begin{align}
+  g(\lambda) &= \inf_{x\in X, y}\matbcal{L}(x,y,\lambda) \\
+  &= \inf_{x\in X,y} -(\lambda^{T}y - F(y)) - (\lambda^{T}Kx - G(x)) \\
+  &= - \sup_{y}(\lambda^{T}y - F(y)) - \sup_{x\in X}(-\lambda^{T}Kx - G(x)) \\
+  & = -F^{*}(\lambda) - G^{*}(-K^{*}y)
+  \end{align}
 
 The beginning of this article shows various of the properties of the resolvent, which has close relation with the `proximal operator <https://cvx-learning.readthedocs.io/en/latest/ProximalAlgorithms/Index.html>`_ .
 
