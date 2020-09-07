@@ -248,12 +248,12 @@ or of the corresponding dual problem:
 .. math::
   \max_{y\in Y} -(G^{*}(-K^{*}y) + F^{*}(y))
 
-The nonlinear primal problem is equivalent to the problem:
+The nonlinear primal problem is equivalent to the problem :
 
 .. math::
-  \being{align*}
-  &minimize \quad F(y) + G(x) \\
-  &subject\ to \quad Kx = y, \ x\in X
+  \begin{align*}
+  & minimize \quad F(y) + G(x) \\
+  & subject\ to \quad Kx = y, \ x\in X
   \end{align*}
 
 The lagrangian function is :
@@ -265,7 +265,7 @@ We have the dual function :
 
 .. math::
   \begin{align}
-  g(\lambda) &= \inf_{x\in X, y}\matcal{L}(x,y,\lambda) \\
+  g(\lambda) &= \inf_{x\in X, y}\mat cal{L}(x,y,\lambda) \\
   &= \inf_{x\in X,y} -(<\lambda, y> - F(y)) - (<\lambda,Kx> - G(x)) \\
   &= - \sup_{y}(<\lambda ,y> - F(y)) - \sup_{x\in X}(<-K^{*}\lambda,x> - G(x)) \\
   & = -F^{*}(\lambda) - G^{*}(-K^{*}\lambda)
@@ -298,3 +298,6 @@ And the `Moreau's decomposition theorem <https://cvx-learning.readthedocs.io/en/
   x^{n+1} = (I +\tau \partial G)^{-1}(x^{n} - \tau K^{*} y^{n+1}) \\
   \bar{x}^{n+1} = x^{n+1} + \theta (x^{n+1} - x^{n})
   \end{cases}
+
+Taking :math:`\theta` equals 0, will result in the classical Arrow-Hurwicz algorithm. And this paper takes :math:`\theta` to be 1. which can
+be seen as an approximate extragradient step.
