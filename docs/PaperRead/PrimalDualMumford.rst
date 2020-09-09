@@ -251,10 +251,10 @@ or of the corresponding dual problem:
 The nonlinear primal problem is equivalent to the problem :
 
 .. math::
-  \begin{align*}
+  \begin{align}
   & minimize \quad F(y) + G(x) \\
-  & subject\ to \quad Kx = y, \ x\in X
-  \end{align*}
+  & subject\ to \quad Kx = y, \ x \in X
+  \end{align}
 
 The lagrangian function is :
 
@@ -265,7 +265,7 @@ We have the dual function :
 
 .. math::
   \begin{align}
-  g(\lambda) &= \inf_{x\in X, y}\mat cal{L}(x,y,\lambda) \\
+  g(\lambda) &= \inf_{x\in X, y}\mathcal{L}(x,y,\lambda) \\
   &= \inf_{x\in X,y} -(<\lambda, y> - F(y)) - (<\lambda,Kx> - G(x)) \\
   &= - \sup_{y}(<\lambda ,y> - F(y)) - \sup_{x\in X}(<-K^{*}\lambda,x> - G(x)) \\
   & = -F^{*}(\lambda) - G^{*}(-K^{*}\lambda)
