@@ -96,7 +96,7 @@ is not properly contained in the graph of any other monotone operator T': H :mat
 **Proof**: Use Zorn's Lemma (or, equivalently the axiom of choice): that a partially ordered set containing upper
 bounds for every chain (that is, every totally ordered subset) necessarily contains at least one maximal element.
 
-**n=Nonexpansive**: An operator C on H is said to be nonexpansive if :
+**Nonexpansive**: An operator C on H is said to be nonexpansive if :
 
 .. math::
   \| y'-y\| \le \|x'- x\| \quad \forall (x,y), (x',y') \in C.

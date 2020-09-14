@@ -22,40 +22,16 @@ which is known to be a special case of the prximal point algorithm.
 
 From paper `Splitting algorithms for the sum of two nonlinear operators <https://www.researchgate.net/publication/243654261_Mercier_B_Splitting_algorithms_for_the_sum_of_two_nonlinear_operators_SIAM_J_Numer_Anal_166_964-979>`_
 
-For solving the stationary equation (optimal condition), where C is a multivalued monotone opeartor on Hilbert space H:
+For solving the stationary equation (optimal condition), where C is a multivalued(set-valued) monotone opeartor on Hilbert space H:
 
 .. math::
   0\in C(u^{*})
 
-**Recall Proximal Algorithm** :
-
-.. math::
-  \bar{x} = \mathbb{prox}_{\lambda, f} (v) = \arg\min_{x} f(x) + \frac{1}{2\lambda}\|x-v\|_{2}
-
-The optimal condition for :math:`\bar{x}` is :
-
-.. math::
-  0\in \frac{\partial}{\partial x}\mid_{\bar{x}} = \partial f(\bar{x}) + \frac{1}{\lambda}(\bar{x} - v)
-
-.. math::
-  v\in (I+\lambda\partial f)\bar{x}
-
-.. math::
-  \bar{x} = (I + \lambda \partial f)^{-1}(v)
-
-Where :math:`(I + \lambda \partial f)^{-1}` is the resolvent operator, the proximal algorithm is to find the fixed point of the resolvent.
-And for the fixed point, we have :
-
-.. math::
-  v\in (I+\lambda\partial f)v
-
-.. math::
-  0\in \partial f
-
-which is exactly the optimal condition for optimizing an objective function f.
-
 **Splitting Algorithm** : consider the case of splitting the operator C, that C = A+B, and A , B are maximal monotone.
 (standard methods for the 1979) :
+
+
+**Forward-Backward Algorithm** :
 
 .. math::
   u^{n+1} := (I+\lambda A)^{-1}(I-\lambda B)u^{n}
@@ -69,6 +45,8 @@ The corresponding updates algorithm :
   \frac{u^{n+1/2}- u^{n}}{\lambda} + Bu^{n} = 0\\
   \frac{u^{n+1}-u^{n+1/2}}{\lambda} + Au^{n+1} = 0
   \end{cases}
+
+**Double-Backward Algorithm** :
 
 .. math::
   u^{n+1} := (I+\lambda A)^{-1}(I+\lambda B)^{-1}u^{n}
@@ -129,3 +107,88 @@ weakly to a solution :math:`u=J_{B}^{\lambda}v` of  :math:`0\in C(u^{*})`. (If :
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 See the original paper.
+
+2. Monotonicity
+----------------------------------
+
+2.1 Proximal Algorithm
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+paper `On the Douglas-Rachford splitting method and the proximal point algorithm for maximal monotone operators <Rachford_splitting_method_and_the_proximal_point_algorithm_for_maximal_monotone_operators>`_.
+
+**Monotone** : `monotone page <https://cvx-learning.readthedocs.io/en/latest/ProximalAlgorithms/Monotone.html>`_
+*Important theorem* :  An operator T on H is monotone if and only if its resolvent :math:`J_{cT} = (I+ cT)^{-1}` is
+firmly nonexpansive.
+
+**Recall Proximal Algorithm** :
+
+.. math::
+  \bar{x} = \mathbb{prox}_{\lambda, f} (v) = \arg\min_{x} f(x) + \frac{1}{2\lambda}\|x-v\|_{2}
+
+The optimal condition for :math:`\bar{x}` is :
+
+.. math::
+  0\in \frac{\partial}{\partial x}\mid_{\bar{x}} = \partial f(\bar{x}) + \frac{1}{\lambda}(\bar{x} - v)
+
+.. math::
+  v\in (I+\lambda\partial f)\bar{x}
+
+.. math::
+  \bar{x} = (I + \lambda \partial f)^{-1}(v)
+
+Where :math:`(I + \lambda \partial f)^{-1}` is the resolvent operator, the proximal algorithm is to find the fixed point of the resolvent.
+And for the fixed point, we have :
+
+.. math::
+  v\in (I+\lambda\partial f)v
+
+.. math::
+  0\in \partial f
+
+which is exactly the optimal condition for optimizing an objective function f.
+
+**Generalized Proximal Algorithm** : :math:`u^{n+1}:=J_{T}^{\lambda}(u^{n})`
+
+.. math::
+  u^{n+1} := (1-\rho_{n})u^{n} + \rho_{n}J_{T}^{\lambda}(u^{n})
+
+2.2 DRS
+~~~~~~~~~~~~~~~~~~~
+
+This article *broden the analysis by exploiting the connection between firm nonexpansiveness and maximal monotonicity*.
+
+*Recall the Douglas-Rachford splitiing algorithm* :math:`v^{n+1}= G_{A,B}^{\lambda}(v^{n})` , where :
+
+.. math::
+  G_{A,B}^{\lambda} = J_{A}^{\lambda}(2J_{B}^{\lambda} - I) + (I - J_{B}^{\lambda})
+
+Using the *Corollary 2.3* from `Monotone <https://cvx-learning.readthedocs.io/en/latest/ProximalAlgorithms/Monotone.html>`_ .
+Which is actually the expression using the notation of the paper in the previous chaper (u, v).
+
+.. math::
+  \begin{cases}
+  (I - J_{B}^{\lambda})v^{n} = \lambda Bu^{n} = \lambda b^{n}\\
+  (2J_{B}^{\lambda})v^{n} = u^{n} - \lambda b^{n} \\
+  J_{A}^{\lambda}(w^{n}) = y^{k}
+  \end{cases}
+
+The algorithm process is :
+
+* 1. from the last step, we have :math:`u^{n}` and :math:`\lambda b^{n} = \lambda Bu^{n}`.
+* 2. find :math:`w^{n+1}`, such that :math:`J_{A}^(\lambda)w^{n+1} =u^{n} - \lambda b^{n}` (equivalent to :math:`w^{n+1}+\lambda A w^{n+1} = u^{n} - \lambda Bu^{n}`). note :math:`Aw^{n}=a^{n}`
+* 3. find :math:`n^{n+1}`, such that :math:`J_{B}^{\lambda}n^{n+1}=w^{n+1} + \lambda Bu^{n}` (equivalent to :math:`u^{n+1}+\lambda Bu^{n+1} = w^{n+1} + \lambda Bu^{n}`)
+
+The algorithm could be expressed as :
+
+.. math::
+  G_{A,B}^{\lambda} = \{(u+\lambda b, w+\lambda b) \mid (u,b)\in B, (w,a)\in A, v+\lambda a = w-\lambda b \}
+
+Consider the operator :
+
+.. math::
+  S_{A,B}^{\lambda} = (G_{A,B}^{\lambda})^{-1} - 1
+
+It could be expressed as :
+
+.. math::
+  S_{A,B}^{\lambda} = \{(u+\lambda b, u-v) \mid (u,b)\in B, (v,a)\in A, v+\lambda a = u-\lambda b \}
