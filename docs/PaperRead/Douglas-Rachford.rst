@@ -17,4 +17,42 @@ and :math:`(I+\tau B)^{-1}` are easiser to evaluate thane :math:`(I+\tau T)^{-1}
 need to evaluate the resolvent operators with respect to A and B. DRS(Douglas-Rachford Splitting) is one of the algorithms focus it,
 which is known to be a special case of the prximal point algorithm.
 
-`Splitting algorithms for the sum of two nonlinear operators <https://www.researchgate.net/publication/243654261_Mercier_B_Splitting_algorithms_for_the_sum_of_two_nonlinear_operators_SIAM_J_Numer_Anal_166_964-979>`_
+1. Splitting algorithms
+--------------------------------
+
+From paper `Splitting algorithms for the sum of two nonlinear operators <https://www.researchgate.net/publication/243654261_Mercier_B_Splitting_algorithms_for_the_sum_of_two_nonlinear_operators_SIAM_J_Numer_Anal_166_964-979>`_
+
+For solving the stationary equation (optimal condition), where C is a multivalued monotone opeartor on Hilbert space H:
+
+.. math::
+  0\in C(u^{*})
+
+**Recall Proximal Algorithm** :
+
+.. math::
+  \bar{x} = \mathbb{prox}_{\lambda, f} (v) = \arg\min_{x} f(x) + \frac{1}{2\lambda}\|x-v\|_{2}
+
+The optimal condition for :math:`\bar{x}` is :
+
+.. math::
+  0\in \frac{\partial}{\partial x}\mid_{\bar{x}} = \partial f(\bar{x}) + \frac{1}{\lambda}(\bar{x} - v)
+
+.. math::
+  v\in (I+\lambda\partial f)\bar{x}
+
+.. math::
+  \bar{x} = (I + \lambda \partial f)^{-1}(v)
+
+Where :math:`(I + \lambda \partial f)^{-1}` is the resolvent operator, the proximal algorithm is to find the fixed point of the resolvent.
+And for the fixed point, we have :
+
+.. math::
+  v\in (I+\lambda\partial f)v
+
+.. math::
+  0\in \partial f
+
+which is exactly the optimal condition for optimizing an objective function f.
+
+1.1 Peaceman-Rachford
+~~~~~~~~~~~~~~~~~~~~~~
