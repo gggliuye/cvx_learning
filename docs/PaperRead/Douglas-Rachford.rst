@@ -175,8 +175,8 @@ Which is actually the expression using the notation of the paper in the previous
 The algorithm process is :
 
 * 1. from the last step, we have :math:`u^{n}` and :math:`\lambda b^{n} = \lambda Bu^{n}`.
-* 2. find :math:`w^{n+1}`, such that :math:`J_{A}^{\lambda} w^{n+1} =u^{n} - \lambda b^{n}` (equivalent to :math:`w^{n+1}+\lambda A w^{n+1} = u^{n} - \lambda Bu^{n}`). note :math:`Aw^{n}=a^{n}`
-* 3. find :math:`n^{n+1}`, such that :math:`J_{B}^{\lambda}n^{n+1}=w^{n+1} + \lambda Bu^{n}` (equivalent to :math:`u^{n+1}+\lambda Bu^{n+1} = w^{n+1} + \lambda Bu^{n}`)
+* 2. find :math:`w^{n+1}`, such that :math:`J_{A}^{\lambda, -1} w^{n+1} =u^{n} - \lambda b^{n}` (equivalent to :math:`w^{n+1}+\lambda A w^{n+1} = u^{n} - \lambda Bu^{n}`). note :math:`Aw^{n}=a^{n}`
+* 3. find :math:`n^{n+1}`, such that :math:`J_{B}^{\lambda, -1}u^{n+1}=w^{n+1} + \lambda Bu^{n}` (equivalent to :math:`u^{n+1}+\lambda Bu^{n+1} = w^{n+1} + \lambda Bu^{n}`)
 
 The algorithm could be expressed as :
 
