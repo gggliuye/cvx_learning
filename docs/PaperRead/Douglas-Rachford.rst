@@ -168,8 +168,8 @@ Which is actually the expression using the notation of the paper in the previous
 .. math::
   \begin{cases}
   (I - J_{B}^{\lambda})v^{n} = \lambda Bu^{n} = \lambda b^{n}\\
-  (2J_{B - I}^{\lambda})v^{n} = u^{n} - \lambda b^{n} \\
-  J_{A}^{\lambda}(w^{n}) = y^{k}
+  (2J_{B}^{\lambda} - I )v^{n} = u^{n} - \lambda b^{n} \\
+  J_{A}^{\lambda}(y^{n}) = J_{A}^{\lambda}(w^{n} + \lambda a^{n}) = w^{k}
   \end{cases}
 
 The algorithm process is :
