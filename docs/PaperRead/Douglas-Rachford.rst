@@ -172,7 +172,7 @@ Which is actually the expression using the notation of the paper in the previous
   J_{A}^{\lambda}(y^{n}) = J_{A}^{\lambda}(w^{n} + \lambda a^{n}) = w^{k}
   \end{cases}
 
-The algorithm process is :
+The algorithm process is (note :math:`v^{n} = (I+\lambda B)u^{n}`):
 
 * 1. from the last step, we have :math:`u^{n}` and :math:`\lambda b^{n} = \lambda Bu^{n}`.
 * 2. find :math:`w^{n+1}`, such that :math:`J_{A}^{\lambda, -1} w^{n+1} =u^{n} - \lambda b^{n}` (equivalent to :math:`w^{n+1}+\lambda A w^{n+1} = u^{n} - \lambda Bu^{n}`). note :math:`Aw^{n}=a^{n}`
