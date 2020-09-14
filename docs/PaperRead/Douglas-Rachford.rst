@@ -175,7 +175,7 @@ Which is actually the expression using the notation of the paper in the previous
 The algorithm process is :
 
 * 1. from the last step, we have :math:`u^{n}` and :math:`\lambda b^{n} = \lambda Bu^{n}`.
-* 2. find :math:`w^{n+1}`, such that :math:`J_{A}^(\lambda)w^{n+1} =u^{n} - \lambda b^{n}` (equivalent to :math:`w^{n+1}+\lambda A w^{n+1} = u^{n} - \lambda Bu^{n}`). note :math:`Aw^{n}=a^{n}`
+* 2. find :math:`w^{n+1}`, such that :math:`J_{A}^{\lambda} w^{n+1} =u^{n} - \lambda b^{n}` (equivalent to :math:`w^{n+1}+\lambda A w^{n+1} = u^{n} - \lambda Bu^{n}`). note :math:`Aw^{n}=a^{n}`
 * 3. find :math:`n^{n+1}`, such that :math:`J_{B}^{\lambda}n^{n+1}=w^{n+1} + \lambda Bu^{n}` (equivalent to :math:`u^{n+1}+\lambda Bu^{n+1} = w^{n+1} + \lambda Bu^{n}`)
 
 The algorithm could be expressed as :
@@ -183,7 +183,10 @@ The algorithm could be expressed as :
 .. math::
   G_{A,B}^{\lambda} = \{(u+\lambda b, w+\lambda b) \mid (u,b)\in B, (w,a)\in A, v+\lambda a = w-\lambda b \}
 
-Consider the operator :
+2.3 Splitting Operator S
+~~~~~~~~~~~~~~~~~~~~
+
+Consider the operator S the splitting operator of A and B with respect to :math:`\lambda` :
 
 .. math::
   S_{A,B}^{\lambda} = (G_{A,B}^{\lambda})^{-1} - 1
@@ -191,4 +194,42 @@ Consider the operator :
 It could be expressed as :
 
 .. math::
-  S_{A,B}^{\lambda} = \{(u+\lambda b, u-v) \mid (u,b)\in B, (v,a)\in A, v+\lambda a = u-\lambda b \}
+  S_{A,B}^{\lambda} = \{(w+\lambda b, u-w) \mid (u,b)\in B, (w,a)\in A, w+\lambda a = u-\lambda b \}
+
+**Theorem** If A and B are (maximal) monotone then A is (maximal) monotone.
+
+**Theorem** The Douglas-Rachford iteration is equivalent to applying the proximal point algorithm to the maximal monotone
+operator A, with the proximal point stepsize fixed at 1, and exact evaluation of resolvents.
+
+.. math::
+  v^{n+1}= G_{A,B}^{\lambda}(v^{n}) = (I + S_{A,B}^{\lambda})^{-1}(v^{n})
+
+2.3 ADMM
+~~~~~~~~~~~~~~~~~~~~~~~
+
+`ADMM <https://cvx-learning.readthedocs.io/en/latest/ADMM/Index.html>`_
+
+Considering the problem :
+
+.. math::
+  minimize_{x\in \mathcal{R}^{n}} \quad f(x) + g(Mx)
+
+.. math::
+  \begin{align*}
+  &minimize_{x\in \mathcal{R}^{n}} \quad f(x) + g(w) \\
+  &subject\ to \quad Mx = w
+  \end{align*}
+
+.. math::
+  maximize_{p\in \mathcal{R}^{m}} \quad -(f^{*}(-M^{T}p) + g^{*}(r))
+
+Let :
+
+.. math::
+  \begin{cases}
+  A = \partial[f^{*}(-M^{T})] \\
+  B = \partial g^{*}
+  \end{cases}
+
+Then apply Douglas-Rachford splitting to A and B, yield the ADMM(alternating direction method of multipliers) , shown
+by Babay in `Applications of the method of multipliers to variational inequalities <https://www.researchgate.net/publication/304533564_Applications_of_the_method_of_multipliers_to_variational_inequalities>`_ .
