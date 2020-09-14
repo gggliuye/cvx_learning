@@ -54,5 +54,78 @@ And for the fixed point, we have :
 
 which is exactly the optimal condition for optimizing an objective function f.
 
+**Splitting Algorithm** : consider the case of splitting the operator C, that C = A+B, and A , B are maximal monotone.
+(standard methods for the 1979) :
+
+.. math::
+  u^{n+1} := (I+\lambda A)^{-1}(I-\lambda B)u^{n}
+
+It is not unconditionally stable [1]_ , but convergent if :math:`\lambda` sufficiently small, and B is Lipschitz continuous.
+
+The corresponding updates algorithm :
+
+.. math::
+  \begin{cases}
+  \frac{u^{n+1/2}- u^{n}}{\lambda} + Bu^{n} = 0\\
+  \frac{u^{n+1}-u^{n+1/2}}{\lambda} + Au^{n+1} = 0
+  \end{cases}
+
+.. math::
+  u^{n+1} := (I+\lambda A)^{-1}(I+\lambda B)^{-1}u^{n}
+
+It is unconditionally stable, but doesn't convergence except with some special modification.
+
+**Assumption** : assume the stationary problem :math:`0\in C(u^{*})` has at least one solution. Hence :
+
+.. math::
+  there\ exist\ u\in H, a\in A(u), b\in B(u)\quad such\ that\ a+b=0
+
+
+**Notation** :
+
+.. math::
+  v = (I + \lambda B)(u) = J_{B}^{\lambda} (u)
+
+.. [1] unconditionally stable : :math:`u^{n}` remains bounded independently of n for any :math:`\lambda`.
+
 1.1 Peaceman-Rachford
 ~~~~~~~~~~~~~~~~~~~~~~
+
+.. math:
+  u^{n+1} := (I+\lambda B)^{-1}(I-\lambda A)(I+\lambda A)^{-1}(I-\lambda B)u^{n}
+
+The algorithm is :
+
+.. math::
+  v^{n+1} := (2J_{A}^{\lambda} - I)(2J_{B}^{\lambda}-I)v^{n}
+
+**Convergence** : If B is single valued and satisfies the following property : For all :math:`x_{n},x\in D(B)` such
+that :math:`Bx_{n}` is bounded, and :math:`x_{n}\to \bar{x}` weakly, and
+
+.. math::
+  (Bx_{n}-Bx, x_{n}-x)\to 0, \quad as n\to \infty
+
+then one has :math:`x=\bar{x}`; then :math:`u^{n}` converges weakly to u, solution of :math:`0\in C(u^{*})`, which is unique.
+
+1.2 Douglas-Rachford
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The convergence for this algorithm occurs for more general operators A and B than the previous algorithm.
+
+.. math::
+  u^{n+1} := (I+\lambda B)^{-1}[(I+\lambda A)^{-1}(I-\lambda B) +\lambda B]u^{n}
+
+The algorithm is :
+
+.. math::
+  v^{n+1} := J_{A}^{\lambda}(2J_{B}^{\lambda} - I)v^{n} + (I - J_{B}^{\lambda})v^{n}
+
+**Convergence** Assume that :math:`J_{B}^{\lambda}` is weakly closed, then under the previous Assumption, :math:`u^{n}` converges
+weakly to a solution :math:`u=J_{B}^{\lambda}v` of  :math:`0\in C(u^{*})`. (If :math:`J_{A}^{\lambda}` is compact, then the convergence is strong.)
+
+**General case** : in the general case, the algorithm is "almost convergent".
+
+1.3 Applications to evolution equations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+See the original paper.
