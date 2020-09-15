@@ -1,4 +1,4 @@
-function [x, history] = tv_l2(img, lambda, rho, alpha)
+function [x, history] = tv_l2(img, mask, lambda, rho, alpha)
 % total_variation  Solve total variation minimization via ADMM
 %
 % [x, history] = total_variation(b, lambda, rho, alpha)
@@ -28,7 +28,7 @@ function [x, history] = tv_l2(img, lambda, rho, alpha)
 t_start = tic;
 
 QUIET    = 0;
-MAX_ITER = 1000;
+MAX_ITER = 300;
 ABSTOL   = 1e-4;
 RELTOL   = 1e-2;
 
@@ -40,25 +40,30 @@ b = reshape(img, [],1);
 
 % Kronecker product
 e = ones(n,1);
-D_1 = spdiags([e -e], 0:1, n,n);
+D_1 = spdiags([e -e], 0:1, n,m);
 D = [kron(eye(n), D_1); kron(D_1, eye(n))];
 
-x = zeros(n*n,1);
-z = zeros(2*n*n,1);
-u = zeros(2*n*n,1);
+% kernel for x
+mask_vec = reshape(mask, [],1);
+K = spdiags([mask_vec], 0, length(mask_vec),length(mask_vec));
+KtK = K' * K;
+
+x = zeros(n*m,1);
+z = zeros(2*n*m,1);
+u = zeros(2*n*m,1);
 
 if ~QUIET
     fprintf('%3s\t%10s\t%10s\t%10s\t%10s\t%10s\n', 'iter', ...
       'r norm', 'eps pri', 's norm', 'eps dual', 'objective');
 end
 
-I = speye(n*n);
+I = speye(n*m);
 DtD = D'*D;
 
 for k = 1:MAX_ITER
 
     % x-update
-    x = (I + rho*DtD) \ (b + rho*D'*(z-u));
+    x = (KtK + rho*DtD) \ (b + rho*D'*(z-u));
 
     % z-update with relaxation
     zold = z;
@@ -67,7 +72,6 @@ for k = 1:MAX_ITER
 
     % y-update
     u = u + Ax_hat - z;
-
 
     % diagnostics, reporting, termination checks
     history.objval(k)  = objective(b, lambda, D, x, z);
