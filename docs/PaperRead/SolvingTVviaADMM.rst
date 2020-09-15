@@ -141,9 +141,9 @@ The upper updates are equvalient to :
 The original paper use the Augmented Lagrangian to derivate the ADMM updates,
 while we use the unscaled form of ADMM updates here. They should be equivalent.
 
-* The upper variable x should be the vector form of the image, and the gradient operator :math:`\nabla` could be sexpressed by an matrix.
+* The upper variable x should be the vector form of the image, and the gradient operator :math:`\nabla` could be expressed by an matrix.
 * The circular operator corresponds to circular matrix.
-* The author used a DFT transformed space to process the optimzation, which makes the computational cose much lower.
+* The author used a DFT transformed space to process the optimzation, which makes the computational cost much lower.
 
 **Process in two directions seperatly**:
 
@@ -161,6 +161,25 @@ Image example:
 
 .. image:: images/image_example.jpg
   :align: center
+
+**Use Kronecker Product** : use Kronecker product for making the derivative matrix D:
+
+.. math::
+  D = \begin{bmatrix} I \otimes D_{1} \\
+  D_{1} \otimes I
+  \end{bmatrix}
+
+With code ::
+
+  % Kronecker product
+  e = ones(n,1);
+  D_1 = spdiags([e -e], 0:1, n,n);
+  D = [kron(eye(n), D_1); kron(D_1, eye(n))];
+
+**Other Examples Matlab** :
+
+* `Plug and Play ADMM for Image Restoration <https://www.mathworks.com/matlabcentral/fileexchange/60641-plug-and-play-admm-for-image-restoration>`_
+* `Fast algorithm for total variation deconvolution <https://www.mathworks.com/matlabcentral/fileexchange/43600-deconvtv-fast-algorithm-for-total-variation-deconvolution>`_
 
 3. Application TV-LP
 --------------------------

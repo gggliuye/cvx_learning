@@ -233,3 +233,34 @@ Let :
 
 Then apply Douglas-Rachford splitting to A and B, yield the ADMM(alternating direction method of multipliers) , shown
 by Babay in `Applications of the method of multipliers to variational inequalities <https://www.researchgate.net/publication/304533564_Applications_of_the_method_of_multipliers_to_variational_inequalities>`_ .
+
+2.4 ECE236C
+~~~~~~~~~~~~~~~~~~~~~~~
+
+see `ECE236C <http://www.seas.ucla.edu/~vandenbe/236C/>`_ for a more detail description of the realization of `DRS <http://www.seas.ucla.edu/~vandenbe/236C/lectures/dr.pdf>`_ algorithm.
+
+.. image:: images/DRS.PNG
+    :align: center
+    :width: 80%
+
+* DR iteration as fixed-points iteration.
+* DRS is not invariant with respect to scaling (so we need adpating the scaling variable : :math:`\lambda` in the previous chapters).
+
+.. image:: images/DRS_scaling.PNG
+    :align: center
+    :width: 80%
+
+* With relaxation
+
+.. image:: images/DRS_relax.PNG
+    :align: center
+    :width: 80%
+
+* Primal-dual formulation
+
+.. image:: images/DRS_primal_dual.PNG
+    :align: center
+    :width: 80%
+
+* Apply DRS upon the dual problem, will give ADMM.
+* Convergence proof.

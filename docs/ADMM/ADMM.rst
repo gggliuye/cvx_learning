@@ -58,7 +58,7 @@ We can reform the problem into a much simpler form (which is mostly used in prac
   &= f(x) + g(z) +  (\rho/2) \|r + (1/\rho)y \|_{2}^{2} -  (1/2\rho)\|y\|_{2}^{2}
   \end{align*}
 
-By noting :math:`u = (1/\rho)y ` we have the simpified form of ADMM:
+By noting :math:`u = (1/\rho)y` we have the simpified form of ADMM:
 
 .. math::
   \begin{align*}
