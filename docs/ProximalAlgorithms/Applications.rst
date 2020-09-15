@@ -259,7 +259,7 @@ The update of each column of x will be solved using a CVX solver:
 
 .. math::
   \begin{align*}
-  &minimize \quad f_{t}(x_{t}) + (1/2\lambda)\|x_{t} - z^(k) + u^{k}\|^{2}_{2}\\
+  &minimize \quad f_{t}(x_{t}) + (1/2\lambda)\|x_{t} - z^{k} + u^{k}\|^{2}_{2}\\
   & subject\ to \quad x_{t}\ge 0, \quad \sum_{i=1}^{N} x_{t,i} \le 1
   \end{align*}
 
@@ -267,7 +267,7 @@ The update of each rows of z will be solving the following problem:
 
 .. math::
   \begin{align*}
-  &minimize \quad \sum_{t=1}^{N} g_{t,i}(z_{t,i}- z_{t-1,i} + (1/2\lambda)\|z_{t,i} - x^{k+1} - u^{k}\|_{2}^{2} \\
+  &minimize \quad \sum_{t=1}^{N} g_{t,i}(z_{t,i}- z_{t-1,i}) + (1/2\lambda)\|z_{t,i} - x^{k+1} - u^{k}\|_{2}^{2} \\
   & subject\ to \quad z_{1} = 0
   \end{align*}
 
