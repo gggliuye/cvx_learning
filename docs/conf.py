@@ -75,7 +75,7 @@ pygments_style = None
 
 # -- Options for HTML output -------------------------------------------------
 
-html_logo = "ip-paris.jpg"
+html_logo = "ip-paris.png"
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
