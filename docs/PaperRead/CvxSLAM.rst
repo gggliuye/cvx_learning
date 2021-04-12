@@ -167,13 +167,19 @@ This is the main subject here. This method is a **outlier robust, correspondence
 Then estimate firstly the scale using adaptive voting, in polynomial time.
 
 .. math::
-  \hat_{s} = \arg\min_{s} \sum_{k_{ij}=1}^{K} \min(\frac{(s-s_{ij})^{2}}{\alpha_{ij}^{2}}, \bar c^{2} )
+  \hat{s} = \arg\min_{s} \sum_{k_{ij}=1}^{K} \min(\frac{(s-s_{ij})^{2}}{\alpha_{ij}^{2}}, \bar c^{2} )
 
 **Marginalize Rotation** 
 
-.. math::
-  \hat_{R} = \arg\min_{R\in SO(3)} \sum_{k_{ij} = 1}^{K} \min(\frac{\|\bar{b}_{ij} - \hat{s}R\bar{a}_{ij}  \|^{2}}{\delta_{ij}^{2}}, \bar c^{2})
+Then solve rotation via a tight semi-definite relaxation.
 
+.. math::
+  \hat{R} = \arg\min_{R\in SO(3)} \sum_{k_{ij} = 1}^{K} \min(\frac{\|\bar{b}_{ij} - \hat{s}R\bar{a}_{ij}  \|^{2}}{\delta_{ij}^{2}}, \bar c^{2})
+
+Finally solve the translations via adaptive voting.
+
+.. math::
+  \hat{t_j} = \arg\min_{t_{j}} \sum_{i=1}^{N}\min(\frac{ (t_{j} - [b_{i}-\hat s \hat R a_{i}]_{j})^{2} }{\beta_{i}^{2}}, \bar c^{2})
 
 3.3 Adaptive Voting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
