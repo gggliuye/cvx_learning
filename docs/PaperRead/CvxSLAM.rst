@@ -160,20 +160,20 @@ This is the main subject here. This method is a **outlier robust, correspondence
   \min_{s >0, \mathbf{R} \in SO(3), t \in \mathbb{R}^{3}} \sum_{i = 1}^{N} \min(\frac{1}{\beta^{2}}
   \|b_{i} - s\mathbf{R}a_{i} - t \|^{2}, \bar c ^{2})
 
-**Marginalize translation**
+* Not guaranteed to produce the same result as Consensus Maximization (which maximize the number of inliers).
+* convex TLS is NP hard, and SO(3) non-convex is even harder.
 
-**Marginalize Rotation**
+**Marginalize translation** same as ordinary ICP solving steps. Process in the centroid reference (TIM : translation invariant measurement). 
+Then estimate firstly the scale using adaptive voting, in polynomial time.
 
-**Overall**:
+.. math::
+  \hat_{s} = \arg\min_{s} \sum_{k_{ij}=1}^{K} \min(\frac{(s-s_{ij})^{2}}{\alpha_{ij}^{2}}, \bar c^{2} )
 
-.. image:: https://img-blog.csdnimg.cn/20200610104622888.png
-    :align: center
+**Marginalize Rotation** 
 
-.. image:: https://img-blog.csdnimg.cn/20200610104642999.png
-    :align: center
+.. math::
+  \hat_{R} = \arg\min_{R\in SO(3)} \sum_{k_{ij} = 1}^{K} \min(\frac{\|\bar{b}_{ij} - \hat{s}R\bar{a}_{ij}  \|^{2}}{\delta_{ij}^{2}}, \bar c^{2})
 
-.. image:: https://img-blog.csdnimg.cn/20200610104708703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDQ5MjAyNA==,size_16,color_FFFFFF,t_70
-     :align: center
 
 3.3 Adaptive Voting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
