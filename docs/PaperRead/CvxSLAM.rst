@@ -176,6 +176,14 @@ Then solve rotation via a tight semi-definite relaxation.
 .. math::
   \hat{R} = \arg\min_{R\in SO(3)} \sum_{k_{ij} = 1}^{K} \min(\frac{\|\bar{b}_{ij} - \hat{s}R\bar{a}_{ij}  \|^{2}}{\delta_{ij}^{2}}, \bar c^{2})
 
+Solving large-scale SDP (expensive) :
+
+* Add binary variables to avoid the min function. Then form QCQP problem.
+* Make the QCQP convex, by applying a SDR (semi-definite relaxation). And the relaxation is tight, which guarantee the global optimal.
+
+Fast heuristics (GNC : graduated non-convexity) with certification.
+
+
 Finally solve the translations via adaptive voting.
 
 .. math::
